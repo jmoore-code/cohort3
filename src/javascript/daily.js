@@ -14,7 +14,9 @@
 
 // Write the function after this comment ---
 
-export function assertEquals(p1,p2) {
+const functions = {
+
+assertEquals: function(p1,p2) {
     // console.log(p1,p2);
     if (p1 === p2) return true
     else if (p1 !== p2) {
@@ -26,15 +28,20 @@ export function assertEquals(p1,p2) {
 
     }
     return false  
-}
+},
 
 
 // and before this comment ---
 
-// assertEquals("a","b");
-// assertEquals("a","a");
-// assertEquals(1,2);
-// assertEquals(2,2);
-// assertEquals("2",2);
-// assertEquals("This value","This value");
 
+makeEmailArr: function(name) {
+    let firstName = name[0].toLowerCase();
+    let lastName = name[1].toLowerCase();
+    return `${firstName}.${lastName}@evolveu.ca`;
+}
+
+
+
+} // end of functions const//
+
+export default functions
