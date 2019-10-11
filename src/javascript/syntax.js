@@ -1,85 +1,89 @@
-
 const functions = {
-// define attributes / variables 
+  // define attributes / variables ------------------------------------
 
+  // number
+  num1: 5,
 
-    // number
-    num1: 5,
-     
+  // string
+  string1: "Hello World",
 
+  // boolean
+  lessBoolean: (x, y) => {
+    if (x < y) return true;
+  },
 
+  greaterBoolean: (x, y) => {
+    if (x > y) return true;
+  },
 
-    // string
-    string1: "Hello World",
-    
+  equalsBoolean: (x, y) => {
+    if (x == y) return true;
+  },
 
-    // boolean
-    lessboolean: (x,y) => {
-        if (x < y) return true 
-    },
+  // array
 
-    greaterboolean: (x,y) => {
-        if (x > y) return true 
-    }
+  array1: ["test0", "test1"],
 
-    // array
+  // dictionary / objects
 
+  object1: {
+    firstName: "Jason",
+    lastName: "Moore"
+  },
 
-    // dictionary / objects
+  // undefined
 
+  undefined1: () => {
+      const x = undefined
+      
+  },
 
-    // undefined
+  // sample if / else ------------------------------------
 
+  conditional1: (time) => {
+      if (time < 10) {
+          return "Good morning";
+      } else if (time < 18) {
+          return "Good afternoon";
+      } else {
+          return "Good evening";
+      }
+  },
 
-// sample if / else
+  // functions ------------------------------------------
 
+  // parameters
 
-// functions
+  multiple1: (a,b) => {
+    return a*b;
+  }
 
+  // returns
 
-    // parameters
+  // arrays ---------------------------------------------
 
+  // add to the front
 
-    // returns
+  // add to the end
 
+  // update values
 
-// arrays
+  // loops ----------------------------------------------
 
+  // for
 
-    // add to the front
+  // for/in
 
+  // while
 
-    // add to the end
+  // do while
 
+  // forEach (with array and function)
 
-    // update values
+  // Objects / Dictionaries ----------------------------
 
+  // declare object
 
-// loops 
-
-
-    // for
-
-
-    // for/in
-
-
-    // while
-
-
-    // do while
-
-
-    // forEach (with array and function)
-
-
-// Objects / Dictionaries
-
-
-    // declare object
-
-
-    // lookup key to retrieve value
-
-}
- export default functions 
+  // lookup key to retrieve value
+};
+export default functions;
