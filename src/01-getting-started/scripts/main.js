@@ -30,3 +30,8 @@ idDivideButton.addEventListener('click', (() => {
 idTaxButton.addEventListener('click', (() => {
     idTaxResult.textContent = functions.taxCalculator(Number(idTaxInput.value));
 }));
+
+idTaxInput.addEventListener('keypress', ((event) => {
+    if (event.keyCode === 13) {
+        idTaxResult.textContent = functions.taxCalculator(Number(idTaxInput.value));}
+}));

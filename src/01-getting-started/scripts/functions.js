@@ -9,6 +9,8 @@ const functions = {
         return "large";
     },
 
+    // Basic Calculator functions
+
     add: (num1, num2) => {
         return num1 + num2;
     },
@@ -24,6 +26,8 @@ const functions = {
     divide: (num1, num2) => {
         return num1 / num2;
     },
+
+    // Tax Calculator Function
 
     taxCalculator: (num1) => {
         const teir1 = 47630
@@ -42,6 +46,32 @@ const functions = {
         }else {
             return ((num1 - 210371) * 0.33) + (teir4 * 0.29) + (teir3 * 0.26) + (teir2 * 0.205) + (teir1 * 0.15);
         }
+    },
+
+    // Working with Arrays functions
+    myArray: [],
+
+    addToArray: (num1) => { 
+        if (typeof(num1) == "number") {
+            functions.myArray.push(num1);
+            return `The number ${num1} has been added to the array`
+        } else {
+            return "Your input is not a valid number"
+        }
+    },
+
+    showArrayState: () => {
+        return functions.myArray.toString();
+    },
+
+    totalArray: () => {
+        let x = functions.myArray.reduce((accumulator, y) => accumulator + y, 0);
+        return x
+    },
+
+    clearArray: () => {
+        functions.myArray.length = 0;
+        return functions.myArray.length;
     }
     
 };
