@@ -43,7 +43,7 @@ html {
 }
 
 
-/* Second image (Size) */
+/* Second and third image (Size and Calculator) */
 
 .bgimg-2 {
     /* background-image: url("https://www.w3schools.com/w3images/parallax2.jpg"); */
@@ -65,6 +65,16 @@ html {
     width: 50px;
 }
 
+/* Result box for Calculator, Tax Calculator */
+
+#idResult, #idTaxResult {
+    width: 100px;
+    height:30px;
+    border: 1px solid grey;
+    text-decoration-color: black;
+}
+
+
 
 /* Turn off parallax scrolling for tablets and phones */
 
@@ -76,3 +86,4 @@ html {
         min-height: 400px;
     }
 }
+
