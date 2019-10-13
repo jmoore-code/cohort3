@@ -74,6 +74,23 @@ html {
     text-decoration-color: black;
 }
 
+/* Place holder center text */
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+ }
+
 
 
 /* Turn off parallax scrolling for tablets and phones */
