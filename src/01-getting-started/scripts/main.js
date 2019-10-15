@@ -1,4 +1,5 @@
 import functions from "./functions.js";
+import taxLogic from "./taxcalc.js"
 
 // **********
 //
@@ -40,12 +41,12 @@ idDivideButton.addEventListener("click", () => {
 
 // ********Tax calculator listeners
 idTaxButton.addEventListener("click", () => {
-  idTaxResult.textContent = functions.taxCalculator(Number(idTaxInput.value));
+  idTaxResult.textContent = taxLogic.taxCalculator(Number(idTaxInput.value));
 });
 
 idTaxInput.addEventListener("keypress", event => {
   if (event.keyCode === 13) {
-    idTaxResult.textContent = functions.taxCalculator(Number(idTaxInput.value));
+    idTaxResult.textContent = taxLogic.taxCalculator(Number(idTaxInput.value));
   }
 });
 
