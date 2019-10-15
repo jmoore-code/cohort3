@@ -98,11 +98,11 @@ const functions = {
   },
 
   myLookUp: prov => {
-      if (typeof(functions.myDictionary[prov]) == "string") {
-        return functions.myDictionary[prov]; 
-      } else { 
-            return "That is not a valid Canadian provincal code"
-      }
+    if (typeof functions.myDictionary[prov] == "string") {
+      return functions.myDictionary[prov];
+    } else {
+      return "That is not a valid Canadian provincal code";
+    }
   }
 };
 
