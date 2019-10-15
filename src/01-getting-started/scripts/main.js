@@ -66,3 +66,16 @@ idArrayTotalButton.addEventListener("click", () => {
 idArrayClearButton.addEventListener("click", () => {
   idArrayMessage.textContent = functions.clearArray();
 });
+
+// Working with Dictionaries Listeners
+idLookUpButton.addEventListener('click', () => {
+  idDictionaryMessage.textContent = functions.myLookUp(idDictionaryInput.value.toUpperCase());
+  idDictionaryInput.value = "";
+});
+
+idDictionaryInput.addEventListener('keypress', event => {
+  if (event.keyCode === 13) {
+  idDictionaryMessage.textContent = functions.myLookUp(idDictionaryInput.value.toUpperCase());
+  idDictionaryInput.value = "";
+  }
+});

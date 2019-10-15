@@ -19,7 +19,11 @@ html {
 /* Create a Parallax Effect */
 
 .bgimg-1,
-.bgimg-2 {
+.bgimg-2,
+.bgimg-3,
+.bgimg-4,
+.bgimg-5,
+.bgimg-6 {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +47,7 @@ html {
 }
 
 
-/* Second and third image (Size and Calculator) */
+/* Second and third image (Size) */
 
 .bgimg-2 {
     /* background-image: url("https://www.w3schools.com/w3images/parallax2.jpg"); */
@@ -51,6 +55,38 @@ html {
     min-height: 400px;
     opacity: 0.5;
 }
+
+/*Third image (Calculator) */
+
+.bgimg-3 {
+
+    background-image: url("https://images.unsplash.com/photo-1550645612-83f5d594b671?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    min-height: 400px;
+    opacity: 0.5;
+}
+
+/*Forth image (Tax Calculator) */
+
+.bgimg-4 {
+    background-image: url("https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    min-height: 400px;
+    opacity: 0.5;
+}
+
+/*Fifth image (Working with Arrays) */
+.bgimg-5 {
+    background-image: url("https://images.unsplash.com/photo-1526498460520-4c246339dccb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    min-height: 400px;
+    opacity: 0.5;
+}
+
+/*Sixth image (Working with Dictionaries) */
+.bgimg-6 {
+    background-image: url("https://images.unsplash.com/photo-1562907550-096d3bf9b25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80");
+    min-height: 400px;
+    opacity: 0.5;
+}
+
 
 .w3-wide {
     letter-spacing: 10px;
@@ -65,11 +101,11 @@ html {
     width: 50px;
 }
 
-/* Result box for Calculator, Tax Calculator */
+/* Result box for Calculator, Tax Calculator, Arrays */
 
 #idResult, #idTaxResult {
     width: 100px;
-    height:30px;
+    height:25px;
     border: 1px solid grey;
     text-decoration-color: black;
 }
@@ -91,6 +127,7 @@ html {
     text-align: center; 
  }
 
+ 
 
 
 /* Turn off parallax scrolling for tablets and phones */
