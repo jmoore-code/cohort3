@@ -54,45 +54,44 @@ test("test if/else", () => {
 // parameters
 // returns
 
-test("test multiple function", ()=> {
-    expect(functions.multiple1(2,2)).toBe(4);
-    expect(functions.multiple1(3,3)).toBe(9);
-
+test("test multiple function", () => {
+  expect(functions.multiple1(2, 2)).toBe(4);
+  expect(functions.multiple1(3, 3)).toBe(9);
 });
-
-
 
 // arrays ---------------------------------------------
 
 // add to the front
 
 test("test array add to front", () => {
-    expect(functions.addToFront("Bob")).toBe(functions.arrayTestFront[0]);
+  expect(functions.addToFront("Bob")).toBe(functions.arrayTestFront[0]);
 });
 
 // add to the end
 
 test("test array add to end", () => {
-    expect(functions.addToEnd("Tim")).toBe(functions.arrayTestEnd[functions.arrayTestEnd.length -1]);
+  expect(functions.addToEnd("Tim")).toBe(
+    functions.arrayTestEnd[functions.arrayTestEnd.length - 1]
+  );
 });
 
 // update values
 
 test("test update value", () => {
-    expect(functions.updateValue("Larry")).toBe("Larry");
+  expect(functions.updateValue("Larry")).toBe("Larry");
 });
 
 // loops ----------------------------------------------
 
 // for
 test("test for loop", () => {
-    expect(functions.myForLoop(5)).toBe(10);
+  expect(functions.myForLoop(5)).toBe(10);
 });
 
 // for/in
 
 test("test for in loop", () => {
-    expect(functions.myForInLoop()).toBe("John Doe 25 ");
+  expect(functions.myForInLoop()).toBe("John Doe 25 ");
 });
 
 // while
@@ -114,6 +113,8 @@ test("test forEach", () => {
 
 // Objects / Dictionaries ----------------------------
 
-// declare object
-
 // lookup key to retrieve value
+test("test object key lookup", () => {
+  expect(functions.keyLookUp("make")).toBe("BMW");
+  expect(functions.keyLookUp("color")).toBe("blue");
+});
