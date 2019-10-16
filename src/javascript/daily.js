@@ -1,3 +1,57 @@
+const functions = {
+
+// 2019/10/16, More Array Work
+
+sliceFunction: (num1,num2) => {
+  const cars = ["BMW", "Volvo", "Mazda", "Toyota"]
+  let select = cars.slice(num1,num2);
+  return select.toString();
+  },
+  
+  spliceFunction: (num1, num2, carInput) => {
+    const cars = ["BMW", "Volvo", "Mazda", "Toyota"]
+    cars.splice(num1,num2, carInput)
+    return cars.toString();
+  },
+
+forEachFunction: () => {
+  const cars = ["BMW", "Mercedes", "Audi"];
+  let copy = []; 
+  cars.forEach(function(addCar) {
+    copy.push(addCar);
+  })
+  return copy.toString();
+},
+
+// object to use for map, reduce, filter, and sort
+cars: [
+  { year: 1969, name: 'Mustang', km: 20000, type: "Classic"},
+  { year: 2018, name: 'Lambo', km: 10000, type: "Modern" },
+  { year: 2003, name: 'Mazda', km: 30000, type: "Modern" },
+  { year: 1977, name: 'Chevy', km: 40000, type: "Classic" }
+],
+
+mapFunction: () => {
+  const carYear = functions.cars.map(car => car.year);
+  return carYear.toString();
+},
+
+reduceFunction: () => {
+  const totalKm =  functions.cars.reduce((acc, mileage) => 
+  acc + mileage.km, 0);
+  return totalKm;
+},
+
+filterFunction: (input) => {
+  const selectType = functions.cars.filter(sel => sel.type === input);
+  return selectType.map(car => car.name).toString();
+},
+
+sortFunction: () => {
+  let ageOrder = functions.cars.sort(function(a,b){return a.year - b.year})
+  return ageOrder.map(car => car.year).toString();
+},
+
 /*	
 	Write the function that will create this output:
 
@@ -14,7 +68,7 @@
 
 // Write the function after this comment ---
 
-const functions = {
+
   assertEquals: function(p1, p2) {
     // console.log(p1,p2);
     if (p1 === p2) return true;
@@ -101,10 +155,6 @@ const functions = {
     return txt;
   },
 
-// Daily exercise for Oct 16 and 17
-sliceFunction: () => {
-return 0
-}
 
 }; // end of functions const//
 

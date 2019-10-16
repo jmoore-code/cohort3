@@ -1,8 +1,38 @@
 import functions from "./daily";
 
-// test("Me playing", () => {
-//     console.log("Hellow World");
-// });
+//2019/10/16, Daily Tests
+
+test("Test the slice function", () => {
+  expect(functions.sliceFunction(1,3)).toBe("Volvo,Mazda");
+  expect(functions.sliceFunction(0,2)).toBe("BMW,Volvo");
+});
+
+test("Test the splice function", () => {
+  expect(functions.spliceFunction(0,0,"Mercedes")).toBe("Mercedes,BMW,Volvo,Mazda,Toyota");
+  expect(functions.spliceFunction(1,2,"Mercedes")).toBe("BMW,Mercedes,Toyota");
+
+});
+
+test("Test forEach function", () => {
+  expect(functions.forEachFunction()).toBe("BMW,Mercedes,Audi")
+});
+
+test("Test map function", () => {
+  expect(functions.mapFunction()).toBe("1969,2018,2003,1977")
+});
+
+test("Test reduce function", () => {
+  expect(functions.reduceFunction()).toBe(100000)
+});
+
+test("Test filter function", () => {
+  expect(functions.filterFunction("Classic")).toBe("Mustang,Chevy");
+});
+
+test("Test sort fucntion", () => {
+  expect(functions.sortFunction()).toBe("1969,1977,2003,2018");
+});
+
 
 test("Check if parm are equal", () => {
   expect(functions.assertEquals("a", "b")).toBe(false);
@@ -66,9 +96,3 @@ test("test for of loop", () => {
 });
 
 
-// tests for Daily Oct 16-17
-
-test("test the slice function", () => {
-  const cars = ["BMW", "Volvo", "Mazda", "Toyota"]
-  expect(functions.sliceFunction(1,2)).toBe("Volvo,Mazda")
-});
