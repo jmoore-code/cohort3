@@ -35,6 +35,14 @@ const functions = {
     return `${firstName}.${lastName}@evolveu.ca`;
   },
 
+  // Daily Oct 11th 
+
+  makeEmailObj: (name) => {
+    let firstName = name.fname.toLowerCase();
+    let lastName = name.lname.toLowerCase();
+    return `${firstName}.${lastName}@evolveu.ca`;
+  },
+
   // Daily for Oct 15
 
   array1: ["Jason", "Bob", "Tom"],
