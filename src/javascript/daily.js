@@ -1,58 +1,61 @@
 const functions = {
+  // 2019/10/16, More Array Work
 
-// 2019/10/16, More Array Work
-
-sliceFunction: (num1,num2) => {
-  const cars = ["BMW", "Volvo", "Mazda", "Toyota"]
-  let select = cars.slice(num1,num2);
-  return select.toString();
+  sliceFunction: (num1, num2) => {
+    const cars = ["BMW", "Volvo", "Mazda", "Toyota"];
+    let select = cars.slice(num1, num2);
+    return select.toString();
   },
-  
+
   spliceFunction: (num1, num2, carInput) => {
-    const cars = ["BMW", "Volvo", "Mazda", "Toyota"]
-    cars.splice(num1,num2, carInput)
+    const cars = ["BMW", "Volvo", "Mazda", "Toyota"];
+    cars.splice(num1, num2, carInput);
     return cars.toString();
   },
 
-forEachFunction: () => {
-  const cars = ["BMW", "Mercedes", "Audi"];
-  let copy = []; 
-  cars.forEach(function(addCar) {
-    copy.push(addCar);
-  })
-  return copy.toString();
-},
+  forEachFunction: () => {
+    const cars = ["BMW", "Mercedes", "Audi"];
+    let copy = [];
+    cars.forEach(function(addCar) {
+      copy.push(addCar);
+    });
+    return copy.toString();
+  },
 
-// object to use for map, reduce, filter, and sort
-cars: [
-  { year: 1969, name: 'Mustang', km: 20000, type: "Classic"},
-  { year: 2018, name: 'Lambo', km: 10000, type: "Modern" },
-  { year: 2003, name: 'Mazda', km: 30000, type: "Modern" },
-  { year: 1977, name: 'Chevy', km: 40000, type: "Classic" }
-],
+  // object to use for map, reduce, filter, and sort
+  cars: [
+    { year: 1969, name: "Mustang", km: 20000, type: "Classic" },
+    { year: 2018, name: "Lambo", km: 10000, type: "Modern" },
+    { year: 2003, name: "Mazda", km: 30000, type: "Modern" },
+    { year: 1977, name: "Chevy", km: 40000, type: "Classic" }
+  ],
 
-mapFunction: () => {
-  const carYear = functions.cars.map(car => car.year);
-  return carYear.toString();
-},
+  mapFunction: () => {
+    const carYear = functions.cars.map(car => car.year);
+    return carYear.toString();
+  },
 
-reduceFunction: () => {
-  const totalKm =  functions.cars.reduce((acc, mileage) => 
-  acc + mileage.km, 0);
-  return totalKm;
-},
+  reduceFunction: () => {
+    const totalKm = functions.cars.reduce(
+      (acc, mileage) => acc + mileage.km,
+      0
+    );
+    return totalKm;
+  },
 
-filterFunction: (input) => {
-  const selectType = functions.cars.filter(sel => sel.type === input);
-  return selectType.map(car => car.name).toString();
-},
+  filterFunction: input => {
+    const selectType = functions.cars.filter(sel => sel.type === input);
+    return selectType.map(car => car.name).toString();
+  },
 
-sortFunction: () => {
-  let ageOrder = functions.cars.sort(function(a,b){return a.year - b.year})
-  return ageOrder.map(car => car.year).toString();
-},
+  sortFunction: () => {
+    let ageOrder = functions.cars.sort(function(a, b) {
+      return a.year - b.year;
+    });
+    return ageOrder.map(car => car.year).toString();
+  },
 
-/*	
+  /*	
 	Write the function that will create this output:
 
 *** the two values are not the same:
@@ -66,15 +69,14 @@ sortFunction: () => {
     p2--> 2
 */
 
-// Write the function after this comment ---
-
+  // Write the function after this comment ---
 
   assertEquals: function(p1, p2) {
     // console.log(p1,p2);
     if (p1 === p2) return true;
     else if (p1 !== p2) {
-      // console.log(`*** the two values are not the same: 
-      //   p1--> ${p1} 
+      // console.log(`*** the two values are not the same:
+      //   p1--> ${p1}
       //   p2--> ${p2}`);
     }
     return false;
@@ -89,9 +91,9 @@ sortFunction: () => {
     return `${firstName}.${lastName}@evolveu.ca`;
   },
 
-  // Daily Oct 11th 
+  // Daily Oct 11th
 
-  makeEmailObj: (name) => {
+  makeEmailObj: name => {
     let firstName = name.fname.toLowerCase();
     let lastName = name.lname.toLowerCase();
     return `${firstName}.${lastName}@evolveu.ca`;
@@ -153,9 +155,7 @@ sortFunction: () => {
       txt += x + " ";
     }
     return txt;
-  },
-
-
+  }
 }; // end of functions const//
 
 export default functions;
