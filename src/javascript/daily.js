@@ -19,9 +19,9 @@ const functions = {
     // console.log(p1,p2);
     if (p1 === p2) return true;
     else if (p1 !== p2) {
-      console.log(`*** the two values are not the same: 
-        p1--> ${p1} 
-        p2--> ${p2}`);
+      // console.log(`*** the two values are not the same: 
+      //   p1--> ${p1} 
+      //   p2--> ${p2}`);
     }
     return false;
   },
@@ -99,7 +99,13 @@ const functions = {
       txt += x + " ";
     }
     return txt;
-  }
+  },
+
+// Daily exercise for Oct 16 and 17
+sliceFunction: () => {
+return 0
+}
+
 }; // end of functions const//
 
 export default functions;

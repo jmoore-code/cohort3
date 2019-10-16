@@ -64,3 +64,11 @@ test("test for in loop", () => {
 test("test for of loop", () => {
   expect(functions.myForOfLoop()).toBe("Jason Bob Tom ");
 });
+
+
+// tests for Daily Oct 16-17
+
+test("test the slice function", () => {
+  const cars = ["BMW", "Volvo", "Mazda", "Toyota"]
+  expect(functions.sliceFunction(1,2)).toBe("Volvo,Mazda")
+});
