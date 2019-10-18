@@ -1,0 +1,42 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+  background-color: #777;
+  line-height: 1.8;
+}
+
+
+
+.container {
+    /*show heigh: auto*/
+    height: 50vh; 
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.boxAround {
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    border: solid;
+    text-align: center;
+    
+}
+
+.list {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
