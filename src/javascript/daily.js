@@ -1,55 +1,41 @@
 const functions = {
   // 2019/10/16, More Array Work
 
-  sliceFunction: (num1, num2) => {
-    const cars = ["BMW", "Volvo", "Mazda", "Toyota"];
-    let select = cars.slice(num1, num2);
+  sliceFunction: (num1, num2, input) => {
+    let select = input.slice(num1, num2);
     return select.toString();
   },
 
-  spliceFunction: (num1, num2, carInput) => {
-    const cars = ["BMW", "Volvo", "Mazda", "Toyota"];
+  spliceFunction: (num1, num2, cars, carInput) => {
     cars.splice(num1, num2, carInput);
     return cars.toString();
   },
 
-  forEachFunction: () => {
-    const cars = ["BMW", "Mercedes", "Audi"];
+  forEachFunction: cars => {
     let copy = [];
-    cars.forEach(function(addCar) {
+    cars.forEach(addCar => {
       copy.push(addCar);
     });
     return copy.toString();
   },
 
-  // object to use for map, reduce, filter, and sort
-  cars: [
-    { year: 1969, name: "Mustang", km: 20000, type: "Classic" },
-    { year: 2018, name: "Lambo", km: 10000, type: "Modern" },
-    { year: 2003, name: "Mazda", km: 30000, type: "Modern" },
-    { year: 1977, name: "Chevy", km: 40000, type: "Classic" }
-  ],
-
-  mapFunction: () => {
-    const carYear = functions.cars.map(car => car.year);
+  mapFunction: cars => {
+    const carYear = cars.map(car => car.year);
     return carYear.toString();
   },
 
-  reduceFunction: () => {
-    const totalKm = functions.cars.reduce(
-      (acc, mileage) => acc + mileage.km,
-      0
-    );
+  reduceFunction: cars => {
+    const totalKm = cars.reduce((acc, mileage) => acc + mileage.km, 0);
     return totalKm;
   },
 
-  filterFunction: input => {
-    const selectType = functions.cars.filter(sel => sel.type === input);
+  filterFunction: (input, cars) => {
+    const selectType = cars.filter(sel => sel.type === input);
     return selectType.map(car => car.name).toString();
   },
 
-  sortFunction: () => {
-    let ageOrder = functions.cars.sort(function(a, b) {
+  sortFunction: cars => {
+    let ageOrder = cars.sort((a, b) => {
       return a.year - b.year;
     });
     return ageOrder.map(car => car.year).toString();
@@ -101,8 +87,6 @@ const functions = {
 
   // Daily for Oct 15
 
-  array1: ["Jason", "Bob", "Tom"],
-
   // for Loop
   myForLoop: p1 => {
     let i;
@@ -114,11 +98,11 @@ const functions = {
   },
 
   // while loop
-  myWhileLoop: () => {
+  myWhileLoop: array1 => {
     let txt = "";
     let i = 0;
-    while (i < functions.array1.length) {
-      txt += functions.array1[i] + " ";
+    while (i < array1.length) {
+      txt += array1[i] + " ";
       i++;
     }
     return txt;
@@ -137,21 +121,21 @@ const functions = {
   },
 
   // for in loop
-  myForInLoop: () => {
+  myForInLoop: array1 => {
     let txt = "";
     let x;
-    for (x in functions.array1) {
-      txt += functions.array1[x] + " ";
+    for (x in array1) {
+      txt += array1[x] + " ";
     }
     return txt;
   },
 
   // for of loop
 
-  myForOfLoop: () => {
+  myForOfLoop: array1 => {
     let txt = "";
     let x;
-    for (x of functions.array1) {
+    for (x of array1) {
       txt += x + " ";
     }
     return txt;
