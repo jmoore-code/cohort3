@@ -11,32 +11,62 @@ h6 {
 body,
 html {
   height: 100%;
-  background-color: #777;
+  background-color: rgb(230, 224, 224);
   line-height: 1.8;
 }
 
-
-
 .container {
-    /*show heigh: auto*/
-    height: 50vh; 
-    display: grid;
-    align-items: center;
-    justify-content: center;
+  padding: 50px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 .boxAround {
-    height: 300px;
-    width: 300px;
-    background-color: white;
-    border: solid;
-    text-align: center;
-    
+  height: 300px;
+  width: 300px;
+  background-color: white;
+  border: solid;
+  text-align: center;
 }
 
 .list {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* .card, .container, .containerTwo, .bigCard {
+  border: solid;
+} */
+
+.containerTwo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  padding: 30px 0px;
+  grid-gap: 20px;
+}
+
+.cardField {
+  display: grid;
+  grid-gap: 10px;
+  padding: 30px;
+  background-color: white;
+  overflow-y: scroll;
+  text-align: center;
+  height: 400px;
+  width: 350px;
+}
+
+.card {
+  background-color: rgb(230, 224, 224);
+}
+
+.bigCard {
+  padding: 20px 0px;
+  background-color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 150%;
+  height: 400px;
+}

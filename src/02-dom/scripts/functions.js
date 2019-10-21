@@ -18,7 +18,6 @@ const functions = {
 
   removeItem: () => {
     let liRemove = document.getElementById("myList");
-    console.log(liRemove.childNodes)
     liRemove.removeChild(liRemove.lastElementChild);
   }
 };
