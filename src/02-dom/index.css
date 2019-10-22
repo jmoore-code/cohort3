@@ -36,9 +36,9 @@ html {
   margin-right: auto;
 }
 
-/* .card, .container, .containerTwo, .bigCard {
+.card, .container, .containerTwo, .bigCard, .cardField{
   border: solid;
-} */
+}
 
 .containerTwo {
   display: grid;

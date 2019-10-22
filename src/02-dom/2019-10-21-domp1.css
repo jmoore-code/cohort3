@@ -1,0 +1,10 @@
+.cardField {
+    border: solid;   
+}
+
+.card {
+    border: solid;
+    text-align: center;
+    margin: 10px;
+
+}
