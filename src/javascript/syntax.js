@@ -9,15 +9,21 @@ const functions = {
 
   // boolean
   lessBoolean: (x, y) => {
-    if (x < y) return true;
+    if (x < y) {
+      return true
+    } else return false;
   },
 
   greaterBoolean: (x, y) => {
-    if (x > y) return true;
+    if (x > y) {
+      return true
+    } else return false;
   },
 
   equalsBoolean: (x, y) => {
-    if (x == y) return true;
+    if (x == y) {
+      return true
+    } else return false;
   },
 
   // array

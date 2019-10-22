@@ -16,14 +16,17 @@ test("Is this a string?", () => {
 // boolean
 test("test less than boolean", () => {
   expect(functions.lessBoolean(3, 5)).toBe(true);
+  expect(functions.lessBoolean(5,3)).toBe(false);
 });
 
 test("test greater boolean", () => {
   expect(functions.greaterBoolean(5, 3)).toBe(true);
+  expect(functions.greaterBoolean(3,5)).toBe(false);
 });
 
 test("test equals boolean", () => {
   expect(functions.equalsBoolean(5, 5)).toBe(true);
+  expect(functions.equalsBoolean(5, 4)).toBe(false);
 });
 // array
 
