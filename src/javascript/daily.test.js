@@ -1,5 +1,33 @@
 import functions from "./daily";
 
+// 2019/10/21 Daily Exercise
+
+const data = {
+  staff: [
+      { fname: "Jane", lname: "Smith", balance: 10 },
+      { fname: "Liam", lname: "Henry", balance: 1000 },
+      { fname: "Emma", lname: "Jones", balance: 1330 },
+      { fname: "Olivia", lname: "Notly", balance: 310 },
+      { fname: "Noah", lname: "Ho", balance: 503 },
+      { fname: "William", lname: "Lee", balance: 520 },
+      { fname: "Benjamin", lname: "Amis", balance: 150 },
+  ],
+  company: "EvolveU",
+  city: "Calgary",
+  prov: "Alberta"
+};
+
+
+test('email builder for company', () => {
+  const staffEmail = functions.loopStaff(data.staff);
+  expect(staffEmail[0])
+      .toEqual("jane.smith@evolveu.ca");
+  expect(staffEmail[3])
+      .toEqual("olivia.notly@evolveu.ca");
+  expect(staffEmail[6])
+      .toEqual("benjamin.amis@evolveu.ca");
+});
+
 //2019/10/16, Daily Tests
 
 test("Test the slice function", () => {
@@ -31,7 +59,7 @@ test("Test map function", () => {
     { year: 2003, name: "Mazda", km: 30000, type: "Modern" },
     { year: 1977, name: "Chevy", km: 40000, type: "Classic" }
   ];
-  expect(functions.mapFunction(carsObj)).toBe("1969,2018,2003,1977");
+  expect(functions.mapFunction(carsObj, year)).toBe("1969,2018,2003,1977");
 });
 
 test("Test reduce function", () => {

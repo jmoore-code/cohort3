@@ -1,4 +1,13 @@
 const functions = {
+  // 2019/10/21 loopStaff 
+  loopStaff: (personInput) => {
+    let staffMember = [];
+    personInput.forEach(element => {
+      staffMember.push(functions.makeEmailObj(element));
+    });
+    return staffMember;
+  },
+
   // 2019/10/16, More Array Work
 
   sliceFunction: (num1, num2, input) => {
@@ -58,14 +67,13 @@ const functions = {
   // Write the function after this comment ---
 
   assertEquals: function(p1, p2) {
-    // console.log(p1,p2);
     if (p1 === p2) return true;
-    else if (p1 !== p2) {
+    else {
       // console.log(`*** the two values are not the same:
       //   p1--> ${p1}
       //   p2--> ${p2}`);
+      return false;
     }
-    return false;
   },
 
   // and before this comment ---
