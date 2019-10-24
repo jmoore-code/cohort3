@@ -47,15 +47,19 @@ html {
   grid-gap: 20px;
 }
 
-.cardField {
-  display: grid;
-  grid-gap: 10px;
-  padding: 30px;
+.scrollWindow {
   background-color: white;
   overflow-y: scroll;
   text-align: center;
   height: 400px;
   width: 350px;
+  padding: 10px;
+}
+
+.cardField {
+  display: grid;
+  grid-gap: 10px;
+  padding: 30px;
 }
 
 .card {
