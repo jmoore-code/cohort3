@@ -53,24 +53,25 @@ test('test remove list item', () => {
 test('test how many cards', () => {
     document.body.innerHTML = 
     '<div id="leftCardField">' +
-        '<div class="card" id="idCard1">Card 1</div>' +
-        '<div class="card" id="idCard2">Card 2</div>' +
-        '<div class="card" id="idCard3">Card 3</div>' +
+        '<div class="card" counter="1">Card 1</div>' +
+        '<div class="card" counter="2">Card 2</div>' +
+        '<div class="card" counter="3">Card 3</div>' +
     '</div>'
     let cardField = document.getElementById("leftCardField");
-    expect(functions.howManyCards(cardField)).toEqual(["idCard1", "idCard2", "idCard3"])
+    expect(functions.howManyCards(cardField)).toEqual(["1", "2", "3"])
  
 });
+
 
 test('test add card function', () => {
     document.body.innerHTML = 
     '<div id="leftCardField">' +
-        '<div class="card" id="idCard1">Card 1</div>' +
+        '<div class="card" counter="1">Card 1</div>' +
     '</div>'
     functions.addCard()
     let cardField = document.getElementById("leftCardField");
-    expect(functions.howManyCards(cardField)).toEqual(["idCard1", "idCard2"]);
+    expect(functions.howManyCards(cardField)).toEqual(["1", "2"]);
     functions.addCard()
-    expect(functions.howManyCards(cardField)).toEqual(["idCard1", "idCard2","idCard3"]);
+    expect(functions.howManyCards(cardField)).toEqual(["1", "2", "3"]);
 
 })
