@@ -1,6 +1,5 @@
 import functions from "./daily";
 
-// 2019/10/21 Daily Exercise
 
 const data = {
   staff: [
@@ -17,8 +16,47 @@ const data = {
   prov: "Alberta"
 };
 
+// 2019/10/25 Daily Exercise
 
-test('email builder for company', () => {
+test("test email builder for each", () => {
+  const staffEmail = functions.loopStaffForEach(data.staff);
+  expect(staffEmail[0]).toEqual("jane.smith@evolveu.ca");
+  expect(staffEmail[3])
+  .toEqual("olivia.notly@evolveu.ca");
+expect(staffEmail[6])
+  .toEqual("benjamin.amis@evolveu.ca");
+})
+
+test("test email builder map", () => {
+  const staffEmail = functions.loopStaffMap(data.staff);
+  expect(staffEmail[0]).toEqual("jane.smith@evolveu.ca");
+  expect(staffEmail[3])
+  .toEqual("olivia.notly@evolveu.ca");
+expect(staffEmail[6])
+  .toEqual("benjamin.amis@evolveu.ca");
+} )
+
+// 2019/10/24 Daily Exercise
+test("test email builder for-in loop", ()=> {
+  const staffEmail = functions.loopStaffIn(data.staff);
+  expect(staffEmail[0]).toEqual("jane.smith@evolveu.ca");
+  expect(staffEmail[3])
+  .toEqual("olivia.notly@evolveu.ca");
+expect(staffEmail[6])
+  .toEqual("benjamin.amis@evolveu.ca");
+})
+
+test('test email builder for-of loop', () => {
+  const staffEmail = functions.loopStaffOf(data.staff);
+  expect(staffEmail[0]).toEqual("jane.smith@evolveu.ca");
+  expect(staffEmail[3])
+  .toEqual("olivia.notly@evolveu.ca");
+expect(staffEmail[6])
+  .toEqual("benjamin.amis@evolveu.ca");
+})
+
+// 2019/10/21 Daily Exercise
+test('test email builder for company', () => {
   const staffEmail = functions.loopStaff(data.staff);
   expect(staffEmail[0])
       .toEqual("jane.smith@evolveu.ca");
@@ -59,7 +97,7 @@ test("Test map function", () => {
     { year: 2003, name: "Mazda", km: 30000, type: "Modern" },
     { year: 1977, name: "Chevy", km: 40000, type: "Classic" }
   ];
-  expect(functions.mapFunction(carsObj, year)).toBe("1969,2018,2003,1977");
+  expect(functions.mapFunction(carsObj)).toBe("1969,2018,2003,1977");
 });
 
 test("Test reduce function", () => {

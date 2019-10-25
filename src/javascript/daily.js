@@ -1,4 +1,42 @@
 const functions = {
+// 2019/10/25 loopStaff each/map
+loopStaffForEach: (personInput) => {
+let staffMember = [];
+  personInput.forEach(function(element) {
+    staffMember.push(functions.makeEmailObj(element));
+  })
+  return staffMember
+},
+
+loopStaffMap: (personInput) => {
+  const staffMember = personInput.map(function(array) {
+    return functions.makeEmailObj(array)
+  })
+  return staffMember
+},
+
+
+  // 2019/10/25 loopStaff in/of Daily
+
+loopStaffIn: (personInput) => {
+  let staffMember = [];
+  let x;
+  for (x in personInput) {
+    staffMember.push(functions.makeEmailObj(personInput[x]))
+  }
+  return staffMember
+},
+
+loopStaffOf: (personInput) => {
+  let staffMember = [];
+  for (const x of personInput) {
+    staffMember.push(functions.makeEmailObj(x));
+  }
+  return staffMember;
+},
+
+
+
   // 2019/10/21 loopStaff 
   loopStaff: (personInput) => {
     let staffMember = [];
