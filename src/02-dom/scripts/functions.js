@@ -40,51 +40,25 @@ return x;
 },
 
 createCardButtons: (cardDiv) => {
-  let br = document.createElement("BR")
-  let addBefore = document.createElement('button');
-  addBefore.textContent = "Add Before"
-  addBefore.setAttribute('class', "addBeforeButton");
-  cardDiv.appendChild(addBefore);
-  cardDiv.insertBefore(br, cardDiv.childNodes[1])
-  
 
-  let addAfter = document.createElement('button');
-  addAfter.textContent = "Add After"
-  addAfter.setAttribute('class', "addAfterButton");
-  cardDiv.appendChild(addAfter);
-
-  let deleteBut = document.createElement('button');
-  deleteBut.textContent = "Delete";
-  deleteBut.setAttribute('class', "deleteButton");
-  cardDiv.appendChild(deleteBut);
-  
-
-  
 },
 
-counterNumber: () => {
-    if (typeof(Storage) !== "undefined") {
-      if (sessionStorage.clickcount) {
-        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
-      } else {
-        sessionStorage.clickcount = 2
-      }
-     return sessionStorage.clickcount; 
-    }
-  },    
+counterNumber: 2,
 
 addCard: () => {
-    let x = functions.counterNumber()  
+    let x = functions.counterNumber  
     let newCard = document.createElement('div');
     let cardField = document.getElementById('leftCardField');
     newCard.setAttribute('class', 'card');
     newCard.setAttribute('counter', x);
     newCard.textContent = `Card ${x}`;
-    functions.createCardButtons(newCard);
     cardField.appendChild(newCard);
+    functions.counterNumber = functions.counterNumber +1;
 
 
 }
+
+
 
 };
 
