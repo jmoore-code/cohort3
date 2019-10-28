@@ -98,7 +98,9 @@ let checkButtonText = node => {
   let x = [];
   let obj = node.children;
   for (let index = 0; index < obj.length; index++) {
+    if (obj[index].textContent !== "") {
     x.push(obj[index].textContent);
+    }
   }
   return x;
 };

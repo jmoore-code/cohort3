@@ -66,7 +66,13 @@ html {
 
 .card {
   background-color: rgb(230, 224, 224);
- 
+  height: 120px;
+}
+
+
+
+.card button {
+  margin: 5px;
 }
 
 .bigCard {

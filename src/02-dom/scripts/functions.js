@@ -48,9 +48,11 @@ const functions = {
 
   createCardButtons: cardDiv => {
     let addBefore = document.createElement("button");
+    let br = document.createElement("br");
     addBefore.textContent = "Add Before";
     addBefore.setAttribute("class", "addBeforeButton");
     cardDiv.appendChild(addBefore);
+    cardDiv.insertBefore(br, cardDiv.childNodes[1]);
 
     let addAfter = document.createElement("button");
     addAfter.textContent = "Add After";
