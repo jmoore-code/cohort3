@@ -115,28 +115,32 @@ test("check button text function", () => {
   ]);
 });
 
-test("test add card before", () => {
-  document.body.innerHTML =
-    '<div id="leftCardField">' +
-    '<div id="card1" counter="1">Card 1</div>' +
-    "</div>";
-  functions.addCardBefore(document.getElementById("leftCardField"),document.getElementById("card1"));
-  let cardField = document.getElementById("leftCardField");
-  expect(howManyCards(cardField)).toEqual(["4", "1"]);
-});
-
 test("does add card after", () => {
   document.body.innerHTML =
     '<div id="leftCardField">' +
     '<div id="card1" counter="1">Card 1</div>' +
     '<div id="card2" counter="2">Card 2</div>' +
     "</div>";
+  functions.counterNumber = 3;  //start counter at 3 to mimic adding third card initially
   let cardField = document.getElementById("leftCardField"); 
   functions.addCardAfter(cardField, document.getElementById("card1"));
-  expect(howManyCards(cardField)).toEqual(["1", "5", "2"]);
+  expect(howManyCards(cardField)).toEqual(["1", "3", "2"]);
   functions.addCardAfter(cardField, document.getElementById("card2"));
-  expect(howManyCards(cardField)).toEqual(["1", "5", "2", "6"]);
+  expect(howManyCards(cardField)).toEqual(["1", "3", "2", "4"]);
 });
+
+test("test add card before", () => {
+  document.body.innerHTML =
+    '<div id="leftCardField">' +
+    '<div id="card1" counter="1">Card 1</div>' +
+    "</div>";
+    functions.counterNumber = 2;  
+  functions.addCardBefore(document.getElementById("leftCardField"),document.getElementById("card1"));
+  let cardField = document.getElementById("leftCardField");
+  expect(howManyCards(cardField)).toEqual(["2", "1"]);
+});
+
+
 
 test("test delete card", () => {
   document.body.innerHTML =
