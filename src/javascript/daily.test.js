@@ -16,6 +16,16 @@ const data = {
   prov: "Alberta"
 };
 
+// 2019/10/30 Daily Exercise
+
+test("test total sum function", () => {
+  expect(functions.totalSumBalances(data.staff)).toBe(3823)
+})
+
+test("test average array function", () => {
+  expect(functions.averageBalance(data.staff)).toBeCloseTo(546.14)
+})
+
 // 2019/10/25 Daily Exercise
 
 test("test email builder for each", () => {

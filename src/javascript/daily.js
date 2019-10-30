@@ -1,4 +1,18 @@
 const functions = {
+// 2019/10/30 Daily Exercise
+
+totalSumBalances: (personInput) => {
+  let array = personInput.map(array => array.balance);
+  let arraySum = array.reduce((a,b) => a + b, 0);
+  return arraySum
+}, 
+
+averageBalance: (personInput) => {
+  let array = personInput.map(array => array.balance);
+  let arrayAvg = array.reduce((a,b) => a + b, 0) / array.length;
+  return arrayAvg
+},
+
 // 2019/10/25 loopStaff each/map
 loopStaffForEach: (personInput) => {
 let staffMember = [];
