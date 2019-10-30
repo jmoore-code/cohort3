@@ -14,49 +14,52 @@ export class account {
   }
 }
 
-export const functions = {
-  allAccounts: [],
+export class accountController {
+  constructor() {
+    this.allAccounts = [];
+  }
 
-
-  createAccount: (name, balance) => {
+  createAccount(name, balance) {
     let newInstance = new account(name, balance);
-    functions.allAccounts.push(newInstance);
-  },
+    this.allAccounts.push(newInstance);
+  }
 
-  removeAccount: name => {
-    for (let index = 0; index < functions.allAccounts.length; index++) {
-      if (functions.allAccounts[index].name == name) {
-        functions.allAccounts.splice(index, 1);
+  removeAccount(name) {
+    for (let index = 0; index < this.allAccounts.length; index++) {
+      if (this.allAccounts[index].name == name) {
+        this.allAccounts.splice(index, 1);
       }
     }
-  },
+  }
 
-  sumAccounts: () => {
-      let sum = 0;
-      for (let index = 0; index < functions.allAccounts.length; index++) {
-          sum += functions.allAccounts[index].amount;
-          
-      }
-      return sum;
-  },
+  sumAccounts() {
+    let sum = 0;
+    for (let index = 0; index < this.allAccounts.length; index++) {
+      sum += this.allAccounts[index].amount;
+    }
+    return sum;
+  }
 
-  highAccount: () => {
+  highAccount() {
     let highest = 0;
-    for (let index = 0; index < functions.allAccounts.length; index++) {
-        if(functions.allAccounts[index].amount > highest) {
-            highest = functions.allAccounts[index].amount;
-        }  
+    for (let index = 0; index < this.allAccounts.length; index++) {
+      if (this.allAccounts[index].amount > highest) {
+        highest = this.allAccounts[index].amount;
+      }
     }
     return highest;
-  },
+  }
 
-  lowAccount: () => {
-    let lowest = functions.allAccounts[0].amount;
-    for (let index = 0; index < functions.allAccounts.length; index++) {
-        if(functions.allAccounts[index].amount < lowest) {
-            lowest = functions.allAccounts[index].amount;
-        }  
+  lowAccount() {
+    let lowest = this.allAccounts[0].amount;
+    for (let index = 0; index < this.allAccounts.length; index++) {
+      if (this.allAccounts[index].amount < lowest) {
+        lowest = this.allAccounts[index].amount;
+      }
     }
     return lowest;
   }
-};
+}
+
+// instantiation of accountController class
+export const newInstanceControllers = new accountController();
