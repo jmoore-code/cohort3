@@ -10,7 +10,7 @@ export class account {
     this.amount -= value;
   }
   balance() {
-    return `Your new balance is $${this.amount}`;
+    return this.amount
   }
 }
 
@@ -65,9 +65,10 @@ export class accountController {
   }
 }
 
-// instantiation of accountController class
-export const newInstanceControllers = new accountController();
 
+
+
+// dom functions
 export const functions = {
 
 createAccountCard: (accountGrid, inputName, inputAmount) => {
@@ -98,6 +99,10 @@ createAccountCard: (accountGrid, inputName, inputAmount) => {
   newCard.appendChild(deleteButton);
 // append card to parent div
   accountGrid.appendChild(newCard);
+},
+
+deleteCard: (target) => {
+  target.remove(target.this)
 }
 
-}
+};

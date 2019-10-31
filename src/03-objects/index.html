@@ -15,8 +15,8 @@
     <div>
       Account
       <div class="upperControls">
-        <input type="text" placeholder="Account Name" id="acctName" />
-        <input type="number" placeholder="Initial Amount" id="initialBalance" />
+        <input type="text" placeholder="Account Name" id="idAccountName" />
+        <input type="number" placeholder="Initial Amount" id="idInitialBalance" />
         <button value="Create Account" id="idCreateAccountButton">
           Create Account
         </button>
@@ -25,15 +25,15 @@
         <button id="idLowestAccountButton">Lowest Account</button>
         <p class="whichAccountOutput">Output</p>
       </div>
-      <div class="grid-account">
-        <div class="accountCard" accName="Savings">
+      <div class="grid-account" id="idGridAccount">
+        <!-- <div class="accountCard" accName="Savings">
           <p>Savings</p>
           <p>$25</p>
-          <input type="number" id="idDeltaAmount" placeholder="Amount" />
+          <input type="number">
           <button>Deposit</button>
           <button>Withdraw</button>
           <button>Delete</button>
-        </div>
+        </div> -->
 
     </div>
     <script src="./functions/index.js" type="module"></script>

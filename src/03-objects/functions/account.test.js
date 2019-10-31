@@ -1,4 +1,4 @@
-import { account, newInstanceControllers, functions } from "./account.js";
+import { account, accountController, functions } from "./account.js";
 
 // Tests for the class account---------------------------
 test("create empty account", () => {
@@ -25,12 +25,15 @@ test("test withdraw method", () => {
 });
 test("test balance method", () => {
   var newInstance = new account("first", 25);
-  expect(newInstance.balance()).toEqual("Your new balance is $25");
+  expect(newInstance.balance()).toEqual(25);
   var secondInstance = new account("second", 30);
-  expect(secondInstance.balance()).toEqual("Your new balance is $30");
+  expect(secondInstance.balance()).toEqual(30);
 });
 
 // Tests for class accountController-----------------------------
+
+// instantiation of accountController class
+const newInstanceControllers = new accountController();
 // function that maps array of account objects and returns the name
 const accountNames = () => {
   return newInstanceControllers.allAccounts.map(acc => acc.name);
@@ -69,8 +72,8 @@ test("test highest accounts function", () => {
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
   expect(newInstanceControllers.highAccount()).toEqual(["Car fund", 100]);
-  newInstanceControllers.createAccount("Holiday", 50);
-  expect(newInstanceControllers.highAccount()).toEqual(["Car fund", 100]);
+  newInstanceControllers.createAccount("Holiday", 150);
+  expect(newInstanceControllers.highAccount()).toEqual(["Holiday", 150]);
 });
 
 test("test lowest accounts function", () => {
@@ -78,11 +81,11 @@ test("test lowest accounts function", () => {
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
   expect(newInstanceControllers.lowAccount()).toEqual(["Savings", 25]);
-  newInstanceControllers.createAccount("Holiday", 50);
-  expect(newInstanceControllers.lowAccount()).toEqual(["Savings", 25]);
+  newInstanceControllers.createAccount("Holiday", 10);
+  expect(newInstanceControllers.lowAccount()).toEqual(["Holiday", 10]);
 });
 
-// Tests for functions-------------------------
+// Tests for dom functions-------------------------
 
 const divCardNames = node => {
   let array = [];
@@ -100,4 +103,14 @@ test("test create account function", () => {
   expect(divCardNames(gridAccount)).toEqual(["Savings"])
   functions.createAccountCard(gridAccount, "Car fund", 55);
   expect(divCardNames(gridAccount)).toEqual(["Savings", "Car fund"])
+})
+
+test('test delete card', () => {
+  let gridAccount = document.createElement("div");
+  functions.createAccountCard(gridAccount, "Savings", 25);
+  functions.createAccountCard(gridAccount, "Car fund", 55);
+  functions.deleteCard(gridAccount.children[1])
+  expect(divCardNames(gridAccount)).toEqual(["Savings"])
+  functions.deleteCard(gridAccount.children[0])
+  expect(divCardNames(gridAccount)).toEqual([])
 })
