@@ -1,5 +1,6 @@
-import { account, newInstanceControllers } from "./account.js";
+import { account, newInstanceControllers, functions } from "./account.js";
 
+// Tests for the class account---------------------------
 test("create empty account", () => {
   var newInstance = new account("first", 25);
   var secondInstance = new account("second", 30);
@@ -29,6 +30,7 @@ test("test balance method", () => {
   expect(secondInstance.balance()).toEqual("Your new balance is $30");
 });
 
+// Tests for class accountController-----------------------------
 // function that maps array of account objects and returns the name
 const accountNames = () => {
   return newInstanceControllers.allAccounts.map(acc => acc.name);
@@ -66,16 +68,36 @@ test("test highest accounts function", () => {
   newInstanceControllers.allAccounts = [];
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
-  expect(newInstanceControllers.highAccount()).toEqual(100);
+  expect(newInstanceControllers.highAccount()).toEqual(["Car fund", 100]);
   newInstanceControllers.createAccount("Holiday", 50);
-  expect(newInstanceControllers.highAccount()).toEqual(100);
+  expect(newInstanceControllers.highAccount()).toEqual(["Car fund", 100]);
 });
 
 test("test lowest accounts function", () => {
   newInstanceControllers.allAccounts = [];
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
-  expect(newInstanceControllers.lowAccount()).toEqual(25);
+  expect(newInstanceControllers.lowAccount()).toEqual(["Savings", 25]);
   newInstanceControllers.createAccount("Holiday", 50);
-  expect(newInstanceControllers.lowAccount()).toEqual(25);
+  expect(newInstanceControllers.lowAccount()).toEqual(["Savings", 25]);
 });
+
+// Tests for functions-------------------------
+
+const divCardNames = node => {
+  let array = [];
+  let accounts = node.children; 
+  for (let index = 0; index < accounts.length; index++) {
+    array.push(accounts[index].getAttribute("accName"))
+    
+  }
+  return array; 
+};
+
+test("test create account function", () => {
+  let gridAccount = document.createElement("div");
+  functions.createAccountCard(gridAccount, "Savings", 25);
+  expect(divCardNames(gridAccount)).toEqual(["Savings"])
+  functions.createAccountCard(gridAccount, "Car fund", 55);
+  expect(divCardNames(gridAccount)).toEqual(["Savings", "Car fund"])
+})

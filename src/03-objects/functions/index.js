@@ -7,12 +7,12 @@ idCreateAccountButton.addEventListener("click", () => {
     output.textContent = `Account name = ${newAccount.name}, Balance = $${newAccount.amount}`
 })
 
-idDepositButton.addEventListener("click", () => {
-    newAccount.deposit(Number(idDeltaAmount.value))
-    output.textContent = newAccount.balance()
-})
+// idDepositButton.addEventListener("click", () => {
+//     newAccount.deposit(Number(idDeltaAmount.value))
+//     output.textContent = newAccount.balance()
+// })
 
-idWithdrawButton.addEventListener("click", () => {
-    newAccount.withdraw(Number(idDeltaAmount.value))
-    output.textContent = newAccount.balance()
-})
+// idWithdrawButton.addEventListener("click", () => {
+//     newAccount.withdraw(Number(idDeltaAmount.value))
+//     output.textContent = newAccount.balance()
+// })

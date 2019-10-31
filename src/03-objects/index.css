@@ -1,0 +1,33 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Merriweather', serif;
+}
+
+body,
+html {
+  height: 100%;
+  background-color: rgb(230, 224, 224);
+  line-height: 1.8;
+}
+
+.upperControls, .grid-account, .accountCard {
+    border: solid;
+}
+
+
+.grid-account {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 20px;
+}
+
+.accountCard {
+    background-color: white;
+    padding: 130px;
+    margin: 20px;
+}

@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="index.css">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
+      rel="stylesheet"
+    />
+    <title>Banking Accounts</title>
+  </head>
+  <body>
     <div>
-        Account
-        <div>
-            <input type="text" placeholder="Name" id="acctName">
-            <input type="number" placeholder="Amount"id="initialBalance">
-            <button value="Create Account" id="idCreateAccountButton">Create Account</button>
-
+      Account
+      <div class="upperControls">
+        <input type="text" placeholder="Account Name" id="acctName" />
+        <input type="number" placeholder="Initial Amount" id="initialBalance" />
+        <button value="Create Account" id="idCreateAccountButton">
+          Create Account
+        </button>
+        <button id="idSumAccountsButton">Sum Accounts</button>
+        <button id="idHighAccountButton">Highest Account</button>
+        <button id="idLowestAccountButton">Lowest Account</button>
+        <p class="whichAccountOutput">Output</p>
+      </div>
+      <div class="grid-account">
+        <div class="accountCard" accName="Savings">
+          <p>Savings</p>
+          <p>$25</p>
+          <input type="number" id="idDeltaAmount" placeholder="Amount" />
+          <button>Deposit</button>
+          <button>Withdraw</button>
+          <button>Delete</button>
         </div>
-        <div>
-            <input type="number" id="idDeltaAmount" placeholder="Amount">
-            <button id="idDepositButton">Deposit</button>
-            <button id="idWithdrawButton">Withdraw</button>
 
-            <p id="output">Output</p>
-        </div>
     </div>
-<script src="./functions/index.js" type="module"></script>    
-</body>
+    <script src="./functions/index.js" type="module"></script>
+  </body>
 </html>

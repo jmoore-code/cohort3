@@ -26,7 +26,7 @@ const functions = {
     liRemove.removeChild(liRemove.lastElementChild);
   },
 
-  // ---------Working with Cards fucntions-------------------
+  // ---------Working with Cards functions-------------------
 
   counterNumber: 1,
 
@@ -34,7 +34,7 @@ const functions = {
     cardField.appendChild(functions.createCard());
   },
 
-  //  refactored code by making a createCard function to take our repeating code
+  //  refactored code by making a createCard function to take out repeating code
   createCard: () => {
     let count = functions.counterNumber;
     let newCard = document.createElement("div");
