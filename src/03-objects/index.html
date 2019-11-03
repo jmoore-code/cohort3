@@ -12,21 +12,21 @@
     <title>Banking Accounts</title>
   </head>
   <body>
-    <div>
-      Account
+    <div class="upperAndLower">
+      <div class="title"><h2>Your Banking Accounts</h2></div>      
       <div class="upperControls">
         <input type="text" placeholder="Account Name" id="idAccountName" />
-        <input type="number" placeholder="Initial Amount" id="idInitialBalance" />
-        <button value="Create Account" id="idCreateAccountButton">
+        <input type="number" placeholder="Initial Deposit" id="idInitialBalance" />
+        <button id="idCreateAccountButton">
           Create Account
         </button>
         <button id="idSumAccountsButton">Sum Accounts</button>
         <button id="idHighAccountButton">Highest Account</button>
         <button id="idLowestAccountButton">Lowest Account</button>
         <div class="outputField">
-        <p id="sumOutput">sum output</p>
-        <p id="highestOutput">highest output</p>
-        <p id="lowestOutput">lowest output</p>
+        <div>Account Sum Value: <span id="sumOutput"></span></div>
+        <div>Highest Value Account: <span id="highestOutput"></span></div>
+        <div>Lowest Value Account: <span id="lowestOutput"></span></div>
         
         </div>
       </div>

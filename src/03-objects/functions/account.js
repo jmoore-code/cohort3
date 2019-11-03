@@ -71,7 +71,7 @@ export class accountController {
 // dom functions
 export const functions = {
 
-createAccountCard: (accountGrid, inputName, inputAmount) => {
+createAccountCard: (targetAccountGrid, inputName, inputAmount) => {
   let newCard = document.createElement("div");
   newCard.setAttribute("accName", inputName);
   newCard.setAttribute("class", "accountCard");
@@ -79,6 +79,7 @@ createAccountCard: (accountGrid, inputName, inputAmount) => {
   let p1Name = document.createElement('p');
   let p2Amount = document.createElement('p');
   let moneyDeltaInput = document.createElement('input');
+  let br = document.createElement('br');
   let depositButton = document.createElement('button');
   let withdrawButton = document.createElement('button');
   let deleteButton = document.createElement('button');
@@ -94,11 +95,12 @@ createAccountCard: (accountGrid, inputName, inputAmount) => {
   newCard.appendChild(p1Name)
   newCard.appendChild(p2Amount)
   newCard.appendChild(moneyDeltaInput);
+  newCard.appendChild(br);
   newCard.appendChild(depositButton);
   newCard.appendChild(withdrawButton);
   newCard.appendChild(deleteButton);
 // append card to parent div
-  accountGrid.appendChild(newCard);
+  targetAccountGrid.appendChild(newCard);
 },
 
 deleteCard: (target) => {
