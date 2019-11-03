@@ -3,22 +3,44 @@ import { account, functions, accountController } from "./account.js";
 const accountGrid = document.getElementById("idGridAccount");
 const accController = new accountController();
 
+// create account card button event listener
 idCreateAccountButton.addEventListener("click", () => {
-  accController.createAccount(
-    idAccountName.value,
-    Number(idInitialBalance.value)
-  );
-  functions.createAccountCard(
-    accountGrid,
-    idAccountName.value,
-    idInitialBalance.value
-  );
-});
+  if (idAccountName.value == "") {
+    alert("Please name your account, no money is needed to start");
+  } else {
+    accController.createAccount(
+      idAccountName.value,
+      Number(idInitialBalance.value)
+    );
+    functions.createAccountCard(
+      accountGrid,
+      idAccountName.value,
+      idInitialBalance.value
+    );
+  }
+});//end of create account card event listener
 
+idSumAccountsButton.addEventListener("click", () => {
+  let output = document.getElementById("sumOutput");  
+  output.textContent = accController.sumAccounts();
+})
+
+idHighAccountButton.addEventListener("click", () => {
+  let output = document.getElementById("highestOutput")
+  output.textContent = accController.highAccount();
+})
+
+idLowestAccountButton.addEventListener("click", () => {
+  let output = document.getElementById("lowestOutput");
+  output.textContent = accController.lowAccount();
+})
+
+// account card button event listeners
 idGridAccount.addEventListener("click", () => {
   let name = event.target.parentElement.children[0].textContent;
   let input = event.target.parentElement.children[2].value;
   let accountArray = accController.allAccounts;
+
   if (event.target.textContent == "Deposit") {
     for (let index = 0; index < accountArray.length; index++) {
       if (name == accountArray[index].name) {
@@ -43,4 +65,4 @@ idGridAccount.addEventListener("click", () => {
     accController.removeAccount(name);
     functions.deleteCard(event.target.parentElement);
   }
-}); //end of event listener
+}); //end of card button event listeners

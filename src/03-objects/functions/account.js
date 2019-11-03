@@ -49,7 +49,7 @@ export class accountController {
         accountName = this.allAccounts[index].name;
       }
     }
-    return [accountName,highest];
+    return [`${accountName}, $${highest}`];
   }
 
   lowAccount() {
@@ -61,7 +61,7 @@ export class accountController {
         accountName = this.allAccounts[index].name;
       }
     }
-    return [accountName,lowest];
+    return [`${accountName}, $${lowest}`];
   }
 }
 

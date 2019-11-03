@@ -71,18 +71,18 @@ test("test highest accounts function", () => {
   newInstanceControllers.allAccounts = [];
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
-  expect(newInstanceControllers.highAccount()).toEqual(["Car fund", 100]);
+  expect(newInstanceControllers.highAccount()).toEqual(["Car fund, $100"]);
   newInstanceControllers.createAccount("Holiday", 150);
-  expect(newInstanceControllers.highAccount()).toEqual(["Holiday", 150]);
+  expect(newInstanceControllers.highAccount()).toEqual(["Holiday, $150"]);
 });
 
 test("test lowest accounts function", () => {
   newInstanceControllers.allAccounts = [];
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
-  expect(newInstanceControllers.lowAccount()).toEqual(["Savings", 25]);
+  expect(newInstanceControllers.lowAccount()).toEqual(["Savings, $25"]);
   newInstanceControllers.createAccount("Holiday", 10);
-  expect(newInstanceControllers.lowAccount()).toEqual(["Holiday", 10]);
+  expect(newInstanceControllers.lowAccount()).toEqual(["Holiday, $10"]);
 });
 
 // Tests for dom functions-------------------------
