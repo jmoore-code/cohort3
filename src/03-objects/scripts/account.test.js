@@ -3,10 +3,10 @@ import { account, accountController, functions } from "./account.js";
 // Tests for the class account---------------------------
 test("create empty account", () => {
   var newInstance = new account("first", 25);
-  var secondInstance = new account("second", 30);
   expect(newInstance.amount).toEqual(25);
-  expect(secondInstance.amount).toEqual(30);
   expect(newInstance.name).toEqual("first");
+  var secondInstance = new account("second", 30);
+  expect(secondInstance.amount).toEqual(30);
   expect(secondInstance.name).toEqual("second");
 });
 test("test deposit method", () => {
@@ -32,15 +32,12 @@ test("test balance method", () => {
 
 // Tests for class accountController-----------------------------
 
-// instantiation of accountController class
-const newInstanceControllers = new accountController();
-// function that maps array of account objects and returns the name
-const accountNames = () => {
-  return newInstanceControllers.allAccounts.map(acc => acc.name);
-};
-
 test("test create account function", () => {
-  newInstanceControllers.allAccounts = [];
+  const newInstanceControllers = new accountController();
+  let accountNames = () => {
+    return newInstanceControllers.allAccounts.map(acc => acc.name);
+  };
+  expect(newInstanceControllers.allAccounts).toEqual([]);
   newInstanceControllers.createAccount("Savings", 25);
   expect(accountNames()).toEqual(["Savings"]);
   newInstanceControllers.createAccount("Car fund", 30);
@@ -48,7 +45,11 @@ test("test create account function", () => {
 });
 
 test("test delete account function", () => {
-  newInstanceControllers.allAccounts = [];
+  const newInstanceControllers = new accountController();
+  let accountNames = () => {
+    return newInstanceControllers.allAccounts.map(acc => acc.name);
+  };
+  expect(newInstanceControllers.allAccounts).toEqual([]);
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 30);
   newInstanceControllers.removeAccount("Savings");
@@ -59,7 +60,8 @@ test("test delete account function", () => {
 });
 
 test("test sum accounts function", () => {
-  newInstanceControllers.allAccounts = [];
+  const newInstanceControllers = new accountController();
+  expect(newInstanceControllers.allAccounts).toEqual([]);
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 30);
   expect(newInstanceControllers.sumAccounts()).toEqual(55);
@@ -68,7 +70,8 @@ test("test sum accounts function", () => {
 });
 
 test("test highest accounts function", () => {
-  newInstanceControllers.allAccounts = [];
+  const newInstanceControllers = new accountController();
+  expect(newInstanceControllers.allAccounts).toEqual([]);
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
   expect(newInstanceControllers.highAccount()).toEqual(["Car fund, $100"]);
@@ -77,7 +80,8 @@ test("test highest accounts function", () => {
 });
 
 test("test lowest accounts function", () => {
-  newInstanceControllers.allAccounts = [];
+  const newInstanceControllers = new accountController();
+  expect(newInstanceControllers.allAccounts).toEqual([]);
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 100);
   expect(newInstanceControllers.lowAccount()).toEqual(["Savings, $25"]);
@@ -87,30 +91,30 @@ test("test lowest accounts function", () => {
 
 // Tests for dom functions-------------------------
 
+//divCardNames is a helper function to return an array of account names to test dom manipulation
 const divCardNames = node => {
   let array = [];
-  let accounts = node.children; 
+  let accounts = node.children;
   for (let index = 0; index < accounts.length; index++) {
-    array.push(accounts[index].getAttribute("accName"))
-    
+    array.push(accounts[index].getAttribute("accName"));
   }
-  return array; 
+  return array;
 };
 
-test("test create account function", () => {
+test("test create account card function", () => {
   let gridAccount = document.createElement("div");
   functions.createAccountCard(gridAccount, "Savings", 25);
-  expect(divCardNames(gridAccount)).toEqual(["Savings"])
+  expect(divCardNames(gridAccount)).toEqual(["Savings"]);
   functions.createAccountCard(gridAccount, "Car fund", 55);
-  expect(divCardNames(gridAccount)).toEqual(["Savings", "Car fund"])
-})
+  expect(divCardNames(gridAccount)).toEqual(["Savings", "Car fund"]);
+});
 
-test('test delete card', () => {
+test("test delete card", () => {
   let gridAccount = document.createElement("div");
   functions.createAccountCard(gridAccount, "Savings", 25);
   functions.createAccountCard(gridAccount, "Car fund", 55);
-  functions.deleteCard(gridAccount.children[1])
-  expect(divCardNames(gridAccount)).toEqual(["Savings"])
-  functions.deleteCard(gridAccount.children[0])
-  expect(divCardNames(gridAccount)).toEqual([])
-})
+  functions.deleteCard(gridAccount.children[1]);
+  expect(divCardNames(gridAccount)).toEqual(["Savings"]);
+  functions.deleteCard(gridAccount.children[0]);
+  expect(divCardNames(gridAccount)).toEqual([]);
+});
