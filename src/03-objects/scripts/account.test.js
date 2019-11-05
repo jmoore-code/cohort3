@@ -42,6 +42,10 @@ test("test create account function", () => {
   expect(accountNames()).toEqual(["Savings"]);
   newInstanceControllers.createAccount("Car fund", 30);
   expect(accountNames()).toEqual(["Savings", "Car fund"]);
+  // test that empty inputs are not accepted
+  expect(newInstanceControllers.createAccount("", 25)).toEqual(false);
+  // test that duplicate accounts are not created
+  expect(newInstanceControllers.createAccount("Savings", 25)).toEqual(false);
 });
 
 test("test delete account function", () => {
@@ -102,10 +106,17 @@ const divCardNames = node => {
 };
 
 test("test create account card function", () => {
+  const accController = new accountController();
   let gridAccount = document.createElement("div");
+  //check that no card is created if input name is empty
+  functions.createAccountCard(gridAccount, "");
+  expect(divCardNames(gridAccount)).toEqual([]);
   functions.createAccountCard(gridAccount, "Savings", 25);
   expect(divCardNames(gridAccount)).toEqual(["Savings"]);
   functions.createAccountCard(gridAccount, "Car fund", 55);
+  expect(divCardNames(gridAccount)).toEqual(["Savings", "Car fund"]);
+  //check that a repeat card will not be created
+  functions.createAccountCard(gridAccount, "Savings", 25);
   expect(divCardNames(gridAccount)).toEqual(["Savings", "Car fund"]);
 });
 

@@ -5,7 +5,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
 }
 
 body,
@@ -20,56 +20,60 @@ html {
 } */
 
 .title {
-    text-align: center;
+  text-align: center;
 }
 
 input {
-    border-radius: 8px;
-    padding: 5px 10px;
+  border-radius: 8px;
+  padding: 5px 10px;
 }
 .upperAndLower button {
-    border-top: 1px solid #96d1f8;
-    background: #65a9d7;
-    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
-    background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
-    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
-    background: -o-linear-gradient(top, #3e779d, #65a9d7);
-    padding: 5px 10px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-    box-shadow: rgba(0,0,0,1) 0 1px 0;
+  border-top: 1px solid #96d1f8;
+  background: #65a9d7;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#3e779d),
+    to(#65a9d7)
+  );
+  background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+  background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+  background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+  background: -o-linear-gradient(top, #3e779d, #65a9d7);
+  padding: 5px 10px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
 
-    color: white;
-    font-size: 14px;
-    text-decoration: none;
-    vertical-align: middle;
-    outline: none;
-    }
- .upperAndLower button:hover {
-    border-top-color: #28597a;
-    background: #28597a;
-    color: #ccc;
-    }
- .upperAndLower button:active {
-    border-top-color: #1b435e;
-    background: #1b435e;
-    }
-    
-
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+  outline: none;
+}
+.upperAndLower button:hover {
+  border-top-color: #28597a;
+  background: #28597a;
+  color: #ccc;
+}
+.upperAndLower button:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+}
 
 .grid-account {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
 }
 
 .accountCard {
-    background-color: white;
-    padding: 50px;
-    margin: 20px;
-    border-radius: 15px;
+  background-color: white;
+  padding: 50px;
+  margin: 20px;
+  border-radius: 15px;
 }

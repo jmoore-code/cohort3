@@ -1,30 +1,21 @@
-import {functions, accountController } from "./account.js";
+import { functions, accountController } from "./account.js";
 
 const accountGrid = document.getElementById("idGridAccount");
 const accController = new accountController();
+let accountName = idAccountName.value;
+let initialBalance = idInitialBalance.value;
 
 // create account card button event listener
 idCreateAccountButton.addEventListener("click", () => {
-  let array = accController.allAccounts;
-  // filter through the all accounts array to find object with with the same account input, then map that objects "name" key value to an array to act as a comparison
-  let filterName = array
-    .filter(selectObjects => selectObjects.name === idAccountName.value)
-    .map(pull => pull.name);
-  if (idAccountName.value == "") {
-    alert("Please name your account, no money is needed to start");
-  } else if (String(idAccountName.value) == filterName[0]) {
-    alert("Please select a unique account name");
-  } else {
-    accController.createAccount(
-      idAccountName.value,
-      Number(idInitialBalance.value)
-    );
-    functions.createAccountCard(
-      accountGrid,
-      idAccountName.value,
-      idInitialBalance.value
-    );
-  }
+  functions.createAccountCard(
+    accountGrid,
+    idAccountName.value,
+    idInitialBalance.value
+  );
+  accController.createAccount(
+    idAccountName.value,
+    Number(idInitialBalance.value)
+  );
 }); //end of create account card event listener
 
 idSumAccountsButton.addEventListener("click", () => {
