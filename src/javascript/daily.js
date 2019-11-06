@@ -3,8 +3,8 @@ const functions = {
 filterBalances: (staffArray) => {
   let filterArray = staffArray.filter(function (el) {
     return el.balance >= 1000
-  }).map(function (balance) 
-  { return balance.balance})
+  }).map(function (amount) 
+  { return amount.balance})
   return filterArray
 },
 

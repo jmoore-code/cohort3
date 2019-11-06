@@ -19,6 +19,7 @@ const data = {
 // 2019/11/06
 
 test("test filterBalances functions", () => {
+  console.log(data.staff.balance)
   const balanceArray = functions.filterBalances(data.staff)
   expect(balanceArray[0]).toBe(1000);
   expect(balanceArray[1]).toBe(1330);
