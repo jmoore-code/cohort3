@@ -1,5 +1,16 @@
 const functions = {
-// 2019/10/30 Daily Exercise
+// 2019/11/06 Daily Exercise More Array Exercises(Really)
+filterBalances: (staffArray) => {
+  let filterArray = staffArray.filter(function (el) {
+    return el.balance >= 1000
+  }).map(function (balance) 
+  { return balance.balance})
+  return filterArray
+},
+
+
+
+  // 2019/10/30 Daily Exercise
 
 totalSumBalances: (personInput) => {
   let array = personInput.map(array => array.balance);

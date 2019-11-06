@@ -16,6 +16,14 @@ const data = {
   prov: "Alberta"
 };
 
+// 2019/11/06
+
+test("test filterBalances functions", () => {
+  const balanceArray = functions.filterBalances(data.staff)
+  expect(balanceArray[0]).toBe(1000);
+  expect(balanceArray[1]).toBe(1330);
+})
+
 // 2019/10/30 Daily Exercise
 
 test("test total sum function", () => {
