@@ -1,69 +1,88 @@
 const functions = {
-// 2019/11/06 Daily Exercise More Array Exercises(Really)
-filterBalances: (staffArray) => {
-  let filterArray = staffArray.filter(function (el) {
-    return el.balance >= 1000
-  }).map(function (amount) 
-  { return amount.balance})
-  return filterArray
-},
+  // 2019/11/08 Daily Exercise Call Back(Part 1)
 
+  processAbBCPeople: (peopleData, callBack) => {
+    let array = [];
+    for (let index = 0; index < peopleData.length; index++) {
+      if (
+        peopleData[index].province === "BC" ||
+        peopleData[index].province === "AB"
+      ) {
+        array.push(callBack(peopleData[index]));
+      }
+    }
+    return array;
+  },
 
+  nameExtractor: obj => {
+    let firstName = obj.fname;
+    let lastName = obj.lname;
+    return `${firstName} ${lastName}`;
+  },
+
+  // 2019/11/06 Daily Exercise More Array Exercises(Really)
+  filterBalances: staffArray => {
+    let filterArray = staffArray
+      .filter(function(el) {
+        return el.balance >= 1000;
+      })
+      .map(function(amount) {
+        return amount.balance;
+      });
+    return filterArray;
+  },
 
   // 2019/10/30 Daily Exercise
 
-totalSumBalances: (personInput) => {
-  let array = personInput.map(array => array.balance);
-  let arraySum = array.reduce((a,b) => a + b, 0);
-  return arraySum
-}, 
+  totalSumBalances: personInput => {
+    let array = personInput.map(array => array.balance);
+    let arraySum = array.reduce((a, b) => a + b, 0);
+    return arraySum;
+  },
 
-averageBalance: (personInput) => {
-  let array = personInput.map(array => array.balance);
-  let arrayAvg = array.reduce((a,b) => a + b, 0) / array.length;
-  return arrayAvg
-},
+  averageBalance: personInput => {
+    let array = personInput.map(array => array.balance);
+    let arrayAvg = array.reduce((a, b) => a + b, 0) / array.length;
+    return arrayAvg;
+  },
 
-// 2019/10/25 loopStaff each/map
-loopStaffForEach: (personInput) => {
-let staffMember = [];
-  personInput.forEach(function(element) {
-    staffMember.push(functions.makeEmailObj(element));
-  })
-  return staffMember
-},
+  // 2019/10/25 loopStaff each/map
+  loopStaffForEach: personInput => {
+    let staffMember = [];
+    personInput.forEach(function(element) {
+      staffMember.push(functions.makeEmailObj(element));
+    });
+    return staffMember;
+  },
 
-loopStaffMap: (personInput) => {
-  const staffMember = personInput.map(function(array) {
-    return functions.makeEmailObj(array)
-  })
-  return staffMember
-},
-
+  loopStaffMap: personInput => {
+    const staffMember = personInput.map(function(array) {
+      return functions.makeEmailObj(array);
+    });
+    return staffMember;
+  },
 
   // 2019/10/25 loopStaff in/of Daily
 
-loopStaffIn: (personInput) => {
-  let staffMember = [];
-  let x;
-  for (x in personInput) {
-    staffMember.push(functions.makeEmailObj(personInput[x]))
-  }
-  return staffMember
-},
+  loopStaffIn: personInput => {
+    let staffMember = [];
+    let x;
+    for (x in personInput) {
+      staffMember.push(functions.makeEmailObj(personInput[x]));
+    }
+    return staffMember;
+  },
 
-loopStaffOf: (personInput) => {
-  let staffMember = [];
-  for (const x of personInput) {
-    staffMember.push(functions.makeEmailObj(x));
-  }
-  return staffMember;
-},
+  loopStaffOf: personInput => {
+    let staffMember = [];
+    for (const x of personInput) {
+      staffMember.push(functions.makeEmailObj(x));
+    }
+    return staffMember;
+  },
 
-
-
-  // 2019/10/21 loopStaff 
-  loopStaff: (personInput) => {
+  // 2019/10/21 loopStaff
+  loopStaff: personInput => {
     let staffMember = [];
     personInput.forEach(element => {
       staffMember.push(functions.makeEmailObj(element));
