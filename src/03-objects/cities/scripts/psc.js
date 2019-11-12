@@ -1,14 +1,14 @@
 const psc = {
   city: class {
     constructor(Key, Name, Latitude, Longitude, Population) {
-      this.key = Key;
+      this.key = Key
       this.city = Name;
       this.lat = Latitude;
       this.long = Longitude;
       this.pop = Population;
     }
     show() {
-      return `Key: ${this.key}, City: ${this.city}, lat: ${this.lat}, long: ${this.long}, Population: ${this.pop}`;
+      return `City: ${this.city}, lat: ${this.lat}, long: ${this.long}, Population: ${this.pop}`;
     }
     moveIn(amount) {
       this.pop = this.pop + amount;
@@ -29,24 +29,19 @@ const psc = {
   community: class {
     constructor() {
       this.cityList = [];
+      this.keyCounter = 1;
     }
 
-    createCity(Key, Name, Latitude, Longitude, Population) {
+    createCity(Name, Latitude, Longitude, Population) {
       let message;
-      let cityInst = new psc.city(Key, Name, Latitude, Longitude, Population);
+      let cityInst = new psc.city(this.keyCounter, Name, Latitude, Longitude, Population);
       if (
         this.cityList.filter(el => el.lat === Latitude && el.long === Longitude)
           .length === 0
       ) {
-        let cityObj = {
-          key: cityInst.key,
-          city: cityInst.city,
-          lat: cityInst.lat,
-          long: cityInst.long,
-          pop: cityInst.pop
-        };
-        this.cityList.push(cityObj);
+        this.cityList.push(cityInst);
         message = `${Name} has been added to the database`;
+        this.keyCounter++
       } else {
         message = `Error: a location already has those coordinates`;
       }
@@ -63,8 +58,31 @@ const psc = {
     }
 
     getMostNorthern() {
-        this.cityList.sort((a,b) => {return b.lat - a.lat})
-        return this.cityList[0]
+      this.cityList.sort((a, b) => {
+        return b.lat - a.lat;
+      });
+      return this.cityList[0];
+    }
+
+    getMostSouthern() {
+      this.cityList.sort((a, b) => {
+        return a.lat - b.lat;
+      });
+      return this.cityList[0];
+    }
+
+    getPopulation() {
+      let populations = this.cityList.map(el => el.pop)
+      return populations.reduce((a, b) => a + b, 0);
+    }
+
+    deleteCity(key) {
+      this.cityList = this.cityList.filter(el => el.key !== key)
+    }
+
+    getHighestKey() {
+      this.cityList.sort((a,b) => {return b.key - a.key});
+      return this.cityList[0].key
     }
   }
 };

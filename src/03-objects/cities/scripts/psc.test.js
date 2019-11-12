@@ -2,10 +2,10 @@ import psc from "./psc"
 
 
 test("test show method in city class", () => {
-    let cityInst = new psc.city(1,"Calgary", 51.05, -114.05, 1500000);
-    expect(cityInst.show()).toBe("Key: 1, City: Calgary, lat: 51.05, long: -114.05, Population: 1500000");
+    let cityInst = new psc.city(1, "Calgary", 51.05, -114.05, 1500000);
+    expect(cityInst.show()).toBe("City: Calgary, lat: 51.05, long: -114.05, Population: 1500000");
     let cityInst2 = new psc.city(2, "Edmonton", 53.55, -113.49, 800000);
-    expect(cityInst2.show()).toBe("Key: 2, City: Edmonton, lat: 53.55, long: -113.49, Population: 800000")
+    expect(cityInst2.show()).toBe("City: Edmonton, lat: 53.55, long: -113.49, Population: 800000")
 })
 
 test("test move in method in city class", () => {
@@ -39,36 +39,73 @@ test("test how big method in city class", () => {
     expect(cityInst.howBig()).toBe("Zombieland")
 })
 
-const testCities = [
-    { "key": 1, "city": "Calgary", "lat": 51.05, "long": -114.05, "pop":1500000 },
-    { "key": 2, "city": "Edmonton", "lat": 53.55, "long": -113.49, "pop":800000},
-    { "key": 3, "city": "Red Deer", "lat": 52.28, "long": -113.81, "pop":200000},
-    {"key": 4, "city": "Rio de Janeiro", "lat": -22.91, "long": -43.17, "pop": 6476631}
-]
+const testCities = {
+    "1": { "key": 1, "city": "Calgary", "lat": 51.05, "long": -114.05, "pop":1500000 },
+    "2": { "key": 2, "city": "Edmonton", "lat": 53.55, "long": -113.49, "pop":800000},
+    "3": { "key": 3, "city": "Red Deer", "lat": 52.28, "long": -113.81, "pop":200000},
+    "4": {"key": 4, "city": "Rio de Janeiro", "lat": -22.91, "long": -43.17, "pop": 6476631}
+}
 
 test("create city method in community class", () => {
     let communityInst = new psc.community();
-    expect(communityInst.createCity(1, "Calgary", 51.05, -114.05, 1500000)).toBe("Calgary has been added to the database")
+    expect(communityInst.createCity("Calgary", 51.05, -114.05, 1500000)).toBe("Calgary has been added to the database")
     expect(communityInst.cityList[0]).toEqual({ "key": 1, "city": "Calgary", "lat": 51.05, "long": -114.05, "pop":1500000 })
-    expect(communityInst.createCity(2, "Edmonton", 53.55, -113.49, 800000)).toBe("Edmonton has been added to the database")
+    expect(communityInst.createCity("Edmonton", 53.55, -113.49, 800000)).toBe("Edmonton has been added to the database")
     expect(communityInst.cityList[1]).toEqual({ "key": 2, "city": "Edmonton", "lat": 53.55, "long": -113.49, "pop":800000})
-    expect(communityInst.createCity(1, "Calgary", 51.05, -114.05, 1500000)).toBe("Error: a location already has those coordinates")
+    expect(communityInst.createCity("Calgary", 51.05, -114.05, 1500000)).toBe("Error: a location already has those coordinates")
 })
 test("test whichSphere method in community class", () => {
     let communityInst = new psc.community();
-    communityInst.createCity(1, "Calgary", 51.05, -114.05, 1500000)
-    communityInst.createCity(2, "Rio de Janeiro", -22.91, -43.17, 6476631)
+    communityInst.createCity("Calgary", 51.05, -114.05, 1500000)
+    communityInst.createCity("Rio de Janeiro", -22.91, -43.17, 6476631)
     expect(communityInst.whichSphere("Calgary")).toBe("Northern Hemisphere");
     expect(communityInst.whichSphere("Rio de Janeiro")).toBe("Southern Hemisphere");
 })
 
 test("test getMostNorthern method in community class", () => {
     let communityInst = new psc.community();
-    communityInst.createCity(1, "Calgary", 51.05, -114.05, 1500000)
-    communityInst.createCity(2, "Rio de Janeiro", -22.91, -43.17, 6476631)
-    expect(communityInst.getMostNorthern()).toEqual({ "key": 1, "city": "Calgary", "lat": 51.05, "long": -114.05, "pop":1500000 })
+    communityInst.createCity("Calgary", 51.05, -114.05, 1500000)
+    communityInst.createCity("Rio de Janeiro", -22.91, -43.17, 6476631)
     expect(communityInst.getMostNorthern()).toEqual({"key": 1, "city": "Calgary", "lat": 51.05, "long": -114.05, "pop":1500000 })
-    communityInst.createCity(3, "Edmonton", 53.55, -113.49, 800000)
+    communityInst.createCity("Edmonton", 53.55, -113.49, 800000)
     expect(communityInst.getMostNorthern()).toEqual({ "key": 3, "city": "Edmonton", "lat": 53.55, "long": -113.49, "pop":800000})
+})
+
+test("test getMostSouthern method in community class", () => {
+    let communityInst = new psc.community();
+    communityInst.createCity("Calgary", 51.05, -114.05, 1500000)
+    communityInst.createCity("Edmonton", 53.55, -113.49, 800000)
+    expect(communityInst.getMostSouthern()).toEqual({"key": 1, "city": "Calgary", "lat": 51.05, "long": -114.05, "pop":1500000 })
+    communityInst.createCity("Rio de Janeiro", -22.91, -43.17, 6476631)
+    expect(communityInst.getMostSouthern()).toEqual({"key": 3, "city": "Rio de Janeiro", "lat": -22.91, "long": -43.17, "pop": 6476631})
+})
+
+test("test getPopulation method in community class", () => {
+    let communityInst = new psc.community();
+    communityInst.createCity("Calgary", 51.05, -114.05, 1500000)
+    communityInst.createCity("Edmonton", 53.55, -113.49, 800000)
+    expect(communityInst.getPopulation()).toEqual(2300000)
+    communityInst.createCity("Rio de Janeiro", -22.91, -43.17, 6000000)
+    expect(communityInst.getPopulation()).toEqual(8300000)
+})
+
+test("test deleteCity method in community class", () => {
+    let communityInst = new psc.community();
+    communityInst.createCity("Calgary", 51.05, -114.05, 1500000)
+    communityInst.createCity("Edmonton", 53.55, -113.49, 800000)
+    communityInst.createCity("Rio de Janeiro", -22.91, -43.17, 6000000)
+    communityInst.deleteCity(2);
+    expect(communityInst.cityList[1]).toEqual({"key": 3, "city": "Rio de Janeiro", "lat": -22.91, "long": -43.17, "pop": 6000000})
+    expect(communityInst.cityList.length).toBe(2)
+   
+})
+
+test("test getHighestKey method in community class", () => {
+    let communityInst = new psc.community();
+    communityInst.createCity("Calgary", 51.05, -114.05, 1500000)
+    communityInst.createCity("Edmonton", 53.55, -113.49, 800000)
+    expect(communityInst.getHighestKey()).toBe(2)
+    communityInst.createCity("Rio de Janeiro", -22.91, -43.17, 6000000)
+    expect(communityInst.getHighestKey()).toBe(3)
 
 })
