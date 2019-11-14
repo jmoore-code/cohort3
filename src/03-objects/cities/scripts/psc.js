@@ -1,7 +1,7 @@
 const psc = {
   city: class {
     constructor(Key, Name, Latitude, Longitude, Population) {
-      this.key = Key
+      this.key = Key;
       this.city = Name;
       this.lat = Latitude;
       this.long = Longitude;
@@ -34,14 +34,20 @@ const psc = {
 
     createCity(Name, Latitude, Longitude, Population) {
       let message;
-      let cityInst = new psc.city(this.keyCounter, Name, Latitude, Longitude, Population);
+      let cityInst = new psc.city(
+        this.keyCounter,
+        Name,
+        Latitude,
+        Longitude,
+        Population
+      );
       if (
         this.cityList.filter(el => el.lat === Latitude && el.long === Longitude)
           .length === 0
       ) {
         this.cityList.push(cityInst);
         message = `${Name} has been added to the database`;
-        this.keyCounter++
+        this.keyCounter++;
       } else {
         message = `Error: a location already has those coordinates`;
       }
@@ -72,17 +78,12 @@ const psc = {
     }
 
     getPopulation() {
-      let populations = this.cityList.map(el => el.pop)
+      let populations = this.cityList.map(el => el.pop);
       return populations.reduce((a, b) => a + b, 0);
     }
 
     deleteCity(key) {
-      this.cityList = this.cityList.filter(el => el.key !== key)
-    }
-
-    getHighestKey() {
-      this.cityList.sort((a,b) => {return b.key - a.key});
-      return this.cityList[0].key
+      this.cityList = this.cityList.filter(el => el.key !== key);
     }
   }
 };
