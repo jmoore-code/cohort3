@@ -1,3 +1,5 @@
+import domUtilities from "./dom_utilities.js"
+
 const psc = {
   city: class {
     constructor(Key, Name, Latitude, Longitude, Population) {
@@ -32,7 +34,7 @@ const psc = {
       this.keyCounter = 1;
     }
 
-    createCity(Name, Latitude, Longitude, Population) {
+    createCity(Name, Latitude, Longitude, Population, targetParentDiv) {
       let message;
       let cityInst = new psc.city(
         this.keyCounter,
@@ -46,6 +48,7 @@ const psc = {
           .length === 0
       ) {
         this.cityList.push(cityInst);
+        domUtilities.createCityCard(targetParentDiv, cityInst)
         message = `${Name} has been added to the database`;
         this.keyCounter++;
       } else {
