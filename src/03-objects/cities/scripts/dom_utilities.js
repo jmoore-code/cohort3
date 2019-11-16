@@ -1,9 +1,11 @@
 const domUtilities = {
   createCityCard: (targetGrid, cityListArray) => {
     cityListArray.forEach(obj => {
+      
       let newCard = document.createElement("div");
       newCard.setAttribute("key", obj.key);
       newCard.setAttribute("class", "cityCard");
+     
 
       // define card name
       let newCardName = document.createElement("p");
