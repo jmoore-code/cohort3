@@ -20,7 +20,7 @@ const domUtilities = {
 
       // set output fields
       sizeOutputField.textContent = obj.pop;
-      whichSphereOutputField.textContent = "test";
+      whichSphereOutputField.textContent = ""
       // define input type and button text
       inputField.type = "number";
       moveInButton.innerText = "Move In";

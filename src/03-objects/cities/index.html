@@ -14,31 +14,33 @@
           <div class="box1">
             <p>Controller</p>
             City:
-            <input type="text" id="idCityInput">
-            <button>Enter</button><br>
+            <input type="text" id="idCityInput" /><br />
+
             Latitude:
-            <input type="text" id="idLatInput">
-            <button>Enter</button><br>
+            <input type="text" id="idLatInput" /><br />
+
             Longitude:
-            <input type="text" id="idLongInput">
-            <button>Enter</button><br>
+            <input type="text" id="idLongInput" /><br />
+
             Population:
-            <input type="text" id="idPopInput">
-            <button>Enter</button><br>
+            <input type="text" id="idPopInput" /><br />
+            <button id="idCityCreateButton">Enter</button><br />
             <button>Most Northern</button>
             <button>Most Southern</button>
-            <button>Total Population</button>
-
-
+            <button>Total Population</button><br />
+            <p id="idOutputField"></p>
           </div>
           <div class="handler"></div>
           <div class="box2">B</div>
         </div>
       </div>
       <div class="handlerVertical"></div>
-      <div class="boxVertical verticalBox2">B</div>
+      <div class="boxVertical rightVerticalBox" id="idCityGrid">
+        City Cards
+      </div>
     </div>
 
     <script src="./scripts/index.js" type="module"></script>
+    
   </body>
 </html>

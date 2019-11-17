@@ -1,5 +1,5 @@
-// import psc from "./psc.js"
-global.fetch = require("node-fetch");
+
+// global.fetch = require("node-fetch");
 
 const url = "http://localhost:5000/";
 
