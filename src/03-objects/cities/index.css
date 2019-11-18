@@ -113,6 +113,10 @@ html {
   color: black;
 }
 
+.cityCard button {
+  margin: 10px;
+}
+
 .cityInput {
   border-radius: 20px;
 }

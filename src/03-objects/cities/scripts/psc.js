@@ -10,7 +10,7 @@ const psc = {
       this.pop = Population;
     }
     show() {
-      return `City: ${this.city}, lat: ${this.lat}, long: ${this.long}, Population: ${this.pop}`;
+      return `City: ${this.city}, lat: ${this.lat}, long: ${this.long}, Population: ${this.pop}` ;
     }
     moveIn(amount) {
       this.pop = this.pop + amount;
@@ -27,6 +27,7 @@ const psc = {
       if (this.pop > 0) return "Hamlet";
       return "Zombieland";
     }
+
   },
   community: class {
     constructor() {

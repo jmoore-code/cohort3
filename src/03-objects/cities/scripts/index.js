@@ -1,61 +1,88 @@
 import psc from "./psc.js";
 import domUtilities from "./dom_utilities.js";
-import fetchFunctions from "./cities_fetch.js"
-
+import fetchFunctions from "./cities_fetch.js";
 
 const cityGird = document.querySelector(".rightVerticalBox");
 const communityInst = new psc.community();
 
 
+
+
+
 // create city card event and account controller listeners
 idCityCreateButton.addEventListener("click", () => {
   let message;
-  if ((idCityInput.value === "") ||  (idPopInput.value < 0)) {
+  if (idCityInput.value === "" || idPopInput.value < 0) {
     message = "Opps one of the parameters needs to be changed";
     idOutputField.textContent = message;
   } else {
-    message = communityInst.createCity(idCityInput.value, Number(idLatInput.value), Number(idLongInput.value), Number(idPopInput.value));
-    idCityGrid.textContent = "City Cards" //clears div, but seems messy, refactor!!!
+    message = communityInst.createCity(
+      idCityInput.value,
+      Number(idLatInput.value),
+      Number(idLongInput.value),
+      Number(idPopInput.value)
+    );
+    idCityGrid.textContent = "City Cards"; //clears div, but seems messy, refactor!!!
     domUtilities.createCityCard(cityGird, communityInst.cityList);
-    idOutputField.textContent = message
+    
+    idOutputField.textContent = message;
     // console.log(communityInst.cityList);
-    let newestCity = communityInst.cityList[communityInst.cityList.length - 1] 
+    let newestCity = communityInst.cityList[communityInst.cityList.length - 1];
     // console.log(newestCity)
-    fetchFunctions.addData(newestCity)
+    fetchFunctions.addData(newestCity);
   }
 });
 
 idMostNorthernButton.addEventListener("click", () => {
-    let mostNorthern = communityInst.getMostNorthern()
-    idOutputField.textContent = `The most northern city is ${mostNorthern.city}`
-})
+  let mostNorthern = communityInst.getMostNorthern();
+  idOutputField.textContent = `The most northern city is ${mostNorthern.city}`;
+});
 
 idMostSouthernButton.addEventListener("click", () => {
-    let mostSouthern = communityInst.getMostSouthern();
-    idOutputField.textContent = `The most southern city is ${mostSouthern.city}`;
-})
+  let mostSouthern = communityInst.getMostSouthern();
+  idOutputField.textContent = `The most southern city is ${mostSouthern.city}`;
+});
 
 idTotalPopButton.addEventListener("click", () => {
-    let totalPop = communityInst.getPopulation();
-    idOutputField.textContent = `The total population of all cities is ${totalPop}`
-})
+  let totalPop = communityInst.getPopulation();
+  idOutputField.textContent = `The total population of all cities is ${totalPop}`;
+});
 
 // city card button listeners
 
 idCityGrid.addEventListener("click", () => {
-    let input = Number(event.target.parentElement.children[1].value);
-    let cityList = communityInst.cityList;
-    let key = Number(event.target.parentElement.getAttribute("key"))
+  let name = event.target.parentElement.children[0].textContent;
+  let input = Number(event.target.parentElement.children[1].value);
+  let cityList = communityInst.cityList;
+  let key = Number(event.target.parentElement.getAttribute("key"));
+  let city = communityInst.getThisCity(key);
 
-    if (event.target.textContent == "Move In") {
-        let city = communityInst.getThisCity(key)
-        city.moveIn(input)
-        console.log(cityList)
-        event.target.parentElement.children[6].textContent = `Population: ${city.pop}`
-        fetchFunctions.updateData(city);
-    }
-})
 
+  if (event.target.textContent == "Move In") {
+    city.moveIn(input);
+    let howBig = city.howBig();
+    let show = city.show();
+    event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`
+    fetchFunctions.updateData(city);
+  }
+  if (event.target.textContent == "Move Out") {
+    city.moveOut(input);
+    let howBig = city.howBig();
+    let show = city.show();
+    event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`
+    fetchFunctions.updateData(city);
+  }
+  if (event.target.textContent == "Sphere?") {
+    let sphere = communityInst.whichSphere(name)
+    event.target.parentElement.children[6].textContent = sphere
+  }
+  if (event.target.textContent == "Delete") {
+    domUtilities.deleteCard(event.target.parentElement);
+    communityInst.deleteCity(key);
+    fetchFunctions.deleteData(city)
+  }
+  console.log(cityList);
+});
 
 // vertical flexbox mover
 const handler = document.querySelector(".handler");
@@ -137,3 +164,23 @@ document.addEventListener("mouseup", function(e) {
   // Turn off dragging flag when user mouse is up
   isHandlerDraggingVertical = false;
 });
+
+
+window.addEventListener("DOMContentLoaded", async () => {
+  let citiesJSON = await fetchFunctions.getData();
+  citiesJSON.forEach(el => { 
+    let city = el.city;
+    let key = el.key;
+    let lat = el.lat;
+    let long = el.long;
+    let pop = el.pop;
+    let cityObj = new psc.city(key, city, lat, long, pop)
+    communityInst.cityList.push(cityObj);
+    communityInst.keyCounter = communityInst.getHighestKey() + 1;
+    console.log(communityInst.cityList)
+  });
+  domUtilities.createCityCard(cityGird, communityInst.cityList)
+})
+
+// Get highest key after state is loaded from server
+// communityInst.keyCounter = communityInst.getHighestKey();
