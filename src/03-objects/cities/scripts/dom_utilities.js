@@ -14,17 +14,19 @@ const domUtilities = {
       let inputField = document.createElement("input");
       let moveInButton = document.createElement("button");
       let moveOutButton = document.createElement("button");
+      let whichSphereButton = document.createElement("button");
       let deleteButton = document.createElement("button");
-      let sizeOutputField = document.createElement("p");
+      let popOutputField = document.createElement("p");
       let whichSphereOutputField = document.createElement("p");
 
       // set output fields
-      sizeOutputField.textContent = obj.pop;
+      popOutputField.textContent = `Population: ${obj.pop}`;
       whichSphereOutputField.textContent = ""
       // define input type and button text
       inputField.type = "number";
       moveInButton.innerText = "Move In";
       moveOutButton.innerText = "Move Out";
+      whichSphereButton.innerText = "Sphere?"
       deleteButton.innerText = "Delete";
 
       // append elements to card
@@ -32,8 +34,9 @@ const domUtilities = {
       newCard.appendChild(inputField);
       newCard.appendChild(moveInButton);
       newCard.appendChild(moveOutButton);
+      newCard.appendChild(whichSphereButton);
       newCard.appendChild(deleteButton);
-      newCard.appendChild(sizeOutputField);
+      newCard.appendChild(popOutputField);
       newCard.appendChild(whichSphereOutputField);
 
       // append card to parent div

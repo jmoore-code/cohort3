@@ -88,6 +88,18 @@ const psc = {
     deleteCity(key) {
       this.cityList = this.cityList.filter(el => el.key !== key);
     }
+
+    getHighestKey() {
+      this.cityList.sort((a, b) => {
+        return b.key - a.key;
+      });
+      return this.cityList[0].key
+    }
+
+    getThisCity(key) {
+      let citySearch = this.cityList.filter(el => el.key === key);
+      return citySearch[0];
+    }
   }
 };
 

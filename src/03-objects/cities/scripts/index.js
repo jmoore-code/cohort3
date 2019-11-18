@@ -7,23 +7,55 @@ const cityGird = document.querySelector(".rightVerticalBox");
 const communityInst = new psc.community();
 
 
-// create city card event listener
+// create city card event and account controller listeners
 idCityCreateButton.addEventListener("click", () => {
   let message;
   if ((idCityInput.value === "") ||  (idPopInput.value < 0)) {
     message = "Opps one of the parameters needs to be changed";
     idOutputField.textContent = message;
   } else {
-    message = communityInst.createCity(idCityInput.value, idLatInput.value, idLongInput.value, idPopInput.value);
-    idCityGrid.textContent = "City Cards"
+    message = communityInst.createCity(idCityInput.value, Number(idLatInput.value), Number(idLongInput.value), Number(idPopInput.value));
+    idCityGrid.textContent = "City Cards" //clears div, but seems messy, refactor!!!
     domUtilities.createCityCard(cityGird, communityInst.cityList);
     idOutputField.textContent = message
-    console.log(communityInst.cityList);
+    // console.log(communityInst.cityList);
     let newestCity = communityInst.cityList[communityInst.cityList.length - 1] 
-    console.log(newestCity)
+    // console.log(newestCity)
     fetchFunctions.addData(newestCity)
   }
 });
+
+idMostNorthernButton.addEventListener("click", () => {
+    let mostNorthern = communityInst.getMostNorthern()
+    idOutputField.textContent = `The most northern city is ${mostNorthern.city}`
+})
+
+idMostSouthernButton.addEventListener("click", () => {
+    let mostSouthern = communityInst.getMostSouthern();
+    idOutputField.textContent = `The most southern city is ${mostSouthern.city}`;
+})
+
+idTotalPopButton.addEventListener("click", () => {
+    let totalPop = communityInst.getPopulation();
+    idOutputField.textContent = `The total population of all cities is ${totalPop}`
+})
+
+// city card button listeners
+
+idCityGrid.addEventListener("click", () => {
+    let input = Number(event.target.parentElement.children[1].value);
+    let cityList = communityInst.cityList;
+    let key = Number(event.target.parentElement.getAttribute("key"))
+
+    if (event.target.textContent == "Move In") {
+        let city = communityInst.getThisCity(key)
+        city.moveIn(input)
+        console.log(cityList)
+        event.target.parentElement.children[6].textContent = `Population: ${city.pop}`
+        fetchFunctions.updateData(city);
+    }
+})
+
 
 // vertical flexbox mover
 const handler = document.querySelector(".handler");

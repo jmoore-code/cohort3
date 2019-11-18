@@ -102,3 +102,11 @@ test("test getHighestKey method in community class", () => {
     expect(communityInst.getHighestKey()).toBe(3)
 
 })
+
+test("test getThisCity method in community class", () => {
+    let communityInst = new psc.community();
+    communityInst.createCity("Calgary", 51.05, -114.05, 1500000)
+    communityInst.createCity("Edmonton", 53.55, -113.49, 800000)
+    expect(communityInst.getThisCity(2).city).toBe("Edmonton");
+    expect(communityInst.getThisCity(1).city).toBe("Calgary");
+})
