@@ -5,10 +5,6 @@ import fetchFunctions from "./cities_fetch.js";
 const cityGird = document.querySelector(".rightVerticalBox");
 const communityInst = new psc.community();
 
-
-
-
-
 // create city card event and account controller listeners
 idCityCreateButton.addEventListener("click", () => {
   let message;
@@ -22,9 +18,9 @@ idCityCreateButton.addEventListener("click", () => {
       Number(idLongInput.value),
       Number(idPopInput.value)
     );
-    idCityGrid.textContent = "City Cards"; //clears div, but seems messy, refactor!!!
+    idCityGrid.textContent = "City Cards";
     domUtilities.createCityCard(cityGird, communityInst.cityList);
-    
+
     idOutputField.textContent = message;
     // console.log(communityInst.cityList);
     let newestCity = communityInst.cityList[communityInst.cityList.length - 1];
@@ -57,130 +53,58 @@ idCityGrid.addEventListener("click", () => {
   let key = Number(event.target.parentElement.getAttribute("key"));
   let city = communityInst.getThisCity(key);
 
-
   if (event.target.textContent == "Move In") {
     city.moveIn(input);
     let howBig = city.howBig();
     let show = city.show();
-    event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`
+    event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`;
     fetchFunctions.updateData(city);
   }
   if (event.target.textContent == "Move Out") {
     city.moveOut(input);
     let howBig = city.howBig();
     let show = city.show();
-    event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`
+    event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`;
     fetchFunctions.updateData(city);
   }
   if (event.target.textContent == "Sphere?") {
-    let sphere = communityInst.whichSphere(name)
-    event.target.parentElement.children[6].textContent = sphere
+    let sphere = communityInst.whichSphere(name);
+    event.target.parentElement.children[6].textContent = sphere;
   }
   if (event.target.textContent == "Delete") {
     domUtilities.deleteCard(event.target.parentElement);
     communityInst.deleteCity(key);
-    fetchFunctions.deleteData(city)
-  }
-  console.log(cityList);
-});
-
-// vertical flexbox mover
-const handler = document.querySelector(".handler");
-const wrapper = handler.closest(".wrapper");
-const boxA = wrapper.querySelector(".box1");
-const boxB = wrapper.querySelector(".box2");
-let isHandlerDragging = false;
-
-document.addEventListener("mousedown", function(e) {
-  // If mousedown event is fired from .handler, toggle flag to true
-  if (e.target === handler) {
-    isHandlerDragging = true;
+    fetchFunctions.deleteData(city);
   }
 });
-
-document.addEventListener("mousemove", function(e) {
-  // Don't do anything if dragging flag is false
-  if (!isHandlerDragging) {
-    return false;
-  }
-
-  e.preventDefault();
-
-  // Get offset
-  let containerOffsetTop = wrapper.offsetTop;
-  let containerOffsetBottom = wrapper.offsetBottom;
-
-  // Get x-coordinate of pointer relative to container
-  let pointerRelativeXpos = e.clientY - containerOffsetTop;
-  let pointerRelativeXpos2 = e.clientY - e.offsetTop + e.offsetHeight;
-
-  let boxAminWidth = 30;
-
-  boxA.style.height = Math.max(boxAminWidth, pointerRelativeXpos - 2) + "px";
-  boxB.style.height = Math.max(boxAminWidth, pointerRelativeXpos2 - 8) + "px";
-});
-document.addEventListener("mouseup", function(e) {
-  // Turn off dragging flag when user mouse is up
-  isHandlerDragging = false;
-});
-
-// horizontal flexbox mover
-const handlerVertical = document.querySelector(".handlerVertical");
-const wrapperVertical = handlerVertical.closest(".wrapperVertical");
-const boxAVertical = wrapperVertical.querySelector(".boxVertical");
-let isHandlerDraggingVertical = false;
-
-document.addEventListener("mousedown", function(e) {
-  // If mousedown event is fired from .handler, toggle flag to true
-  if (e.target === handlerVertical) {
-    isHandlerDraggingVertical = true;
-  }
-});
-
-document.addEventListener("mousemove", function(e) {
-  // Don't do anything if dragging flag is false
-  if (!isHandlerDraggingVertical) {
-    return false;
-  }
-
-  // Get offset
-  let containerOffsetLeft = wrapperVertical.offsetLeft;
-
-  // Get x-coordinate of pointer relative to container
-  let pointerRelativeXpos = e.clientX - containerOffsetLeft;
-
-  // Arbitrary minimum width set on box A, otherwise its inner content will collapse to width of 0
-  let boxAminWidth = 60;
-
-  // Resize box A
-  // * 8px is the left/right spacing between .handler and its inner pseudo-element
-  // * Set flex-grow to 0 to prevent it from growing
-  boxAVertical.style.width =
-    Math.max(boxAminWidth, pointerRelativeXpos - 8) + "px";
-  boxAVertical.style.flexGrow = 0;
-});
-
-document.addEventListener("mouseup", function(e) {
-  // Turn off dragging flag when user mouse is up
-  isHandlerDraggingVertical = false;
-});
-
 
 window.addEventListener("DOMContentLoaded", async () => {
   let citiesJSON = await fetchFunctions.getData();
-  citiesJSON.forEach(el => { 
-    let city = el.city;
-    let key = el.key;
-    let lat = el.lat;
-    let long = el.long;
-    let pop = el.pop;
-    let cityObj = new psc.city(key, city, lat, long, pop)
-    communityInst.cityList.push(cityObj);
+  citiesJSON.forEach(el => {
+    communityInst.cityList.push(
+      new psc.city(el.key, el.city, el.lat, el.long, el.pop)
+    );
     communityInst.keyCounter = communityInst.getHighestKey() + 1;
-    console.log(communityInst.cityList)
   });
-  domUtilities.createCityCard(cityGird, communityInst.cityList)
-})
+  domUtilities.createCityCard(cityGird, communityInst.cityList);
+  console.log(communityInst.cityList);
+});
 
-// Get highest key after state is loaded from server
-// communityInst.keyCounter = communityInst.getHighestKey();
+
+function initMap() {
+  var location = {lat:51.0447, lng: -114.0719};
+  var map = new google.maps.Map(document.getElementById('idMap'), {
+    zoom: 5,
+    center: location
+  });
+  var marker = new google.maps.Marker({
+    // position: location,
+    map: map
+  });
+  marker.set(map);
+}
+
+window.addEventListener("DOMContentLoaded", initMap)
+
+
+

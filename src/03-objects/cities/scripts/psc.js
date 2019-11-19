@@ -1,6 +1,8 @@
 import domUtilities from "./dom_utilities.js"
 
 const psc = {
+
+
   city: class {
     constructor(Key, Name, Latitude, Longitude, Population) {
       this.key = Key;
@@ -49,7 +51,6 @@ const psc = {
           .length === 0
       ) {
         this.cityList.push(cityInst);
-        // domUtilities.createCityCard(targetParentDiv, [cityInst])
         message = `${Name} has been added to the database`;
         this.keyCounter++;
       } else {
@@ -102,6 +103,7 @@ const psc = {
       return citySearch[0];
     }
   }
+  
 };
 
 export default psc;
