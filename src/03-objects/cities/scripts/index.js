@@ -1,6 +1,7 @@
 import psc from "./psc.js";
 import domUtilities from "./dom_utilities.js";
 import fetchFunctions from "./cities_fetch.js";
+import mapFuncs from "./mapFunctions.js"
 
 const cityGird = document.querySelector(".rightVerticalBox");
 const communityInst = new psc.community();
@@ -8,7 +9,7 @@ const communityInst = new psc.community();
 // create city card event and account controller listeners
 idCityCreateButton.addEventListener("click", () => {
   let message;
-  if (idCityInput.value === "" || idPopInput.value < 0) {
+  if (idCityInput.value === "" || idPopInput.value < 0 || idLatInput.value > 90 || idLatInput.value < -90 || idLongInput.value > 180 || idLongInput.value < -180) {
     message = "Opps one of the parameters needs to be changed";
     idOutputField.textContent = message;
   } else {
@@ -18,9 +19,9 @@ idCityCreateButton.addEventListener("click", () => {
       Number(idLongInput.value),
       Number(idPopInput.value)
     );
-    idCityGrid.textContent = "";
+    idCityGrid.textContent = ""; //this resets grid when a new city is created
     domUtilities.createCityCard(cityGird, communityInst.cityList);
-    addMarker(communityInst.cityList)
+    mapFuncs.addMarker(communityInst.cityList)
     idOutputField.textContent = message;
     // console.log(communityInst.cityList);
     let newestCity = communityInst.cityList[communityInst.cityList.length - 1];
@@ -49,7 +50,6 @@ idTotalPopButton.addEventListener("click", () => {
 idCityGrid.addEventListener("click", () => {
   let name = event.target.parentElement.children[0].textContent;
   let input = Number(event.target.parentElement.children[1].value);
-  let cityList = communityInst.cityList;
   let key = Number(event.target.parentElement.getAttribute("key"));
   let city = communityInst.getThisCity(key);
 
@@ -57,16 +57,24 @@ idCityGrid.addEventListener("click", () => {
     city.moveIn(input);
     let howBig = city.howBig();
     let show = city.show();
+    event.target.parentElement.children[6].textContent =""
     event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`;
     fetchFunctions.updateData(city);
   }
   if (event.target.textContent == "Move Out") {
-    city.moveOut(input);
-    let howBig = city.howBig();
-    let show = city.show();
-    event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`;
-    fetchFunctions.updateData(city);
-  }
+    if (input <= city.pop) {
+      city.moveOut(input);
+      let howBig = city.howBig();
+      let show = city.show();
+      event.target.parentElement.children[6].textContent =""
+      event.target.parentElement.children[7].textContent = `${show} and is a ${howBig}`;
+      fetchFunctions.updateData(city);
+    } else {
+      event.target.parentElement.children[6].textContent = "Reduce move out to less than population"
+    }
+
+    }
+
   if (event.target.textContent == "Sphere?") {
     let sphere = communityInst.whichSphere(name);
     event.target.parentElement.children[6].textContent = sphere;
@@ -75,12 +83,17 @@ idCityGrid.addEventListener("click", () => {
     domUtilities.deleteCard(event.target.parentElement);
     communityInst.deleteCity(key);
     fetchFunctions.deleteData(city);
+    console.log(communityInst.cityList)
+    mapFuncs.initMap()
+    mapFuncs.addMarker(communityInst.cityList) 
   }
+
 });
 
-window.addEventListener("DOMContentLoaded", initMap)
+window.addEventListener("DOMContentLoaded", mapFuncs.initMap)
 
 window.addEventListener("DOMContentLoaded", async () => {
+  try {
   let citiesJSON = await fetchFunctions.getData();
   citiesJSON.forEach(el => {
     communityInst.cityList.push(
@@ -89,37 +102,18 @@ window.addEventListener("DOMContentLoaded", async () => {
     communityInst.keyCounter = communityInst.getHighestKey() + 1;
   });
   domUtilities.createCityCard(cityGird, communityInst.cityList);
-  addMarker(communityInst.cityList)
-  console.log(communityInst.cityList);
+  mapFuncs.addMarker(communityInst.cityList)
+  // console.log(communityInst.cityList);
+}
+catch(err) {
+  err = "Failed to connect to server"
+  idOutputField.textContent = err
+}
 });
 
-let map;
 
-function initMap() {
-  
-    let mapOptions = {
-      zoom: 5,
-      center: new google.maps.LatLng(51.0447,-114.0719),
-      mapTypeId: 'roadmap'
-    };
-    map = new google.maps.Map(document.getElementById('idMap'), mapOptions);
-}
 
-function addMarker(array) {
-  for (let index = 0; index < array.length; index++) {
-    let lat = array[index].lat;
-    let long = array[index].long;
-    let city = array[index].city
-    console.log(city)
-    let latlng = new google.maps.LatLng(lat, long);
-    let marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      label: city
-    })
-    
-  }
-}
+
 
 
 
