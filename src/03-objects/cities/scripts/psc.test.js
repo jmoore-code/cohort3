@@ -110,3 +110,16 @@ test("test getThisCity method in community class", () => {
     expect(communityInst.getThisCity(2).city).toBe("Edmonton");
     expect(communityInst.getThisCity(1).city).toBe("Calgary");
 })
+
+// 130E - Object Reference
+
+test("object reference tests", () => {
+    let communityInst = new psc.community();
+    communityInst.createCity("myCity", 51.05, -114.05, 10)
+    let myFav = communityInst.cityList[0]
+    expect(communityInst.cityList[0].pop).toBe(10)
+    expect(myFav.pop).toBe(10)
+    myFav.moveIn(5)
+    expect(communityInst.cityList[0].pop).toBe(15)
+    expect(myFav.pop).toBe(15)
+})
