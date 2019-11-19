@@ -18,9 +18,9 @@ idCityCreateButton.addEventListener("click", () => {
       Number(idLongInput.value),
       Number(idPopInput.value)
     );
-    idCityGrid.textContent = "City Cards";
+    idCityGrid.textContent = "";
     domUtilities.createCityCard(cityGird, communityInst.cityList);
-
+    addMarker(communityInst.cityList)
     idOutputField.textContent = message;
     // console.log(communityInst.cityList);
     let newestCity = communityInst.cityList[communityInst.cityList.length - 1];
@@ -78,6 +78,8 @@ idCityGrid.addEventListener("click", () => {
   }
 });
 
+window.addEventListener("DOMContentLoaded", initMap)
+
 window.addEventListener("DOMContentLoaded", async () => {
   let citiesJSON = await fetchFunctions.getData();
   citiesJSON.forEach(el => {
@@ -87,24 +89,39 @@ window.addEventListener("DOMContentLoaded", async () => {
     communityInst.keyCounter = communityInst.getHighestKey() + 1;
   });
   domUtilities.createCityCard(cityGird, communityInst.cityList);
+  addMarker(communityInst.cityList)
   console.log(communityInst.cityList);
 });
 
+let map;
 
 function initMap() {
-  var location = {lat:51.0447, lng: -114.0719};
-  var map = new google.maps.Map(document.getElementById('idMap'), {
-    zoom: 5,
-    center: location
-  });
-  var marker = new google.maps.Marker({
-    // position: location,
-    map: map
-  });
-  marker.set(map);
+  
+    let mapOptions = {
+      zoom: 5,
+      center: new google.maps.LatLng(51.0447,-114.0719),
+      mapTypeId: 'roadmap'
+    };
+    map = new google.maps.Map(document.getElementById('idMap'), mapOptions);
 }
 
-window.addEventListener("DOMContentLoaded", initMap)
+function addMarker(array) {
+  for (let index = 0; index < array.length; index++) {
+    let lat = array[index].lat;
+    let long = array[index].long;
+    let city = array[index].city
+    console.log(city)
+    let latlng = new google.maps.LatLng(lat, long);
+    let marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      label: city
+    })
+    
+  }
+}
+
+
 
 
 
