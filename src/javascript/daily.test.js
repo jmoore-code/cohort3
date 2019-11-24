@@ -1,4 +1,39 @@
 import functions from "./daily";
+//2019/11/21
+test("test bc ab generic filter 2", () => {
+  let dummyFunc = obj => obj;
+  expect(functions.processAbBCPeople2(people, dummyFunc)[0]).toEqual({
+    fname: "Alex",
+    lname: "Smith",
+    province: "BC",
+    age: 33
+  });
+  expect(functions.processAbBCPeople2(people, dummyFunc)[2]).toEqual({
+    fname: "Byron", lname: "Cardenas", province: "BC", age: 38
+  });
+});
+
+
+test("test total people, total age, and average age", () => {
+  const people2 = [
+    { fname: "Alex", lname: "Smith", province: "BC", age: 33 },
+    { fname: "Angela", lname: "Jones", province: "AB", age: 61 },
+  ]
+  expect(functions.lengthAge(people2)).toEqual({numPeople: 2, totalAge: 94, avgAge: 47})
+  const people3 = [
+    { fname: "Alex", lname: "Smith", province: "BC", age: 33 },
+    { fname: "Angela", lname: "Jones", province: "AB", age: 61 },
+    { fname: "Anne", lname: "Bird", province: "SK", age: 35 },
+  ]
+  expect(functions.lengthAge(people3)).toEqual({numPeople: 3, totalAge: 129, avgAge: 43})
+})
+
+
+test('test processAbBCPeople2 and lengthAge together', () => {
+  expect(functions.processAbBCPeople2(people, functions.lengthAge)).toEqual({ numPeople: 22, totalAge: 838, avgAge: 38 })
+})
+
+
 
 // 2019/11/08
 const people = [

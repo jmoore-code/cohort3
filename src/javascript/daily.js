@@ -1,4 +1,24 @@
 const functions = {
+//  2019/11/21 Daily Exercise callbacks part 2
+
+processAbBCPeople2: (peopleData, callBack) => {
+  let filter = peopleData.filter(el => {
+    return (el.province === "BC") || (el.province === "AB")
+  })
+  return callBack(filter)
+},
+ 
+ lengthAge:(array) => {
+   let obj = {}
+   obj["numPeople"] = array.length
+   obj["totalAge"] = array.map(el => el.age).reduce((a, b) => a + b, 0);
+   obj["avgAge"] = Math.floor(array.map(el => el.age).reduce((a, b) => a + b, 0)/array.length)
+   console.log(obj)
+   return obj
+ },
+ 
+ 
+ 
   // 2019/11/08 Daily Exercise Call Back(Part 1)
 
   processAbBCPeople: (peopleData, callBack) => {
