@@ -1,5 +1,33 @@
 const functions = {
-//  2019/11/21 Daily Exercise callbacks part 2
+// 2019/11/22 Daily Exercise Three ways of functions
+sortAscending: function(myArray) {
+  return myArray.sort((a,b) => {
+    return a.num - b.num
+  })
+},
+
+sortAlpha: function sortAlphaFruit(myArray) {
+  return myArray.sort((a,b) => {
+    if(a.str > b.str) {
+      return 1;
+    } else {
+      return -1;
+    }
+  })
+},
+
+sortOriginReverse: (myArray) => {
+  return myArray.sort((a,b) => {
+    if(a.origin < b.origin) {
+    return 1;
+    } else {
+      return -1;
+    }
+  })
+},
+
+
+  //  2019/11/21 Daily Exercise callbacks part 2
 
 processAbBCPeople2: (peopleData, callBack) => {
   let filter = peopleData.filter(el => {
@@ -13,7 +41,6 @@ processAbBCPeople2: (peopleData, callBack) => {
    obj["numPeople"] = array.length
    obj["totalAge"] = array.map(el => el.age).reduce((a, b) => a + b, 0);
    obj["avgAge"] = Math.floor(array.map(el => el.age).reduce((a, b) => a + b, 0)/array.length)
-   console.log(obj)
    return obj
  },
  

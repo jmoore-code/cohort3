@@ -1,4 +1,29 @@
 import functions from "./daily";
+test("Three ways of functions", () => {
+  let myArray = [
+    {num: 5,str: "apples", origin:"BC"},
+    {num: 7,str: "oranges", origin:"Florida"},
+    {num: 2,str: "lemons", origin:"Mexico"},
+    {num: 8,str: "bananas", origin:"Ecuador"},
+    {num: 6,str: "avocados", origin:"Mexico"},
+    {num: 4,str: "pineapple", origin:"Brazil"},
+    {num: 3,str: "blueberries", origin:"Chile"},
+    {num: 9,str: "pears", origin:"Oregon"},
+    {num: 1,str: "cantaloupe", origin:"California"}
+  ];
+  expect(functions.sortAscending(myArray)[0]).toEqual({num: 1,str: "cantaloupe", origin:"California"})
+  expect(functions.sortAscending(myArray)[1]).toEqual({num: 2,str: "lemons", origin:"Mexico"})
+  expect(functions.sortAlpha(myArray)[0]).toEqual({num: 5,str: "apples", origin:"BC"})
+  expect(functions.sortAlpha(myArray)[1]).toEqual({num: 6,str: "avocados", origin:"Mexico"})
+  expect(functions.sortOriginReverse(myArray)[0]).toEqual({num: 9,str: "pears", origin:"Oregon"})
+  expect(functions.sortOriginReverse(myArray)[3]).toEqual({num: 7,str: "oranges", origin:"Florida"})
+})
+
+
+
+
+
+
 //2019/11/21
 test("test bc ab generic filter 2", () => {
   let dummyFunc = obj => obj;
