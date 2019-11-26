@@ -1,5 +1,23 @@
+// 2019/11/26 Daily Exercise Destructing-assignment
+
+let family = {
+  spouse: "Carmen",
+  son: "Caden",
+  bigDog: "Thor",
+  smallDog: "Nellie"
+}
+
+ let {spouse:wife, son, ...dogs} = family 
+
+ console.log(wife)
+ console.log(son)
+ console.log(dogs.bigDog)
+ console.log(dogs.smallDog)
+
+
 const functions = {
-// 2019/11/22 Daily Exercise Three ways of functions
+
+  // 2019/11/22 Daily Exercise Three ways of functions
 sortAscending: function(myArray) {
   return myArray.sort((a,b) => {
     return a.num - b.num
