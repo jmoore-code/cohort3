@@ -1,9 +1,9 @@
 import React from 'react';
-// import reactLogo from './react-brands.svg';
 import Menu from "./components/Menu"
 import {ReactComponent as ReactLogo} from "./react-brands.svg"
 import styled, {keyframes} from "styled-components"
 import './App.css';
+import {Game} from "./components/tictactoe/board"
 
 const rotate = keyframes`
   from {
@@ -43,11 +43,10 @@ function App() {
     
     <div className="App">
     <Menu />
+   
       <header className="App-header">
+      <Game />
         <StyledLogo />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
