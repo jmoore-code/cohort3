@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {ReactComponent as HomeIcon} from "./menu icons/home-solid.svg"
+import {ReactComponent as HomeIcon} from "./menu icons/home.svg"
 import {ReactComponent as TicTacToeIcon} from "./menu icons/tic-tac-toe.svg"
 import {ReactComponent as PiggyIcon} from "./menu icons/piggy-bank.svg"
 import {ReactComponent as CityIcon} from "./menu icons/cityscape.svg"
@@ -14,53 +14,69 @@ const rotate = keyframes`
   }
 `;
 
-const StyledTicTacToeIcon = styled(TicTacToeIcon)`
-animation: ${rotate} infinite 20s linear;
-height:80px;
-width:80px;
-display:block;
-fill:""`
-
 const StyledHomeIcon = styled(HomeIcon)`
 animation: ${rotate} infinite 20s linear;
 height:80px;
 width:80px;
 display:block;
-fill:""`
+fill: 	rgb(255,240,245);
+&:hover {
+  fill:#61DAFB;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));      
+  filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));  
+}
+`
+
+const StyledTicTacToeIcon = styled(TicTacToeIcon)`
+animation: ${rotate} infinite 20s linear;
+height:80px;
+width:80px;
+display:block;
+fill:	rgb(255,240,245);
+&:hover {
+  fill:#61DAFB;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));      
+  filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));  
+}
+`
 
 const StyledPiggyIcon = styled(PiggyIcon)`
 animation: ${rotate} infinite 20s linear;
 height:80px;
 width:80px;
 display:block;
-fill:""`
+fill:	rgb(255,240,245);
+&:hover {
+  fill:#61DAFB;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));      
+  filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));  
+}
+`
 
 const StyledCityIcon = styled(CityIcon)`
 animation: ${rotate} infinite 20s linear;
 height:80px;
 width:80px;
 display:block;
-fill:""`
+fill:	rgb(255,240,245); 
+&:hover {
+  fill:#61DAFB;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));      
+  filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));  
+}
+`
+
 
 
 class Menu extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            bgColor:""
-        }
-    }
-    boxClick = (e) => {
-        this.setState({bgColor: "red"})
-    }
+  
     render(){
         return (
             <div className="main-nav">
-            <div className="navIcon"><StyledHomeIcon /></div>
-            <div className="navIcon"><StyledTicTacToeIcon /></div>
-            <div className="navIcon"><StyledPiggyIcon /></div>
-            <div className="navIcon"><StyledCityIcon /></div>   
+            <div className="navIcon" tabIndex="0"><StyledHomeIcon /></div>
+            <div className="navIcon" tabIndex="1"><StyledTicTacToeIcon  /></div>
+            <div className="navIcon" tabIndex="2"><StyledPiggyIcon /></div>
+            <div className="navIcon" tabIndex="3"><StyledCityIcon /></div>   
             </div>
         )
     }

@@ -38,26 +38,43 @@ display:block;
 }
 `
 
-function App() {
-  return (
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selected: "" 
+    }
+  }
+
+  selectedElement = (event) => {
+    this.setState({
+      selected: event.target.name
+    })
+    console.log(this.state)
+  }
+  
+  render() {
+    return (
     
-    <div className="App">
-    <Menu />
-   
-      <header className="App-header">
-      <Game />
-        <StyledLogo />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div className="App">
+      <Menu />
+        <header className="App-header">
+        
+         <Game />
+          <StyledLogo />
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </header>
+      </div>
+    );
+  }
+
 }
 
 export default App;
