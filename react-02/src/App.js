@@ -44,13 +44,30 @@ class App extends React.Component {
     this.state = {
       selected: "" 
     }
+    this.selectedElement = this.selectedElement.bind(this);
   }
 
   selectedElement = (event) => {
     this.setState({
       selected: event.target.name
     })
-    console.log(this.state)
+    console.log("test")
+  }
+
+  homeComponent = () => {
+    return (
+      <div>
+      <StyledLogo />
+      <a
+        className="App-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
+      </div>
+    )
   }
   
   render() {
@@ -59,17 +76,9 @@ class App extends React.Component {
       <div className="App">
       <Menu />
         <header className="App-header">
-        
+      
          <Game />
-          <StyledLogo />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+         <this.homeComponent />
         </header>
       </div>
     );

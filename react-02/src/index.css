@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  background-color: #282c34;
 }
 
 code {
@@ -21,14 +22,15 @@ code {
   font-size: 0.7em;
   margin: auto;
   padding: 20px;
-  background-color: #282c34;
+  
 }
 
 .navIcon {
   padding: 20px;
 }
 
-.navIcon:focus {
+.selectClass {
   fill:#61DAFB;
-  outline: none;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));      
+  filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));
 }
