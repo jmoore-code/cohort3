@@ -5,6 +5,7 @@ import styled, {keyframes} from "styled-components"
 import './App.css';
 import {Game} from "./components/tictactoe/board"
 
+
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -42,16 +43,15 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selected: "" 
+      selected: "home" 
     }
     this.selectedElement = this.selectedElement.bind(this);
   }
 
   selectedElement = (event) => {
     this.setState({
-      selected: event.target.name
+      selected: event.target.id
     })
-    console.log("test")
   }
 
   homeComponent = () => {
@@ -69,17 +69,28 @@ class App extends React.Component {
       </div>
     )
   }
+
+  appDisplay = () => {
+    if(this.state.selected === "home") {
+      return <this.homeComponent />;
+    } if (this.state.selected === "tictactoe") {
+      return <Game />
+    }
+  }
   
   render() {
     return (
     
-      <div className="App">
-      <Menu />
-        <header className="App-header">
-      
-         <Game />
-         <this.homeComponent />
+      <div className="App" >
+     
+        <header className="App-header" onClick={this.selectedElement}>
+        <Menu />
+         
         </header>
+        <div className="App-Display">
+        {this.appDisplay()}
+        </div>
+        
       </div>
     );
   }

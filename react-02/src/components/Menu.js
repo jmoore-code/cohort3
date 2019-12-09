@@ -83,16 +83,19 @@ class Menu extends Component {
           }}
         >
           <StyledHomeIcon
+          id="home"
             className={this.state.activeLink === 0 ? "selectClass" : ""}
           />
         </div>
         <div
+         
           className="navIcon"
           onClick={() => {
             this.setActive(1);
           }}
         >
           <StyledTicTacToeIcon
+           id="tictactoe"
             className={this.state.activeLink === 1 ? "selectClass" : ""}
           />
         </div>
@@ -103,6 +106,7 @@ class Menu extends Component {
           }}
         >
           <StyledPiggyIcon
+          id="accounts"
             className={this.state.activeLink === 2 ? "selectClass" : ""}
           />
         </div>
@@ -113,6 +117,7 @@ class Menu extends Component {
           }}
         >
           <StyledCityIcon
+          id="cities"
             className={this.state.activeLink === 3 ? "selectClass" : ""}
           />
         </div>
