@@ -1,0 +1,20 @@
+.main-nav{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    list-style: none;
+    font-size: 0.7em;
+    margin: auto;
+    padding: 20px;
+    
+  }
+  
+  .navIcon {
+    padding: 20px;
+  }
+  
+  .selectClass {
+    fill:#61DAFB;
+    -webkit-filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));      
+    filter: drop-shadow(12px 12px 7px rgba(255,255,255,0.5));
+  }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { ReactComponent as HomeIcon } from "./menu icons/home.svg";
-import { ReactComponent as TicTacToeIcon } from "./menu icons/tic-tac-toe.svg";
-import { ReactComponent as PiggyIcon } from "./menu icons/piggy-bank.svg";
-import { ReactComponent as CityIcon } from "./menu icons/cityscape.svg";
+import { ReactComponent as HomeIcon } from "./home.svg";
+import { ReactComponent as TicTacToeIcon } from "./tic-tac-toe.svg";
+import { ReactComponent as PiggyIcon } from "./piggy-bank.svg";
+import { ReactComponent as CityIcon } from "./cityscape.svg";
 import styled, { keyframes } from "styled-components";
+import "./menu.css";
 
 const rotate = keyframes`
   from {
@@ -88,7 +89,6 @@ class Menu extends Component {
           />
         </div>
         <div
-         
           className="navIcon"
           onClick={() => {
             this.setActive(1);
