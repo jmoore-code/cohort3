@@ -1,10 +1,9 @@
-import React from "react";
 
-class AccountFuncs extends React.Component {
+
+class accounts {
     constructor (accountName, initialBalance) {
-        super()
         this.name = accountName;
-        this.amount = initialBalance;
+        this.amount = Number(initialBalance);
     }
     deposit(value) {
         this.amount += value;
@@ -17,27 +16,26 @@ class AccountFuncs extends React.Component {
       }
 }
 
-class AccountController extends React.Component {
+class AccountController {
     constructor() {
-        super()
       this.allAccounts = [];
     }
   
-    createAccount(name, balance) {
+    createAccount(name, amount) {
       let filterAccount = this.allAccounts.filter(el => el.name === name);
       if (name === "") {
         return false;
       } else if (filterAccount.length > 0) {
         return false;
       } else {
-        let newInstance = new AccountFuncs(name, balance);
+        let newInstance = new accounts(name, amount);
         this.allAccounts.push(newInstance);
       }
     }
   
     removeAccount(name) {
       for (let index = 0; index < this.allAccounts.length; index++) {
-        if (this.allAccounts[index].name == name) {
+        if (this.allAccounts[index].name === name) {
           this.allAccounts.splice(index, 1);
         }
       }
@@ -76,4 +74,4 @@ class AccountController extends React.Component {
     }
   }
 
-  export {AccountFuncs, AccountController}
+  export {accounts, AccountController}

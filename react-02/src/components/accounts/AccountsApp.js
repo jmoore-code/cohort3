@@ -1,38 +1,50 @@
 import React from "react"
 import CreateAccountCard from "./AccountCard"
+import {AccountController} from "./AccountController"
 
-class Accounts extends React.Component {
+class AccountsApp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            test: true,
-
-        }
+            name: "",
+            amount: "",
+            accountsList: []
+            
+        };
+        this.controller = new AccountController()
     }
     
     
     
     handleClick = () => {
-        this.setState({test: true})
+       this.controller.createAccount(this.state.name, this.state.amount);
+       this.setState({
+            "name": "",
+            "amount": "",
+            "accountsList": this.controller.allAccounts,
+       })
+     console.log(this.state)
+    }
+
+    handleChange = (event) => {
+         this.setState({
+            [event.target.name]: event.target.value
+        })
     }
     
     cardDisplay = () => {
-        const accountsList = [
-            {name: "cheq", amount: 1,},
-            {name: "savings", amount: 2,},
-        ]
-        if (this.state.test === true) {
-            return <CreateAccountCard accountList={accountsList}/>
+        const accountList = this.state.accountsList
+        return <CreateAccountCard accountList={accountList} />
         }
-    }
+    
     
     render() {
         return(
             <div className= "upperAndLower">
                 <div className="title"><h2>Your Banking Accounts</h2></div>
                 <div className="upperControls">
-                    <input type="text" placeholder="Account Name" id="idAccountName" />
-                    <input type="number" placeholder="Initial Deposit" id="idInitialBalance" />
+                    <input type="text" placeholder="Account Name" id="idAccountName" name="name" onChange={this.handleChange} value={this.state.name}/>
+                    <input type="number" placeholder="Initial Deposit" id="idInitialBalance" name="amount" onChange={this.handleChange} value={this.state.amount}/>
                     <button id="idCreateAccountButton" onClick={this.handleClick}>
                     Create Account
                     </button>
@@ -48,7 +60,7 @@ class Accounts extends React.Component {
             </div>
             <div className="grid-account" id="idGridAccount">
                 Cards here
-                {this.cardDisplay()}
+                <this.cardDisplay />
             </div>
             </div>
             
@@ -56,4 +68,4 @@ class Accounts extends React.Component {
     }
 }
 
-export default Accounts
+export default AccountsApp

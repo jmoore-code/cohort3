@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from "./components/menu/Menu"
 import Home from "./components/Home"
 import {Game} from "./components/tictactoe/Board"
-import Accounts from "./components/accounts/AccountsApp"
+import AccountsApp from "./components/accounts/AccountsApp"
 import './App.css';
 
 
@@ -30,7 +30,7 @@ class App extends React.Component {
     } if (this.state.selected === "tictactoe") {
       return <Game />
     } if (this.state.selected === "accounts") {
-      return <Accounts />
+      return <AccountsApp />
     }
   }
   

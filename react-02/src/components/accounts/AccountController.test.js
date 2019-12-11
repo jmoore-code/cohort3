@@ -1,32 +1,32 @@
-import { AccountFuncs, AccountController} from "./AccountController.js";
+import { accounts, AccountController} from "./AccountController.js";
 
 // Tests for the class account---------------------------
 test("create empty account", () => {
-  var newInstance = new AccountFuncs("first", 25);
+  var newInstance = new accounts("first", 25);
   expect(newInstance.amount).toEqual(25);
   expect(newInstance.name).toEqual("first");
-  var secondInstance = new AccountFuncs("second", 30);
+  var secondInstance = new accounts("second", 30);
   expect(secondInstance.amount).toEqual(30);
   expect(secondInstance.name).toEqual("second");
 });
 test("test deposit method", () => {
-   var newInstance = new AccountFuncs("first", 25);
+   var newInstance = new accounts("first", 25);
   newInstance.deposit(10);
   expect(newInstance.amount).toEqual(35);
   newInstance.deposit(5);
   expect(newInstance.amount).toEqual(40);
 });
 test("test withdraw method", () => {
-   var newInstance = new AccountFuncs("first", 25);
+   var newInstance = new accounts("first", 25);
   newInstance.withdraw(10);
   expect(newInstance.amount).toEqual(15);
   newInstance.withdraw(15);
   expect(newInstance.amount).toEqual(0);
 });
 test("test balance method", () => {
-   var newInstance = new AccountFuncs("first", 25);
+   var newInstance = new accounts("first", 25);
   expect(newInstance.balance()).toEqual(25);
-  var secondInstance = new AccountFuncs("second", 30);
+  var secondInstance = new accounts("second", 30);
   expect(secondInstance.balance()).toEqual(30);
 });
 
