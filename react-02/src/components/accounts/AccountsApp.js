@@ -1,6 +1,31 @@
 import React from "react"
+import CreateAccountCard from "./AccountCard"
 
 class Accounts extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            test: true,
+
+        }
+    }
+    
+    
+    
+    handleClick = () => {
+        this.setState({test: true})
+    }
+    
+    cardDisplay = () => {
+        const accountsList = [
+            {name: "cheq", amount: 1,},
+            {name: "savings", amount: 2,},
+        ]
+        if (this.state.test === true) {
+            return <CreateAccountCard accountList={accountsList}/>
+        }
+    }
+    
     render() {
         return(
             <div className= "upperAndLower">
@@ -8,7 +33,7 @@ class Accounts extends React.Component {
                 <div className="upperControls">
                     <input type="text" placeholder="Account Name" id="idAccountName" />
                     <input type="number" placeholder="Initial Deposit" id="idInitialBalance" />
-                    <button id="idCreateAccountButton">
+                    <button id="idCreateAccountButton" onClick={this.handleClick}>
                     Create Account
                     </button>
                     <button id="idSumAccountsButton">Sum Accounts</button>
@@ -20,6 +45,10 @@ class Accounts extends React.Component {
                     <div>Lowest Value Account: <span id="lowestOutput"></span></div>
         
                 </div>
+            </div>
+            <div className="grid-account" id="idGridAccount">
+                Cards here
+                {this.cardDisplay()}
             </div>
             </div>
             
