@@ -13,7 +13,7 @@ class accounts {
       }
     balance() {
         return this.amount;
-      }
+      }  
 }
 
 class AccountController {
@@ -31,15 +31,10 @@ class AccountController {
         let newInstance = new accounts(name, amount);
         this.allAccounts.push(newInstance);
       }
+      console.log(this.allAccounts)
     }
   
-    removeAccount(name) {
-      for (let index = 0; index < this.allAccounts.length; index++) {
-        if (this.allAccounts[index].name === name) {
-          this.allAccounts.splice(index, 1);
-        }
-      }
-    }
+
   
     sumAccounts() {
       let sum = 0;
