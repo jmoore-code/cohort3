@@ -21,7 +21,7 @@ class AccountController {
       this.allAccounts = [];
     }
   
-    createAccount(name, amount) {
+    createAccount = (name, amount) => {
       let filterAccount = this.allAccounts.filter(el => el.name === name);
       if (name === "") {
         return false;
@@ -31,41 +31,57 @@ class AccountController {
         let newInstance = new accounts(name, amount);
         this.allAccounts.push(newInstance);
       }
-      console.log(this.allAccounts)
+    //   console.log(this.allAccounts)
     }
   
+    removeAccount = (name) => {
+      for (let index = 0; index < this.allAccounts.length; index++) {
+        if (this.allAccounts[index].name === name) {
+          this.allAccounts.splice(index, 1);
+        }
+      }
+    }
 
   
-    sumAccounts() {
-      let sum = 0;
-      for (let index = 0; index < this.allAccounts.length; index++) {
-        sum += this.allAccounts[index].amount;
-      }
-      return sum;
+    sumAccounts = () => {
+        if (this.allAccounts.length > 0) {
+            let sum = 0;
+            for (let index = 0; index < this.allAccounts.length; index++) {
+              sum += this.allAccounts[index].amount;
+            }
+            return `$${sum}`;
+        }
+        return null;
     }
   
-    highAccount() {
-      let highest = 0;
-      let accountName;
-      for (let index = 0; index < this.allAccounts.length; index++) {
-        if (this.allAccounts[index].amount > highest) {
-          highest = this.allAccounts[index].amount;
-          accountName = this.allAccounts[index].name;
+    highAccount = () => {
+        if (this.allAccounts.length > 0) {
+            let highest = 0;
+            let accountName;
+            for (let index = 0; index < this.allAccounts.length; index++) {
+              if (this.allAccounts[index].amount > highest) {
+                highest = this.allAccounts[index].amount;
+                accountName = this.allAccounts[index].name;
+              }
+            }
+            return [`${accountName}, $${highest}`];
         }
-      }
-      return [`${accountName}, $${highest}`];
+        return null;
     }
   
-    lowAccount() {
-      let lowest = this.allAccounts[0].amount;
-      let accountName = this.allAccounts[0].name;
-      for (let index = 0; index < this.allAccounts.length; index++) {
-        if (this.allAccounts[index].amount < lowest) {
-          lowest = this.allAccounts[index].amount;
-          accountName = this.allAccounts[index].name;
+    lowAccount = () => {
+      if (this.allAccounts.length > 0){
+        let lowest = this.allAccounts[0].amount;
+        let accountName = this.allAccounts[0].name;
+        for (let index = 0; index < this.allAccounts.length; index++) {
+          if (this.allAccounts[index].amount < lowest) {
+            lowest = this.allAccounts[index].amount;
+            accountName = this.allAccounts[index].name;
+          }
         }
-      }
-      return [`${accountName}, $${lowest}`];
+        return [`${accountName}, $${lowest}`];
+      }  
+      return null
     }
   }
 

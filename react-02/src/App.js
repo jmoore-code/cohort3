@@ -17,6 +17,7 @@ class App extends React.Component {
   }
 
   selectedElement = (event) => {
+    console.log(event.target.id)
     this.setState({
       selected: event.target.id
     })

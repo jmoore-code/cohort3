@@ -52,7 +52,6 @@ const StyledPiggyIcon = styled(PiggyIcon)`
 `;
 
 const StyledCityIcon = styled(CityIcon)`
-  class: "testClass";
   animation: ${rotate} infinite 20s linear;
   height: 80px;
   width: 80px;
@@ -93,6 +92,7 @@ class Menu extends Component {
           onClick={() => {
             this.setActive(1);
           }}
+          
         >
           <StyledTicTacToeIcon
            id="tictactoe"

@@ -1,6 +1,8 @@
 import React from "react";
 import CreateAccountCard from "./AccountCard";
 import { AccountController } from "./AccountController";
+import "./accounts.css"
+
 
 class AccountsApp extends React.Component {
   constructor(props) {
@@ -8,7 +10,7 @@ class AccountsApp extends React.Component {
     this.state = {
       name: "",
       amount: "",
-      accountsList: []
+      accountsList: [],
     };
     this.controller = new AccountController();
   }
@@ -27,27 +29,28 @@ class AccountsApp extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(this.state.accountsList)
   };
 
-  removeAccount = (name) => {
-      for (let index = 0; index < this.controller.allAccounts.length; index++) {
-        if (this.controller.allAccounts[index].name === name) {
-          this.controller.allAccounts.splice(index, 1);
-        }
-      }
-      this.setState({accountsList: this.controller.allAccounts})
-    }
+
+  
+  forceUpdate = () => {
+    this.setState({state: this.state });
+};
 
   cardDisplay = () => {
-    const accountList = this.state.accountsList;
-    return (
-      <CreateAccountCard
-        accountList={accountList}
-        removeAccount={this.removeAccount}
-      />
-    );
+    return this.controller.allAccounts.map(account => {
+      return (
+        <CreateAccountCard
+          key={account.name}
+          account={account}
+          removeAccount={this.controller.removeAccount}
+          forceUpdate={this.forceUpdate}
+        />
+      );
+    });
   };
+
+ 
 
   render() {
     return (
@@ -75,23 +78,23 @@ class AccountsApp extends React.Component {
           <button id="idCreateAccountButton" onClick={this.handleClick}>
             Create Account
           </button>
-          <button id="idSumAccountsButton">Sum Accounts</button>
-          <button id="idHighAccountButton">Highest Account</button>
-          <button id="idLowestAccountButton">Lowest Account</button>
+
           <div className="outputField">
             <div>
-              Account Sum Value: <span id="sumOutput"></span>
+              Account Sum Value: {this.controller.sumAccounts()}{" "}
+              <span id="sumOutput"></span>
             </div>
             <div>
-              Highest Value Account: <span id="highestOutput"></span>
+              Highest Value Account: {this.controller.highAccount()}{" "}
+              <span id="highestOutput"></span>
             </div>
             <div>
-              Lowest Value Account: <span id="lowestOutput"></span>
+              Lowest Value Account: {this.controller.lowAccount()}{" "}
+              <span id="lowestOutput"></span>
             </div>
           </div>
         </div>
         <div className="grid-account" id="idGridAccount">
-          Cards here
           <this.cardDisplay />
         </div>
       </div>
