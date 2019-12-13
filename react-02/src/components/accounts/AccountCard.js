@@ -27,7 +27,7 @@ class CreateAccountCard extends Component {
 
   handleClickDelete = event => {
     this.props.removeAccount(event.target.parentNode.id);
-    this.props.forceUpdate()
+    this.props.messageUpdate();
   };
 
   handleChange = event => {

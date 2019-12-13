@@ -17,10 +17,22 @@ class App extends React.Component {
   }
 
   selectedElement = (event) => {
-    console.log(event.target.id)
-    this.setState({
-      selected: event.target.id
-    })
+    
+    if (event.target.id === "home" ) {
+      this.setState({
+        selected: "home"
+      })
+    }
+    if (event.target.id === "tictactoe" ) {
+      this.setState({
+        selected: "tictactoe"
+      })
+    }
+    if (event.target.id === "accounts" ) {
+      this.setState({
+        selected: "accounts"
+      })
+    }
   }
 
 
@@ -34,7 +46,7 @@ class App extends React.Component {
       return <AccountsApp />
     }
   }
-  
+
   render() {
     return (
     

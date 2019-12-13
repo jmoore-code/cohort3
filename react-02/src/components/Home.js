@@ -37,7 +37,7 @@ display:block;
 
 function homeComponent() {
     return (
-      <div>
+      <div className="homeLogoDiv">
       <StyledLogo />
       <a
         className="App-link"

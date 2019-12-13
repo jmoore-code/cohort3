@@ -19,17 +19,19 @@ class accounts {
 class AccountController {
     constructor() {
       this.allAccounts = [];
+      this.message = ""
     }
   
     createAccount = (name, amount) => {
       let filterAccount = this.allAccounts.filter(el => el.name === name);
       if (name === "") {
-        return false;
+        this.message = "Please put in a valid account name";
       } else if (filterAccount.length > 0) {
-        return false;
+        this.message = "No duplicate accounts";
       } else {
         let newInstance = new accounts(name, amount);
         this.allAccounts.push(newInstance);
+        this.message = `Created ${name} account`
       }
     //   console.log(this.allAccounts)
     }
@@ -38,6 +40,7 @@ class AccountController {
       for (let index = 0; index < this.allAccounts.length; index++) {
         if (this.allAccounts[index].name === name) {
           this.allAccounts.splice(index, 1);
+          this.message = `Removed ${name} account` 
         }
       }
     }

@@ -11,16 +11,19 @@ class AccountsApp extends React.Component {
       name: "",
       amount: "",
       accountsList: [],
+      message: "Please put in your first account"
     };
     this.controller = new AccountController();
   }
 
   handleClick = () => {
+    console.log(this.state.message)
     this.controller.createAccount(this.state.name, this.state.amount);
     this.setState({
       name: "",
       amount: "",
-      accountsList: this.controller.allAccounts
+      accountsList: this.controller.allAccounts,
+      message: this.controller.message
     });
     // console.log(this.state);
   };
@@ -31,7 +34,9 @@ class AccountsApp extends React.Component {
     });
   };
 
-
+  updateMessage = () => {
+    this.setState({message: this.controller.message})
+  }
   
   forceUpdate = () => {
     this.setState({state: this.state });
@@ -45,6 +50,7 @@ class AccountsApp extends React.Component {
           account={account}
           removeAccount={this.controller.removeAccount}
           forceUpdate={this.forceUpdate}
+          messageUpdate={this.updateMessage}
         />
       );
     });
@@ -57,6 +63,7 @@ class AccountsApp extends React.Component {
       <div className="upperAndLower">
         <div className="title">
           <h2>Your Banking Accounts</h2>
+          {this.state.message}
         </div>
         <div className="upperControls">
           <input
@@ -95,6 +102,7 @@ class AccountsApp extends React.Component {
           </div>
         </div>
         <div className="grid-account" id="idGridAccount">
+        
           <this.cardDisplay />
         </div>
       </div>
