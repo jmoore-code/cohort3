@@ -89,7 +89,7 @@ input {
   color: #fff;
   border-radius: 5px;
   padding: 20px;
-  font-size: 100%;
+  font-size: 50%;
   
   /* Use box-sizing so that element's outerwidth will match width property */
   box-sizing: border-box;

@@ -3,6 +3,7 @@ import Menu from "./components/menu/Menu"
 import Home from "./components/Home"
 import {Game} from "./components/tictactoe/Board"
 import AccountsApp from "./components/accounts/AccountsApp"
+import CitiesApp from "./components/cities/CitiesApp"
 import './App.css';
 
 
@@ -11,7 +12,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selected: "accounts" 
+      selected: "cities" 
     }
     this.selectedElement = this.selectedElement.bind(this);
   }
@@ -33,6 +34,11 @@ class App extends React.Component {
         selected: "accounts"
       })
     }
+    if (event.target.id === "cities") {
+      this.setState({
+        selected: "cities"
+      })
+    }
   }
 
 
@@ -44,6 +50,8 @@ class App extends React.Component {
       return <Game />
     } if (this.state.selected === "accounts") {
       return <AccountsApp />
+    } if (this.state.selected === "cities") {
+      return <CitiesApp />
     }
   }
 

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import citiesPsc from "./citiespsc";
-import MapContainer from "./mapFunctions";
+import CreateCityCard from "./CreateCityCard";
+import fetchFunctions from "./citiesfetch"
+// import MapContainer from "./mapFunctions";
 
 import "./citiesapp.css";
 
@@ -8,7 +10,7 @@ class CitiesApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityKey: 1,
+     
       cityName: "",
       lat: "",
       lng: "",
@@ -27,7 +29,7 @@ class CitiesApp extends Component {
       this.state.population
     );
     this.setState({
-      cityKey: this.controller.keyCounter,
+      
       cityName: "",
       lat: "",
       lng: "",
@@ -35,7 +37,9 @@ class CitiesApp extends Component {
       citiesArray: this.controller.cityList,
       message: this.controller.message
     });
-    console.log(this.controller.cityList);
+    let newestCity = this.controller.cityList[this.controller.cityList.length - 1];
+    // console.log(newestCity)
+    fetchFunctions.addData(newestCity);
   };
 
   handleChange = event => {
@@ -52,19 +56,22 @@ class CitiesApp extends Component {
     this.setState({ state: this.state });
   };
 
-  //    cardDisplay = () => {
-  //        return this.controller.cityList.map(item => {
-  //            return (
-  //                <CreateCityCard
-  //                key={this.state.cityKey}
-  //                cityObj={item}
-  //                removeCity={this.controller.deleteCity}
-  //                forceUpdate={this.forceUpdate}
-  //                messageUpdate={this.updateMessage}
-  //                />
-  //            )
-  //        })
-  //    }
+  cardDisplay = () => {
+    return this.controller.cityList.map(item => {
+      return (
+        <CreateCityCard
+        
+          key={item.key}
+          cityObj={item}
+          deleteCity={this.controller.deleteCity}
+          fetchDelete={fetchFunctions.deleteData}
+          fetchUpdate={fetchFunctions.updateData}
+          forceUpdate={this.forceUpdate}
+          messageUpdate={this.updateMessage}
+        />
+      );
+    });
+  };
 
   render() {
     return (
@@ -124,13 +131,14 @@ class CitiesApp extends Component {
               </div>
               <div className="handler"></div>
               <div className="box2 map" id="idMap">
+                {/* <MapContainer /> */}
                 Map
               </div>
             </div>
           </div>
           <div className="handlerVertical"></div>
           <div className="boxVertical rightVerticalBox" id="idCityGrid">
-            {/* <MapContainer /> */}
+            <this.cardDisplay />
           </div>
         </div>
       </div>
