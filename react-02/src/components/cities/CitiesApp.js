@@ -21,6 +21,23 @@ class CitiesApp extends Component {
     this.controller = new citiesPsc.community();
   }
 
+  componentDidMount = async () => {
+      try {
+          let citiesJSON = await fetchFunctions.getData();
+          citiesJSON.forEach(el => {
+              this.controller.cityList.push(
+                  new citiesPsc.city(el.key, el.city, el.lat, el.long, el.pop)
+              );
+              this.controller.keyCounter = this.controller.getHighestKey() + 1;
+          });
+          this.setState({citiesArray: this.controller.cityList})
+      }
+      catch(err) {
+          
+          this.setState({message: "Failed to connect to server"})
+      }
+  }
+
   handleClick = () => {
     this.controller.createCity(
       this.state.cityName,
