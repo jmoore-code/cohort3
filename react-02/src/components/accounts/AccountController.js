@@ -26,8 +26,10 @@ class AccountController {
       let filterAccount = this.allAccounts.filter(el => el.name === name);
       if (name === "") {
         this.message = "Please put in a valid account name";
+        return this.message; //return message for tests
       } else if (filterAccount.length > 0) {
         this.message = "No duplicate accounts";
+        return this.message; //return message for tests
       } else {
         let newInstance = new accounts(name, amount);
         this.allAccounts.push(newInstance);

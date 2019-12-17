@@ -43,9 +43,9 @@ test("test create account function", () => {
   newInstanceControllers.createAccount("Car fund", 30);
   expect(accountNames()).toEqual(["Savings", "Car fund"]);
   // test that empty inputs are not accepted
-  expect(newInstanceControllers.createAccount("", 25)).toEqual(false);
+  expect(newInstanceControllers.createAccount("", 25)).toEqual("Please put in a valid account name");
   // test that duplicate accounts are not created
-  expect(newInstanceControllers.createAccount("Savings", 25)).toEqual(false);
+  expect(newInstanceControllers.createAccount("Savings", 25)).toEqual("No duplicate accounts");
 });
 
 test("test delete account function", () => {
@@ -68,9 +68,9 @@ test("test sum accounts function", () => {
   expect(newInstanceControllers.allAccounts).toEqual([]);
   newInstanceControllers.createAccount("Savings", 25);
   newInstanceControllers.createAccount("Car fund", 30);
-  expect(newInstanceControllers.sumAccounts()).toEqual(55);
+  expect(newInstanceControllers.sumAccounts()).toEqual("$55");
   newInstanceControllers.createAccount("Holiday", 50);
-  expect(newInstanceControllers.sumAccounts()).toEqual(105);
+  expect(newInstanceControllers.sumAccounts()).toEqual("$105");
 });
 
 test("test highest accounts function", () => {

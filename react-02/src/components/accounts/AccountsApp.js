@@ -17,7 +17,7 @@ class AccountsApp extends React.Component {
   }
 
   handleClick = () => {
-    console.log(this.state.message)
+    // console.log(this.state.message)
     this.controller.createAccount(this.state.name, this.state.amount);
     this.setState({
       name: "",
