@@ -13,11 +13,16 @@ const psc = {
         return `City: ${this.city}, lat: ${this.lat}, long: ${this.long}, Population: ${this.pop}` ;
       }
       moveIn(amount) {
-        this.pop = this.pop + amount;
+        if (Math.sign(amount) >= 0) {
+          this.pop = this.pop + amount;
+        }
       }
   
       moveOut(amount) {
-        this.pop = this.pop - amount;
+        if ((this.pop - amount) >= 0) {
+          this.pop = this.pop - amount;
+        }
+        
       }
       howBig() {
         if (this.pop > 100000) return "City";
@@ -53,15 +58,20 @@ const psc = {
           Longitude,
           Population
         );
-        if (
+        // logic to stop blank city name, negative population or unreal coordinates
+        if (Name === "" || Population < 0 || Latitude > 90 || Latitude < -90 || Longitude > 180 || Longitude < -180) {
+          this.message = "Error: please make sure parameters are valid"
+        }
+        // logic to stop duplicate lat and longs
+         else if (
           this.cityList.filter(el => el.lat === Number(Latitude) && el.long === Number(Longitude))
-            .length === 0
+            .length !== 0
         ) {
+          this.message = `Error: a location already has those coordinates`;
+        } else {
           this.cityList.push(cityInst);
           this.message = `${Name} has been added to the database`;
           this.keyCounter++;
-        } else {
-          this.message = `Error: a location already has those coordinates`;
         }
         return this.message;
       }

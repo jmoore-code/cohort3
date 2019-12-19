@@ -48,6 +48,8 @@ handleClickDelete = (event) => {
             <div className="cityCard" id={this.props.cityObj.key}>
                 <p>{this.props.cityObj.city}</p>
                 <input
+                    type="number"
+                    // min="0"
                     onChange={this.handleChange}
                     name={this.props.cityObj.name}
                     value={this.state.population}
@@ -56,8 +58,8 @@ handleClickDelete = (event) => {
                  <button onClick={this.handleClickMoveOut}>Move Out</button>
                  <button onClick={this.handleClickDelete}>Delete</button>
                 <div>
-                    lat: {this.props.cityObj.lat} long: {this.props.cityObj.long}
-                     size: {this.props.cityObj.howBig()} population: {this.props.cityObj.pop}
+                    Latitude: {this.props.cityObj.lat}, Longitude: {this.props.cityObj.long}, 
+                    Population: {this.props.cityObj.pop}, Size: {this.props.cityObj.howBig()} 
                 </div>
             </div>
         )

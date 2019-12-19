@@ -110,7 +110,7 @@ class CitiesApp extends Component {
                 Latitude:
                 <input
                   name="lat"
-                  type="text"
+                  type="number"
                   id="idLatInput"
                   onChange={this.handleChange}
                   value={this.state.lat}
@@ -119,7 +119,7 @@ class CitiesApp extends Component {
                 Longitude:
                 <input
                   name="lng"
-                  type="text"
+                  type="number"
                   id="idLongInput"
                   onChange={this.handleChange}
                   value={this.state.lng}
@@ -128,7 +128,7 @@ class CitiesApp extends Component {
                 Population:
                 <input
                   name="population"
-                  type="text"
+                  type="number"
                   id="idPopInput"
                   onChange={this.handleChange}
                   value={this.state.population}
