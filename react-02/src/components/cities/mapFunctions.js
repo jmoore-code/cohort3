@@ -9,7 +9,7 @@ const mapStyles = {
 class MapContainer extends React.Component {
 
     displayMakers = () => {
-        console.log(this.props.citiesArray)
+        // console.log(this.props.citiesArray)
         return this.props.citiesArray.map((city, index) => {
             return <Marker 
                         key={index} 
@@ -26,7 +26,7 @@ class MapContainer extends React.Component {
             <div className="mapContainer"> 
                 <Map 
                 google={this.props.google}
-                zoom={8}
+                zoom={5.7}
                 style={mapStyles}
                 initialCenter={{lat: 51.0447, lng: -114.0719}}
                 >
