@@ -1,5 +1,5 @@
 import React from "react"
-import {Map, GoogleApiWrapper, Marker} from 'google-maps-react'
+import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react'
 
 const mapStyles = {
     width: "100%",
@@ -7,18 +7,49 @@ const mapStyles = {
 }
 
 class MapContainer extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {}
+        }
+    }
+    onMarkerClick = (props, marker, e) => {
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+          });
+          console.log(this.state)
+    }
+
+
+    onClose = props => {
+        if (this.state.showingInfoWindow) {
+        this.setState({
+            showingInfoWindow: false,
+            activeMarker: null
+        });
+        }
+    };
+     
 
     displayMakers = () => {
         // console.log(this.props.citiesArray)
         return this.props.citiesArray.map((city, index) => {
             return <Marker 
                         key={index} 
-                        id={city.city} 
+                        onClick={this.onMarkerClick}
+                        name={city.city}
                         position={{
                             lat: city.lat,
                             lng: city.long
                         }}
-                    />    
+                    />
+
+            
+   
         })
     }
     render() {
@@ -31,6 +62,15 @@ class MapContainer extends React.Component {
                 initialCenter={{lat: 51.0447, lng: -114.0719}}
                 >
                 {this.displayMakers()}
+                <InfoWindow
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}
+                        onClose={this.onClose}
+                     >
+                     <div>
+                         <h4>{this.state.selectedPlace.name}</h4>
+                     </div>
+                </InfoWindow> 
                 </Map>
             </div>
             

@@ -16,6 +16,7 @@
 .parentMapContainer {
   position: relative;
   min-height: 300px;
+  color: black;
 }
 
 .citiesButton {
