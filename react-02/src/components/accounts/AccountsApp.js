@@ -61,11 +61,13 @@ class AccountsApp extends React.Component {
   render() {
     return (
       <div className="upperAndLower">
+
+        <div className="upperControls">
         <div className="title">
           <h2>Your Banking Accounts</h2>
           {this.state.message}
         </div>
-        <div className="upperControls">
+        <br></br>
           <input
             type="text"
             placeholder="Account Name"
@@ -82,27 +84,27 @@ class AccountsApp extends React.Component {
             onChange={this.handleChange}
             value={this.state.amount}
           />
+          <br />
           <button id="idCreateAccountButton" onClick={this.handleClick}>
             Create Account
           </button>
-
+          <p></p>
           <div className="outputField">
             <div>
-              Account Sum Value: {this.controller.sumAccounts()}{" "}
+              <p>Account Sum Value: <br />{this.controller.sumAccounts()}</p>
               <span id="sumOutput"></span>
             </div>
             <div>
-              Highest Value Account: {this.controller.highAccount()}{" "}
+              <p>Highest Value Account: <br />{this.controller.highAccount()}</p>
               <span id="highestOutput"></span>
             </div>
             <div>
-              Lowest Value Account: {this.controller.lowAccount()}{" "}
+              <p>Lowest Value Account: <br />{this.controller.lowAccount()}</p>
               <span id="lowestOutput"></span>
             </div>
           </div>
         </div>
         <div className="grid-account" id="idGridAccount">
-        
           <this.cardDisplay />
         </div>
       </div>
