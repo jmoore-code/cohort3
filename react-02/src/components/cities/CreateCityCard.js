@@ -52,6 +52,7 @@ class CreateCityCard extends React.Component {
           name={this.props.cityObj.name}
           value={this.state.population}
         ></input>
+        <br />
         <button className="citiesButton" onClick={this.handleClickMoveIn}>Move In</button>
         <button className="citiesButton" onClick={this.handleClickMoveOut}>Move Out</button>
         <button className="citiesButton" onClick={this.handleClickDelete}>Delete</button>

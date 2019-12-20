@@ -3,7 +3,7 @@ import citiesPsc from "./citiespsc";
 import CitiesController from "./CitiesController";
 import CreateCityCard from "./CreateCityCard";
 import fetchFunctions from "./citiesfetch";
-import MapContainer from "./mapFunctions";
+import MapContainer from "./MapFunctions";
 
 import "./citiesapp.css";
 
@@ -118,6 +118,9 @@ class CitiesApp extends Component {
         </div>
 
         <div className="parentMapContainer">
+        <br />
+        <br />
+        <p></p>
           <MapContainer citiesArray={this.state.citiesArray} />
         </div>
       </div>
