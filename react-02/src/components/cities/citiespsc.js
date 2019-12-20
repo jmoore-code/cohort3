@@ -109,6 +109,7 @@ const psc = {
         let cityName = this.cityList.filter(el => el.key === Number(key))
         this.cityList = this.cityList.filter(el => el.key !== Number(key));
         this.message = `${cityName[0].city} was deleted`
+        console.log(this.cityList)
       }
   
       getHighestKey = () => {

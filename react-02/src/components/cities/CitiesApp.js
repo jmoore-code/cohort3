@@ -63,10 +63,12 @@ class CitiesApp extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+    // console.log(this.state.citiesArray)
   };
 
   updateMessage = () => {
     this.setState({ message: this.controller.message });
+    // setTimeout(() => {console.log(this.state.citiesArray); }, 2000);
   };
 
   forceUpdate = () => {
@@ -154,7 +156,7 @@ class CitiesApp extends Component {
             </div>
        
         <div className="mapContainer" >
-                <MapContainer citiesArray={this.state.citiesArray}/>
+                <MapContainer citiesArray={this.controller.cityList}/>
                 Map
         </div>
 

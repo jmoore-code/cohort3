@@ -7,23 +7,10 @@ const mapStyles = {
 }
 
 class MapContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            cities: []
-        }
-    }
-
-    componentWillReceiveProps = () => {
-        this.setState({
-            cities: this.props.citiesArray
-        })
-    }
-
 
     displayMakers = () => {
-        console.log(this.state.cities)
-        return this.state.cities.map((city, index) => {
+        console.log(this.props.citiesArray)
+        return this.props.citiesArray.map((city, index) => {
             return <Marker 
                         key={index} 
                         id={city.city} 
