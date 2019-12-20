@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import citiesPsc from "./citiespsc";
 import CreateCityCard from "./CreateCityCard";
 import fetchFunctions from "./citiesfetch"
-// import MapContainer from "./mapFunctions";
+import MapContainer from "./mapFunctions";
 
 import "./citiesapp.css";
 
@@ -92,73 +92,80 @@ class CitiesApp extends Component {
 
   render() {
     return (
-      <div>
-        <div className="wrapperVertical">
-          <div className="boxVertical">
-            <div className="wrapper">
-              <div className="box1">
-                <p>Controller</p>
+      <div className="mainContainer">
+        <div className="controllerField" >
+            <p className="controllerTitle">Controller</p>
+                <div className="controllerInputs">
                 City:
                 <input
-                  name="cityName"
-                  type="text"
-                  id="idCityInput"
-                  onChange={this.handleChange}
-                  value={this.state.cityName}
-                />
-                <br />
-                Latitude:
-                <input
-                  name="lat"
-                  type="number"
-                  id="idLatInput"
-                  onChange={this.handleChange}
-                  value={this.state.lat}
-                />
-                <br />
-                Longitude:
-                <input
-                  name="lng"
-                  type="number"
-                  id="idLongInput"
-                  onChange={this.handleChange}
-                  value={this.state.lng}
-                />
-                <br />
-                Population:
-                <input
-                  name="population"
-                  type="number"
-                  id="idPopInput"
-                  onChange={this.handleChange}
-                  value={this.state.population}
-                />
-                <br />
-                <button id="idCityCreateButton" onClick={this.handleClick}>
-                  Create City
-                </button>
-                <br />
-                <div className="statsOutput">
-                  <p>Most Northern City: {this.controller.getMostNorthern()}</p>
-                  <p>Most Southern City: {this.controller.getMostSouthern()}</p>
-                  <p> Total Population: {this.controller.getPopulation()}</p>
+                    className="citiesInput"
+                    name="cityName"
+                    type="text"
+                    onChange={this.handleChange}
+                    value={this.state.cityName}
+                    />
+                    <br />
+                    Latitude:
+                    <input
+                    className="citiesInput"
+                    name="lat"
+                    type="number"
+                    onChange={this.handleChange}
+                    value={this.state.lat}
+                    />
+                    <br />
+                    Longitude:
+                    <input
+                    className="citiesInput"
+                    name="lng"
+                    type="number"
+                    onChange={this.handleChange}
+                    value={this.state.lng}
+                    />
+                    <br />
+                    Population:
+                    <input
+                    className="citiesInput"
+                    name="population"
+                    type="number"
+                    onChange={this.handleChange}
+                    value={this.state.population}
+                    />
                 </div>
-                <br />
-                <p id="idOutputField">{this.state.message}</p>
-              </div>
-              <div className="handler"></div>
-              <div className="box2 map" id="idMap">
-                {/* <MapContainer /> */}
-                Map
-              </div>
-            </div>
-          </div>
-          <div className="handlerVertical"></div>
-          <div className="boxVertical rightVerticalBox" id="idCityGrid">
-            <this.cardDisplay />
-          </div>
+                    
+
+                    <br />
+                    <button className="citiesButton" onClick={this.handleClick}>
+                    Create City
+                    </button>
+                    <br />
+                    <div className="statsOutput">
+                    <p>Most Northern City: {this.controller.getMostNorthern()}</p>
+                    <p>Most Southern City: {this.controller.getMostSouthern()}</p>
+                    <p> Total Population: {this.controller.getPopulation()}</p>
+                    </div>
+                    <br />
+                    <p className="messageOutput">{this.state.message}</p>
         </div>
-      </div>
+
+        <div className="cityCardContainer" >
+            <p>Cities</p>
+            <this.cardDisplay />       
+            </div>
+       
+        <div className="mapContainer" >
+                <MapContainer citiesArray={this.state.citiesArray}/>
+                Map
+        </div>
+
+
+       
+    </div>
+              
+             
+    
+
+
     );
   }
 }

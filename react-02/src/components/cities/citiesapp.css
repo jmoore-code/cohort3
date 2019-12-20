@@ -1,114 +1,56 @@
-/* body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Merriweather", serif;
+.mainContainer {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 2fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: ". . .";
+  font-size: 2vh;
+  grid-gap: 50px;
+  
 }
 
-body,
-html {
-  height: 99%;
-  background-color: rgb(230, 224, 224);
-  line-height: 1.8;
-  
-} */
+.controllerInputs {
+  display: inline-block; 
+  text-align: right;
+}
 
-button {
+
+.citiesButton {
 	box-shadow: 0px 1px 0px 0px #1c1b18;
 	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
 	background-color:#eae0c2;
-	border-radius:15px;
+	border-radius:7px;
 	border:2px solid #333029;
 	display:inline-block;
 	cursor:pointer;
 	color: black;
-	font-size:14px;
+	font-size: 1.5vh;
 	font-weight:bold;
 	padding:8px 12px;
 	text-decoration:none;
   text-shadow:0px 1px 0px #ffffff;
   outline: none;
+  height: 4vh;
 }
-Button:hover {
+.citiesButton:hover {
 	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
 	background-color:#ccc2a6;
 }
-Button:active {
+.citiesButton:active {
 	position:relative;
 	top:1px;
 }
 
-input {
+.citiesInput {
   border-radius: 7px;
-  height: 20px;
-}
-
-.wrapper {
-  
-  background-color: #fff;
-  color: #444;
-  /* Use flexbox */
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 1px;
+  height: 2vh;
 }
 
 
-
-.box1, .box2 {
-  
-  background-color: rgb(164, 157, 167);
-  color: rgb(0, 0, 0);
-  font-size: 120%;
-}
-
-
-.box2 {
-  flex: 1;
-}
-
-
-
-/* Vertical Div elements ------------------------ */
-.wrapperVertical {
-  
-  background-color: #fff;
-  color: #444;
-  /* Use flexbox */
-  display: flex;
-  height: 100%;
-  
-}
-
-.boxVertical {
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 50%;
-  
-  /* Use box-sizing so that element's outerwidth will match width property */
-  box-sizing: border-box;
-  
-  /* Allow box to grow and shrink, and ensure they are all equally sized */
-  flex: 1 1 auto;
-}
-
-
-
-.rightVerticalBox {
-  overflow: auto;
-  min-width: 20em;
-}
 
 
 .cityCard {
   background-color: rgb(164, 157, 167);
-  border-radius: 15px;
+  border-radius: 7px;
   color: black;
   padding: 0px 10px;
 }
@@ -117,6 +59,3 @@ input {
   margin: 5px;
 }
 
-.cityInput {
-  border-radius: 20px;
-}
