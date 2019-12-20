@@ -117,7 +117,7 @@ class CitiesApp extends Component {
           <this.cardDisplay />
         </div>
 
-        <div className="mapContainer">
+        <div className="parentMapContainer">
           <MapContainer citiesArray={this.state.citiesArray} />
         </div>
       </div>

@@ -4,49 +4,50 @@
   grid-template-rows: 1fr;
   grid-template-areas: ". . .";
   font-size: 2vh;
-  grid-gap: 50px;
-  
+  grid-gap: 10px;
+  min-height: 70vh;
 }
 
 .controllerInputs {
-  display: inline-block; 
+  display: inline-block;
   text-align: right;
 }
 
+.parentMapContainer {
+  position: relative;
+  min-height: 300px;
+}
 
 .citiesButton {
-	box-shadow: 0px 1px 0px 0px #1c1b18;
-	background:linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
-	background-color:#eae0c2;
-	border-radius:7px;
-	border:2px solid #333029;
-	display:inline-block;
-	cursor:pointer;
-	color: black;
-	font-size: 1.5vh;
-	font-weight:bold;
-	padding:8px 12px;
-	text-decoration:none;
-  text-shadow:0px 1px 0px #ffffff;
+  box-shadow: 0px 1px 0px 0px #1c1b18;
+  background: linear-gradient(to bottom, #eae0c2 5%, #ccc2a6 100%);
+  background-color: #eae0c2;
+  border-radius: 7px;
+  border: 2px solid #333029;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-size: 1.5vh;
+  font-weight: bold;
+  padding: 8px 12px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
   outline: none;
   height: 4vh;
 }
 .citiesButton:hover {
-	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
-	background-color:#ccc2a6;
+  background: linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
+  background-color: #ccc2a6;
 }
 .citiesButton:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 
 .citiesInput {
   border-radius: 7px;
   height: 2vh;
 }
-
-
-
 
 .cityCard {
   background-color: rgb(164, 157, 167);
@@ -59,3 +60,10 @@
   margin: 5px;
 }
 
+@media (max-width: 800px) {
+  .controllerField,
+  .cityCardContainer,
+  .parentMapContainer {
+    grid-column: 1 / span 3;
+  }
+}
