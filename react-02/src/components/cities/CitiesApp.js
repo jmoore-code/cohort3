@@ -51,7 +51,7 @@ class CitiesApp extends Component {
       citiesArray: this.controller.cityList,
       message: this.controller.message
     });
-    // console.log(this.state)
+  
     // fetch functionality
     let newestCity = this.controller.cityList[
       this.controller.cityList.length - 1
@@ -63,19 +63,18 @@ class CitiesApp extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(this.state)
   };
 
   updateMessage = () => {
     this.setState({ message: this.controller.message });
   };
 
-  forceUpdate = () => {
-    this.setState({ state: this.state });
+  arrayUpdate = () => {
+    this.setState({ citiesArray: this.controller.cityList });
   };
 
   cardDisplay = () => {
-    return this.controller.cityList.map(item => {
+    return this.state.citiesArray.map(item => {
       return (
         <CreateCityCard
           key={item.key}
@@ -83,7 +82,7 @@ class CitiesApp extends Component {
           deleteCity={this.controller.deleteCity}
           fetchDelete={fetchFunctions.deleteData}
           fetchUpdate={fetchFunctions.updateData}
-          forceUpdate={this.forceUpdate}
+          arrayUpdate={this.arrayUpdate}
           messageUpdate={this.updateMessage}
         />
       );
@@ -119,7 +118,7 @@ class CitiesApp extends Component {
         </div>
 
         <div className="mapContainer">
-          <MapContainer citiesArray={this.controller.cityList} />
+          <MapContainer citiesArray={this.state.citiesArray} />
         </div>
       </div>
     );

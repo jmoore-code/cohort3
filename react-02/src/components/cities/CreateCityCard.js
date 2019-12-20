@@ -21,7 +21,7 @@ class CreateCityCard extends React.Component {
     this.setState({
       population: ""
     });
-    this.props.forceUpdate();
+    this.props.arrayUpdate();
   };
 
   handleClickMoveOut = () => {
@@ -30,7 +30,7 @@ class CreateCityCard extends React.Component {
     this.setState({
       population: ""
     });
-    this.props.forceUpdate();
+    this.props.arrayUpdate();
   };
 
   handleClickDelete = event => {
@@ -38,6 +38,7 @@ class CreateCityCard extends React.Component {
     this.props.deleteCity(targetKey);
     this.props.messageUpdate();
     this.props.fetchDelete({ key: targetKey });
+    this.props.arrayUpdate();
   };
 
   render() {
