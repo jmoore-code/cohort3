@@ -1,4 +1,4 @@
-import {ListNode, LinkedList} from "./linkedPSC"
+import {ListNode, LinkedList} from "./linkedTraversy"
 
 test("test ListNode and show", () => {
    const n1 = new ListNode("Bob", 10)
@@ -84,4 +84,13 @@ test("test clear list method", () => {
     ll.insertFirst("John", 100);
     ll.clearList();
     expect(ll.head).toEqual(null)
+})
+
+test("test sum method", () => {
+    const ll = new LinkedList();
+    ll.insertFirst("John", 100)
+    ll.insertLast("Bob", 20)
+    expect(ll.sumAmount()).toEqual(120)
+    ll.insertLast("Gary", 20)
+    expect(ll.sumAmount()).toEqual(140)
 })

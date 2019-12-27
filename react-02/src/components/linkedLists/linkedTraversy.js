@@ -135,6 +135,18 @@ removeAt(index) {
   
     }
 
+// Sum of list node amounts
+sumAmount() {
+    let current = this.head;
+    let total = 0;
+
+    while(current) {
+        total += current.amount
+        current = current.next
+    }
+    return total;
+}
+
 // CLear list
     clearList() {
         this.head = null;
@@ -157,12 +169,3 @@ printListData() {
 
 export {ListNode, LinkedList}
 
-// const ll = new LinkedList();
-
-// ll.insertFirst("test", 100);
-// ll.insertFirst("test2", 200);
-// ll.insertFirst("test3", 300);
-// ll.insertLast("test4", 400)
-// ll.insertAt("test5", 500, 2)
-
-// ll.printListData()
