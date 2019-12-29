@@ -87,6 +87,24 @@ class LinkedList {
             this.position = this.position -1
         }
     }
+    
+    sumAmount() {
+        let current = this.head;
+        let total = 0;
+    
+        while(current) {
+            total += current.amount
+            current = current.next
+        }
+        return total;
+    }
+    
+        clearList() {
+            this.head = null;
+            this.size = 0;
+        }
 }
+
+
 
   export {ListNode, LinkedList}

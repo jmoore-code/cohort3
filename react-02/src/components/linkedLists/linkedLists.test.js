@@ -68,3 +68,18 @@ test("test delete method", () => {
 
 })
 
+test("test clear list method", () => {
+    const ll = new LinkedList();
+    ll.insert("John", 100);
+    ll.clearList();
+    expect(ll.head).toEqual(null)
+})
+
+test("test sum method", () => {
+    const ll = new LinkedList();
+    ll.insert("John", 100)
+    ll.insert("Bob", 20)
+    expect(ll.sumAmount()).toEqual(120)
+    ll.insert("Gary", 20)
+    expect(ll.sumAmount()).toEqual(140)
+})
