@@ -17,7 +17,6 @@ test("test first node method", () => {
 })
 
 test("test insert method", () => {
-    //set up initial list with two entries
     const ll = new LinkedList();
     ll.insert("John", 100)
     expect(ll.head.subject).toEqual("John");
@@ -26,17 +25,46 @@ test("test insert method", () => {
     ll.position = 1;
     ll.insert("Cam", 30)
     expect(ll.head.next.subject).toEqual("Cam")
-
-
-//     ll.insertLast("Bob", 20)
-//     expect(ll.head).toEqual({amount: 100, subject: 'John', next: {amount: 20, subject: "Bob", next: null }})
-//    // insert at the beginning
-//     ll.insertAt("Cam", 50, 0)
-//     expect(ll.head.subject).toEqual("Cam")
-//     // insert at index 1
-//     ll.insertAt("Dan", 70, 1)
-//     expect(ll.head.next.subject).toEqual("Dan")
-//     // stop insert at index which isn't there
-//     ll.insertAt("Joe", 10, 4)
-//     expect(ll.head.next.next.next.next).toEqual(null)
 })
+
+test("test last node method", () => {
+    const ll = new LinkedList();
+    ll.last()
+    expect(ll.position).toEqual(0)
+    ll.insert("Bob", 20)
+    ll.insert("Cam", 30)
+    expect(ll.head.next.subject).toEqual("Bob")
+    ll.last();
+    expect(ll.position).toEqual(1)
+    ll.insert("Joe", 40)
+    ll.last()
+    expect(ll.position).toEqual(2)
+
+})
+
+test("test next and previous node methods", () => {
+    const ll = new LinkedList();
+    ll.insert("Bob", 20)
+    ll.insert("Cam", 30)
+    expect(ll.position).toEqual(0)
+    ll.next()
+    expect(ll.position).toEqual(1)
+    ll.previous()
+    expect(ll.position).toEqual(0)
+    ll.previous()
+    expect(ll.position).toEqual(1)
+
+})
+
+test("test delete method", () => {
+    const ll = new LinkedList();
+    ll.insert("Bob", 20)
+    ll.insert("Cam", 30)
+    ll.next()
+    expect(ll.position).toEqual(1)
+    ll.delete()
+    expect(ll.head.next).toEqual(null)
+    expect(ll.position).toEqual(0)
+
+})
+
