@@ -4,6 +4,7 @@ import Home from "./components/Home"
 import {Game} from "./components/tictactoe/Board"
 import AccountsApp from "./components/accounts/AccountsApp"
 import CitiesApp from "./components/cities/CitiesApp"
+import LinkedListApp from "./components/linkedLists/LinkListsApp"
 import './App.css';
 
 
@@ -12,7 +13,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selected: "home" 
+      selected: "linkLists" 
     }
     this.selectedElement = this.selectedElement.bind(this);
   }
@@ -39,6 +40,11 @@ class App extends React.Component {
         selected: "cities"
       })
     }
+    if (event.target.id === "linkLists") {
+      this.setState({
+        selected: "linkLists"
+      })
+    }
   }
 
 
@@ -52,6 +58,8 @@ class App extends React.Component {
       return <AccountsApp />
     } if (this.state.selected === "cities") {
       return <CitiesApp />
+    } if (this.state.selected === "linkLists") {
+      return <LinkedListApp />
     }
   }
 
