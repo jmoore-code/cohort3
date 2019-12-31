@@ -76,6 +76,8 @@ const StyledLinkIcon = styled(LinkLists)`
   }
 `;
 
+
+
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -118,10 +120,10 @@ class Menu extends Component {
             this.setActive(2);
           }}
         >
-          <StyledPiggyIcon
+        <StyledPiggyIcon
           id="accounts"
             className={this.state.activeLink === 2 ? "selectClass" : ""}
-          />
+          /> 
         </div>
         <div
           className="navIcon"

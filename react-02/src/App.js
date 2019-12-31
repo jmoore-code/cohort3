@@ -19,7 +19,6 @@ class App extends React.Component {
   }
 
   selectedElement = (event) => {
-    
     if (event.target.id === "home" ) {
       this.setState({
         selected: "home"
@@ -46,6 +45,8 @@ class App extends React.Component {
       })
     }
   }
+
+
 
 
 
