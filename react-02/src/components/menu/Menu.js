@@ -90,7 +90,7 @@ class Menu extends Component {
   };
   render() {
     return (
-      <div className="main-nav">
+      <div className="main-nav" >
         <div
           className="navIcon"
           onClick={() => {
