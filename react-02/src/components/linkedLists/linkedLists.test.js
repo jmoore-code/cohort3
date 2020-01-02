@@ -44,15 +44,20 @@ test("test last node method", () => {
 
 test("test next and previous node methods", () => {
     const ll = new LinkedList();
+    ll.next()
+    expect(ll.position).toEqual(0)
+    expect(ll.message).toEqual("There is no position to go to, please create a node.")
     ll.insert("Bob", 20)
     ll.insert("Cam", 30)
     expect(ll.position).toEqual(0)
     ll.next()
     expect(ll.position).toEqual(1)
-    ll.previous()
+    ll.next()
     expect(ll.position).toEqual(0)
     ll.previous()
     expect(ll.position).toEqual(1)
+    ll.previous()
+    expect(ll.position).toEqual(0)
 
 })
 
@@ -83,3 +88,4 @@ test("test sum method", () => {
     ll.insert("Gary", 20)
     expect(ll.sumAmount()).toEqual(140)
 })
+

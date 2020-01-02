@@ -22,6 +22,7 @@ class LinkedList {
         if (this.position === 0) {
             this.head = new ListNode(subject, amount, this.head)
             this.size++
+            this.message = `Created node at position ${this.position}`
             return;
         }
 
@@ -40,6 +41,7 @@ class LinkedList {
         node.next = current;
         previous.next = node;
         this.size++
+        this.message = `Created node at position ${this.position}`
        
     }
 
@@ -56,10 +58,22 @@ class LinkedList {
     }
 
     next() {
+        if(this.size === 0) {
+            this.message = "There is no position to go to, please create a node."
+            return;
+        }
+        if( this.size > 0 && this.position === (this.size -1)) {
+            this.position = 0
+            return;
+        }
         this.position++
     }
 
     previous() {
+        if(this.size === 0) {
+            this.message = "There is no position to go to, please create a node."
+            return;
+        }
         if(this.size > 0 && this.position === 0) {
             this.position = this.size -1
             return;
@@ -72,6 +86,10 @@ class LinkedList {
         let count = 0;
         let previous;
 
+        if(this.size === 0) {
+            this.message = "There are no nodes to delete."
+            return;
+        }
         if(this.position === 0) {
             this.head = current.next;
         } else {
@@ -83,7 +101,7 @@ class LinkedList {
             previous.next = current.next
         }
         this.size--
-        if(this.position === this.size) {
+        if(this.size > 0 && this.position === this.size) {
             this.position = this.position -1
         }
     }

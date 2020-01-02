@@ -12,15 +12,51 @@ function LinkedListApp() {
   );
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
+  const [position, setPosition] = useState(instLinkedList.position)
+  const [sum, setSum] = useState(instLinkedList.sumAmount())
+
   
 
 
 function handleSubmit(event) {
     event.preventDefault();
-    instLinkedList.insert(name, age);
+    instLinkedList.insert(name, Number(age));
     setName("")
     setAge("")
-     
+    // fill out list for dev purposes
+    // instLinkedList.insert("Bob", 30)
+    // instLinkedList.insert("Joe", 20)
+    console.log(instLinkedList)
+    //------
+    setSum(instLinkedList.sumAmount())
+    setMessage(instLinkedList.message)
+}
+
+
+
+function handleClick(event) {
+    if (event.target.name === "first"){
+        instLinkedList.first()
+        setPosition(instLinkedList.position)
+    } 
+    if (event.target.name === "last") {
+        instLinkedList.last()
+        setPosition(instLinkedList.position)
+    }
+    if (event.target.name === "next") {
+        instLinkedList.next()
+        setPosition(instLinkedList.position)
+    }
+    if (event.target.name === "previous") {
+        instLinkedList.previous()
+        setPosition(instLinkedList.position)
+    }
+    if (event.target.name === "delete") {
+        instLinkedList.delete()
+        setPosition(instLinkedList.position)
+        setSum(instLinkedList.sumAmount())
+    }
+    console.log(instLinkedList)
 }
 
 
@@ -28,7 +64,7 @@ function handleSubmit(event) {
     <div className="mainContainerLL">
       <div className="controllerContainerLL">
         <div className="title">
-          <h2>LinkedLists</h2>
+          <h2>Linked Lists</h2>
           {message}
         </div>
         <form onSubmit={handleSubmit}>
@@ -37,7 +73,7 @@ function handleSubmit(event) {
             placeholder="Name"
             name="inputName"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={event => setName(event.target.value)}
             required
           />
           <input
@@ -45,7 +81,7 @@ function handleSubmit(event) {
             placeholder="Age"
             name="inputAge"
             value={age}
-            onChange={e => setAge(e.target.value)}
+            onChange={event => setAge(event.target.value)}
             required
           />
           <br></br>
@@ -53,9 +89,15 @@ function handleSubmit(event) {
         </form>
         <br></br>
         <div className="sumOutput">
+        <p>Current node position: {position} </p>
+        <button name="first" onClick={handleClick}>First</button>
+        <button name="last" onClick={handleClick}>Last</button>
+        <button name="next" onClick={handleClick}>Next</button>
+        <button name="previous" onClick={handleClick}>Previous</button>
+        <button name="delete" onClick={handleClick}>Delete</button>
           <p>
             Age Sum Value: <br />
-            Some age function
+            {sum}
           </p>
         </div>
       </div>
