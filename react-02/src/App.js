@@ -5,6 +5,7 @@ import {Game} from "./components/tictactoe/Board"
 import AccountsApp from "./components/accounts/AccountsApp"
 import CitiesApp from "./components/cities/CitiesApp"
 import LinkedListApp from "./components/linkedLists/LinkListsApp"
+import LifoFiloApp from "./components/stackQueue/LifoFiloApp"
 import './App.css';
 
 
@@ -44,6 +45,11 @@ class App extends React.Component {
         selected: "linkLists"
       })
     }
+    if (event.target.id === "lifoFilo") {
+      this.setState({
+        selected: "lifoFilo"
+      })
+    }
   }
 
 
@@ -61,6 +67,8 @@ class App extends React.Component {
       return <CitiesApp />
     } if (this.state.selected === "linkLists") {
       return <LinkedListApp />
+    } if (this.state.selected === "lifoFilo") {
+      return <LifoFiloApp />
     }
   }
 

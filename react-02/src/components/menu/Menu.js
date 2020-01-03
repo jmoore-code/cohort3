@@ -4,6 +4,7 @@ import { ReactComponent as TicTacToeIcon } from "./tic-tac-toe.svg";
 import { ReactComponent as PiggyIcon } from "./piggy-bank.svg";
 import { ReactComponent as CityIcon } from "./cityscape.svg";
 import { ReactComponent as LinkLists } from "./link.svg"
+import {ReactComponent as Database} from "./database.svg"
 import styled, { keyframes } from "styled-components";
 import "./menu.css";
 
@@ -76,6 +77,17 @@ const StyledLinkIcon = styled(LinkLists)`
   }
 `;
 
+const StyledDataIcon = styled(Database)`
+  animation: ${rotate} infinite 20s linear;
+  height: 80px;
+  width: 80px;
+  display: block;
+  &:hover {
+    fill: #61dafb;
+    -webkit-filter: drop-shadow(12px 12px 7px rgba(255, 255, 255, 0.5));
+    filter: drop-shadow(12px 12px 7px rgba(255, 255, 255, 0.5));
+  }
+`;
 
 
 class Menu extends Component {
@@ -145,6 +157,17 @@ class Menu extends Component {
           <StyledLinkIcon
           id="linkLists"
             className={this.state.activeLink === 4 ? "selectClass" : ""}
+          />
+        </div>
+        <div
+          className="navIcon"
+          onClick={() => {
+            this.setActive(5);
+          }}
+        >
+          <StyledDataIcon
+          id="lifoFilo"
+            className={this.state.activeLink === 5 ? "selectClass" : ""}
           />
         </div>
       </div>
