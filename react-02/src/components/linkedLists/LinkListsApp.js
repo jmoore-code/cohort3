@@ -8,7 +8,7 @@ const instLinkedList = new LinkedList();
 
 function LinkedListApp() {
   const [message, setMessage] = useState(
-    "Enter name and age to create first data node."
+    "Enter name and power level to create first bot data node."
   );
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -38,40 +38,39 @@ function LinkedListApp() {
     if (event.target.name === "first") {
       instLinkedList.first();
       setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position)
+      setSelected(instLinkedList.position);
     }
     if (event.target.name === "last") {
       instLinkedList.last();
       setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position)
+      setSelected(instLinkedList.position);
     }
     if (event.target.name === "next") {
       instLinkedList.next();
       setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position)
+      setSelected(instLinkedList.position);
     }
     if (event.target.name === "previous") {
       instLinkedList.previous();
       setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position)
+      setSelected(instLinkedList.position);
     }
     if (event.target.name === "delete") {
       instLinkedList.delete();
       setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position)
+      setSelected(instLinkedList.position);
       setSize(instLinkedList.size);
       setSum(instLinkedList.sumAmount());
       setMessage(instLinkedList.message);
     }
-  
+
     console.log(instLinkedList);
   }
 
   function selectCard(index) {
-          setSelected(index)  
-          instLinkedList.selectNode(index)
-          setPosition(index)
-      
+    setSelected(index);
+    instLinkedList.selectNode(index);
+    setPosition(index);
   }
 
   function cardDisplayLL() {
@@ -103,25 +102,25 @@ function LinkedListApp() {
     <div className="mainContainerLL">
       <div className="controllerContainerLL">
         <div className="title">
-          <h2>Linked Lists</h2>
+          <h2>Linked Lists: Node Bot Generator</h2>
           <p>{message}</p>
         </div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Robot Name"
             name="inputName"
             value={name}
             onChange={event => setName(event.target.value)}
-            // required
+            required
           />
           <input
-            type="text"
-            placeholder="Age"
+            type="number"
+            placeholder="Power Level"
             name="inputAge"
             value={age}
             onChange={event => setAge(event.target.value)}
-            // required
+            required
           />
           <br></br>
           <button type="submit">Create Node</button>
@@ -145,7 +144,7 @@ function LinkedListApp() {
             Delete
           </button>
           <p>
-            Age Sum Value: <br />
+            Power Level Sum: <br />
             {sum}
           </p>
         </div>
