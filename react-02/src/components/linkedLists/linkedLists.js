@@ -92,6 +92,7 @@ class LinkedList {
         }
         if(this.position === 0) {
             this.head = current.next;
+            this.message = `Deleted node at position ${this.position}`
         } else {
             while(count < this.position) {
                 count++;
@@ -101,6 +102,8 @@ class LinkedList {
             previous.next = current.next
         }
         this.size--
+        this.message = `Deleted node at position ${this.position}`
+        //logic to change position if at the last node
         if(this.size > 0 && this.position === this.size) {
             this.position = this.position -1
         }
