@@ -124,6 +124,10 @@ class LinkedList {
             this.head = null;
             this.size = 0;
         }
+
+    selectNode(index) {
+        this.position = index
+    }
 }
 
 

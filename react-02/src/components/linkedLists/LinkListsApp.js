@@ -38,28 +38,40 @@ function LinkedListApp() {
     if (event.target.name === "first") {
       instLinkedList.first();
       setPosition(instLinkedList.position);
+      setSelected(instLinkedList.position)
     }
     if (event.target.name === "last") {
       instLinkedList.last();
       setPosition(instLinkedList.position);
+      setSelected(instLinkedList.position)
     }
     if (event.target.name === "next") {
       instLinkedList.next();
       setPosition(instLinkedList.position);
+      setSelected(instLinkedList.position)
     }
     if (event.target.name === "previous") {
       instLinkedList.previous();
       setPosition(instLinkedList.position);
+      setSelected(instLinkedList.position)
     }
     if (event.target.name === "delete") {
       instLinkedList.delete();
       setPosition(instLinkedList.position);
+      setSelected(instLinkedList.position)
       setSize(instLinkedList.size);
       setSum(instLinkedList.sumAmount());
       setMessage(instLinkedList.message);
     }
   
     console.log(instLinkedList);
+  }
+
+  function selectCard(index) {
+          setSelected(index)  
+          instLinkedList.selectNode(index)
+          setPosition(index)
+      
   }
 
   function cardDisplayLL() {
@@ -78,7 +90,7 @@ function LinkedListApp() {
             key={card.subject}
             position={index}
             onClick={() => {
-              setSelected(index);
+              selectCard(index);
             }}
             selected={selected}
           />

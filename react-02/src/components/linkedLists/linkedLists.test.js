@@ -89,3 +89,13 @@ test("test sum method", () => {
     expect(ll.sumAmount()).toEqual(140)
 })
 
+test("test select node method", () => {
+    const ll = new LinkedList();
+    ll.insert("John", 100)
+    ll.insert("Bob", 20)
+    expect(ll.position).toEqual(0)
+    ll.selectNode(1)
+    expect(ll.position).toEqual(1)
+
+})
+
