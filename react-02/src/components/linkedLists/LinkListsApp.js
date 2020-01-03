@@ -25,9 +25,9 @@ function LinkedListApp() {
     setName("");
     setAge("");
     // fill out list for dev purposes
-    instLinkedList.insert("Bob", 30);
-    instLinkedList.insert("Joe", 20);
-    console.log(instLinkedList);
+    // instLinkedList.insert("Bob", 30);
+    // instLinkedList.insert("Joe", 20);
+    // console.log(instLinkedList);
     //------
     setSize(instLinkedList.size);
     setSum(instLinkedList.sumAmount());
@@ -63,8 +63,19 @@ function LinkedListApp() {
       setSum(instLinkedList.sumAmount());
       setMessage(instLinkedList.message);
     }
+    if (event.target.name === "exampleList") {
+        
+        instLinkedList.insert("Bob", 30);
+        instLinkedList.insert("Joe", 20);
+        instLinkedList.insert("Jason", 1000)
+        setSize(instLinkedList.size);
+        setSum(instLinkedList.sumAmount());
+        setMessage(instLinkedList.message);
+        setName("");
+        setAge("");
+    }
 
-    console.log(instLinkedList);
+    // console.log(instLinkedList);
   }
 
   function selectCard(index) {
@@ -124,7 +135,9 @@ function LinkedListApp() {
           />
           <br></br>
           <button type="submit">Create Node</button>
+          
         </form>
+        <button name="exampleList" onClick={handleClick}>Example List</button>
         <br></br>
         <div className="sumOutput">
           <p>Current node position: {position} </p>
