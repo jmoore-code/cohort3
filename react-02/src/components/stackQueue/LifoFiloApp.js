@@ -13,13 +13,13 @@ function LifoFiloApp() {
   let [queue, setQueue] = useState([]);
   let [pokemon, setPokemon] = useState({});
   let [position, setPosition] = useState(0);
+  let [removedSize, setRemovedSize] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=40");
       res.json().then(res => setPokemon(res));
     }
-
     fetchData();
   }, []);
 
@@ -43,16 +43,22 @@ function LifoFiloApp() {
       setQueue(queueInst.queue);
     }
     if (event.target.name === "takeOut" && toggle === "Stack Controller") {
-     let removedArray = removed
-     let removedPokemon = stackInst.pop();
-     removedArray.push(removedPokemon)
-     setRemoved(removedArray)
-    setStack(stackInst.stack);
-      console.log(stack);
+      let removedArray = removed;
+      let removedPokemon = stackInst.pop();
+      removedArray.push(removedPokemon);
+      setRemoved(removedArray);
+      setRemovedSize(removedSize + 1);
+      setStack(stackInst.stack);
+    }
+    if (event.target.name === "takeOut" && toggle === "Queue Controller") {
+        let removedArray = removed;
+        let removedPokemon = queueInst.dequeue();
+        removedArray.push(removedPokemon);
+        setRemoved(removedArray);
+        setRemovedSize(removedSize + 1)
+        setStack(stackInst.stack)
     }
   }
-
- 
 
   function CardDisplayStack() {
     return stack.map((card, index) => {
@@ -68,9 +74,7 @@ function LifoFiloApp() {
 
   function CardDisplayDelete() {
     return removed.map((card, index) => {
-      return (
-        <CreateCardLF content={card} key={index} cardType="deletedCard" />
-      );
+      return <CreateCardLF content={card} key={index} cardType="deletedCard" />;
     });
   }
 
@@ -95,21 +99,22 @@ function LifoFiloApp() {
           </button>
         </div>
       </div>
-      <div className="lifoContainer">
-        stack
-        <CardDisplayStack />
-        {/* <CreateCardLF cardType="stackCard" content="stack"/> */}
+      <div className="cardFieldLF">
+        <div className="lifoContainer">
+            <CardDisplayStack />
+            {/* <CreateCardLF cardType="stackCard" content="stack"/> */}
+        </div>
+        <div className="filoContainer">
+            <CardDisplayQueue />
+            {/* <CreateCardLF cardType="queueCard" content="queue" /> */}
+        </div>
+        <div className="removeContainer">
+            <CardDisplayDelete />
+            {/* <div className="deletedCard">deletedCard</div> */}
+        </div>
+
       </div>
-      <div className="filoContainer">
-        queue
-        <CardDisplayQueue />
-        {/* <CreateCardLF cardType="queueCard" content="queue" /> */}
-      </div>
-      <div className="removeContainer">
-        removed
-        <CardDisplayDelete />
-        {/* <div className="deletedCard">deletedCard</div> */}
-      </div>
+ 
     </div>
   );
 }
