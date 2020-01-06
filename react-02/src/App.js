@@ -6,6 +6,7 @@ import AccountsApp from "./components/accounts/AccountsApp"
 import CitiesApp from "./components/cities/CitiesApp"
 import LinkedListApp from "./components/linkedLists/LinkListsApp"
 import LifoFiloApp from "./components/stackQueue/LifoFiloApp"
+import ContextApp from "./components/context/ContextApp"
 import './App.css';
 
 
@@ -50,6 +51,11 @@ class App extends React.Component {
         selected: "lifoFilo"
       })
     }
+    if (event.target.id === "gear") {
+      this.setState({
+        selected: "gear"
+      })
+    }
   }
 
 
@@ -69,6 +75,8 @@ class App extends React.Component {
       return <LinkedListApp />
     } if (this.state.selected === "lifoFilo") {
       return <LifoFiloApp />
+    } if (this.state.selected === "gear") {
+      return <ContextApp />
     }
   }
 
