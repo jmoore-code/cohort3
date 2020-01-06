@@ -44,10 +44,12 @@ function LifoFiloApp() {
     }
     if (event.target.name === "putIn" && toggle === "Queue Controller") {
       queueInst.enqueue(pokemon.results[position].name);
+      pokemonIdObj[pokemon.results[position].name] = pokemonId
+      pokemonId = pokemonId + 1
       setPosition(position + 1);
       setQueue(queueInst.queue);
     }
-    if (event.target.name === "takeOut" && toggle === "Stack Controller") {
+    if (event.target.name === "takeOut" && toggle === "Stack Controller" && stack.length > 0) {
       let removedArray = removed;
       let removedPokemon = stackInst.pop();
       removedArray.push(removedPokemon);
@@ -55,7 +57,7 @@ function LifoFiloApp() {
       setRemovedSize(removedSize + 1);
       setStack(stackInst.stack);
     }
-    if (event.target.name === "takeOut" && toggle === "Queue Controller") {
+    if (event.target.name === "takeOut" && toggle === "Queue Controller" && stack.length > 0) {
         let removedArray = removed;
         let removedPokemon = queueInst.dequeue();
         removedArray.push(removedPokemon);
@@ -73,13 +75,13 @@ function LifoFiloApp() {
 
   function CardDisplayQueue() {
     return queue.map((card, index) => {
-      return <CreateCardLF content={card} key={index} cardType="queueCard" />;
+      return <CreateCardLF content={card} key={index} cardType="queueCard" pokemonId={pokemonIdObj[card]}/>;
     });
   }
 
   function CardDisplayDelete() {
     return removed.map((card, index) => {
-      return <CreateCardLF content={card} key={index} cardType="deletedCard" />;
+      return <CreateCardLF content={card} key={index} cardType="deletedCard" pokemonId={pokemonIdObj[card]}/>;
     });
   }
 
