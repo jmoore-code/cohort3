@@ -5,6 +5,8 @@ import "./lifo_filo.css";
 
 let stackInst = new Stack();
 let queueInst = new Queue();
+let pokemonId = 1
+  let pokemonIdObj = {}
 
 function LifoFiloApp() {
   let [toggle, setToggle] = useState("Stack Controller");
@@ -14,6 +16,7 @@ function LifoFiloApp() {
   let [pokemon, setPokemon] = useState({});
   let [position, setPosition] = useState(0);
   let [removedSize, setRemovedSize] = useState(0);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -34,6 +37,8 @@ function LifoFiloApp() {
   function handleClick(event) {
     if (event.target.name === "putIn" && toggle === "Stack Controller") {
       stackInst.push(pokemon.results[position].name);
+      pokemonIdObj[pokemon.results[position].name] = pokemonId
+      pokemonId = pokemonId + 1
       setPosition(position + 1);
       setStack(stackInst.stack);
     }
@@ -62,7 +67,7 @@ function LifoFiloApp() {
 
   function CardDisplayStack() {
     return stack.map((card, index) => {
-      return <CreateCardLF content={card} key={index} cardType="stackCard" />;
+      return <CreateCardLF content={card} key={index} cardType="stackCard" pokemonId={pokemonIdObj[card]}/>;
     });
   }
 
@@ -85,6 +90,7 @@ function LifoFiloApp() {
         <br></br>
         <br></br>
         <label className="switch">
+            
           <input type="checkbox" onClick={toggleClick}></input>
           <span className="slider round"></span>
         </label>
@@ -92,14 +98,27 @@ function LifoFiloApp() {
         <br></br>
         <div className="controllerButtons">
           <button name="putIn" onClick={handleClick}>
-            Put In
+            Put In Pokemon
           </button>
           <button name="takeOut" onClick={handleClick}>
-            Take Out
+            Take Out Pokemon
           </button>
+        <div className="appDetails">
+            <p>This app highlights the difference between two data type of
+            Stack and Queue.</p> 
+            <p>The Stack will operate on a last in first out principle.</p>
+            <p>The Queue will operate on a fist in last out principle.</p>
+            <p>Pay attention to the order that the Pokemon leave and enter each column when you press Put In or Take Out</p>
+
+            
+        </div>
         </div>
       </div>
       <div className="cardFieldLF">
+      <div>Stack Example:</div>
+      <div>Queue Example:</div>
+      <div>Deleted:</div>
+
         <div className="lifoContainer">
             <CardDisplayStack />
             {/* <CreateCardLF cardType="stackCard" content="stack"/> */}
