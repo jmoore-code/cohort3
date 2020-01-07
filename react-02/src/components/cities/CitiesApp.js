@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import citiesPsc from "./citiespsc";
 import CitiesController from "./CitiesController";
 import CreateCityCard from "./CreateCityCard";
 import fetchFunctions from "./citiesfetch";
 import MapContainer from "./MapFunctions";
-
+import {  MyContext } from "../context/ThemeContext";
 import "./citiesapp.css";
 
 class CitiesApp extends Component {
@@ -51,7 +51,7 @@ class CitiesApp extends Component {
       citiesArray: this.controller.cityList,
       message: this.controller.message
     });
-  
+
     // fetch functionality
     let newestCity = this.controller.cityList[
       this.controller.cityList.length - 1
@@ -91,39 +91,47 @@ class CitiesApp extends Component {
 
   render() {
     return (
-      <div className="mainContainer">
-        <div className="controllerField">
-          <p className="controllerTitle">Controller</p>
-          <CitiesController
-            handleChange={this.handleChange}
-            cityName={this.state.cityName}
-            lat={this.state.lat}
-            lng={this.state.lng}
-            population={this.state.population}
-            handleClick={this.handleClick}
-          />
+      <MyContext.Consumer>
+        
+        {context => (
+          <Fragment>
+            <div className="mainContainer" style={{color: context.textTheme }}>
+            <div className="controllerField">
+              <p className="controllerTitle">Controller</p>
+              <CitiesController
+                handleChange={this.handleChange}
+                cityName={this.state.cityName}
+                lat={this.state.lat}
+                lng={this.state.lng}
+                population={this.state.population}
+                handleClick={this.handleClick}
+              />
 
-          <div className="statsOutput">
-            <p>Most Northern City: {this.controller.getMostNorthern()}</p>
-            <p>Most Southern City: {this.controller.getMostSouthern()}</p>
-            <p> Total Population: {this.controller.getPopulation()}</p>
+              <div className="statsOutput">
+                <p>Most Northern City: {this.controller.getMostNorthern()}</p>
+                <p>Most Southern City: {this.controller.getMostSouthern()}</p>
+                <p> Total Population: {this.controller.getPopulation()}</p>
+              </div>
+              <br />
+              <p className="messageOutput">{this.state.message}</p>
+            </div>
+
+            <div className="cityCardContainer">
+              <p>Cities</p>
+              <this.cardDisplay />
+            </div>
+
+            <div className="parentMapContainer">
+              <br />
+              <br />
+              <p></p>
+              <MapContainer citiesArray={this.state.citiesArray} />
+            </div>
           </div>
-          <br />
-          <p className="messageOutput">{this.state.message}</p>
-        </div>
-
-        <div className="cityCardContainer">
-          <p>Cities</p>
-          <this.cardDisplay />
-        </div>
-
-        <div className="parentMapContainer">
-        <br />
-        <br />
-        <p></p>
-          <MapContainer citiesArray={this.state.citiesArray} />
-        </div>
-      </div>
+          </Fragment>
+          
+        )}
+      </MyContext.Consumer>
     );
   }
 }

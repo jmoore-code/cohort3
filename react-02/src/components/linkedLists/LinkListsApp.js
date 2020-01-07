@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { LinkedList } from "./linkedLists";
 import CreateCardLL from "./CardLL";
-// import Form from "./LLForm"
+import {TextThemeContext, ItalicsThemeContext} from "../context/ThemeContext"
+
 import "./linkedlists.css";
 
 const instLinkedList = new LinkedList();
@@ -21,14 +22,8 @@ function LinkedListApp() {
   function handleSubmit(event) {
     event.preventDefault();
     instLinkedList.insert(name, Number(age));
-
     setName("");
     setAge("");
-    // fill out list for dev purposes
-    // instLinkedList.insert("Bob", 30);
-    // instLinkedList.insert("Joe", 20);
-    // console.log(instLinkedList);
-    //------
     setSize(instLinkedList.size);
     setSum(instLinkedList.sumAmount());
     setMessage(instLinkedList.message);
@@ -64,15 +59,14 @@ function LinkedListApp() {
       setMessage(instLinkedList.message);
     }
     if (event.target.name === "exampleList") {
-        
-        instLinkedList.insert("Bob", 30);
-        instLinkedList.insert("Joe", 20);
-        instLinkedList.insert("Jason", 1000)
-        setSize(instLinkedList.size);
-        setSum(instLinkedList.sumAmount());
-        setMessage(instLinkedList.message);
-        setName("");
-        setAge("");
+      instLinkedList.insert("Bob", 30);
+      instLinkedList.insert("Joe", 20);
+      instLinkedList.insert("Jason", 1000);
+      setSize(instLinkedList.size);
+      setSum(instLinkedList.sumAmount());
+      setMessage(instLinkedList.message);
+      setName("");
+      setAge("");
     }
 
     // console.log(instLinkedList);
@@ -109,8 +103,13 @@ function LinkedListApp() {
     }
   }
 
+  const textColor = {color: React.useContext(TextThemeContext)};
+  const textItalics = {fontStyle: React.useContext(ItalicsThemeContext)}
+
+
+
   return (
-    <div className="mainContainerLL">
+    <div className="mainContainerLL" style={{...textColor, ...textItalics }}>
       <div className="controllerContainerLL">
         <div className="title">
           <h2>Linked Lists: Node Bot Generator</h2>
@@ -135,9 +134,10 @@ function LinkedListApp() {
           />
           <br></br>
           <button type="submit">Create Node</button>
-          
         </form>
-        <button name="exampleList" onClick={handleClick}>Example List</button>
+        <button name="exampleList" onClick={handleClick}>
+          Example List
+        </button>
         <br></br>
         <div className="sumOutput">
           <p>Current node position: {position} </p>

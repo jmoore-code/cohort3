@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Stack, Queue } from "./lifo_filo";
 import { CreateCardLF } from "./CreateCardLF";
-import TextThemeContext from "../context/ThemeContext"
+import {TextThemeContext, ItalicsThemeContext} from "../context/ThemeContext"
 import "./lifo_filo.css";
 
 let stackInst = new Stack();
@@ -86,10 +86,11 @@ function LifoFiloApp() {
     });
   }
 
-  const textColor = React.useContext(TextThemeContext)
+  const textColor = {color: React.useContext(TextThemeContext)}
+  const textItalics= {fontStyle: React.useContext(ItalicsThemeContext)}
 
   return (
-    <div className="mainContainerLF" style={{color: textColor}}>
+    <div className="mainContainerLF" style={{...textColor, ...textItalics}}>
       <div className="controllerLF">
         <div className="titleLF">{toggle}</div>
         <br></br>

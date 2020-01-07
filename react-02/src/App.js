@@ -7,7 +7,11 @@ import CitiesApp from "./components/cities/CitiesApp";
 import LinkedListApp from "./components/linkedLists/LinkListsApp";
 import LifoFiloApp from "./components/stackQueue/LifoFiloApp";
 import ContextApp from "./components/context/ContextApp";
-import TextThemeContext from "./components/context/ThemeContext";
+import {
+  TextThemeContext,
+  ItalicsThemeContext,
+  TextThemeContext2
+} from "./components/context/ThemeContext";
 import "./App.css";
 
 class App extends React.Component {
@@ -15,8 +19,11 @@ class App extends React.Component {
     super();
     this.state = {
       selected: "gear",
+      //state objects for context theme
       textTheme: "",
-      contextTextThemeChecked: false
+      textItalicsTheme: "",
+      textReactBlueToggle: false,
+      textItalToggle: false
     };
     this.selectedElement = this.selectedElement.bind(this);
   }
@@ -59,18 +66,33 @@ class App extends React.Component {
     }
   };
 
-  toggleClick = () => {
-    if (this.state.textTheme === "#61DAFB") {
+  toggleClick = event => {
+    if (event.target.id === "textReactBlue") {
+      if (this.state.textTheme === "#61DAFB") {
+        this.setState({
+          textTheme: "",
+          textReactBlueToggle: false
+        });
+        return;
+      }
       this.setState({
-        textTheme: "",
-        contextTextThemeChecked: false
+        textTheme: "#61DAFB",
+        textReactBlueToggle: true
       });
-      return;
     }
-    this.setState({
-      textTheme: "#61DAFB",
-      contextTextThemeChecked: true
-    });
+    if (event.target.id === "textItalicized") {
+      if (this.state.textItalicsTheme === "italic") {
+        this.setState({
+          textItalicsTheme: "",
+          textItalToggle: false
+        });
+        return;
+      }
+      this.setState({
+        textItalicsTheme: "italic",
+        textItalToggle: true
+      });
+    }
   };
 
   appDisplay = () => {
@@ -90,16 +112,13 @@ class App extends React.Component {
       return <LinkedListApp />;
     }
     if (this.state.selected === "lifoFilo") {
-      return (
-        <TextThemeContext.Provider value={this.state.textTheme}>
-          <LifoFiloApp />
-        </TextThemeContext.Provider>
-      );
+      return <LifoFiloApp />;
     }
     if (this.state.selected === "gear") {
       return (
         <ContextApp
-          checked={this.state.contextTextThemeChecked}
+          textReactBlue={this.state.textReactBlueToggle}
+          textItalToggle={this.state.textItalToggle}
           onClick={this.toggleClick}
         />
       );
@@ -108,13 +127,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header" onClick={this.selectedElement}>
-          <Menu />
-        </header>
+      <TextThemeContext2>
+        <ItalicsThemeContext.Provider value={this.state.textItalicsTheme}>
+          <TextThemeContext.Provider value={this.state.textTheme}>
+            <div className="App">
+              <header className="App-header" onClick={this.selectedElement}>
+                <Menu />
+              </header>
 
-        <div className="App-Display">{this.appDisplay()}</div>
-      </div>
+              <div className="App-Display">{this.appDisplay()}</div>
+            </div>
+          </TextThemeContext.Provider>
+        </ItalicsThemeContext.Provider>
+      </TextThemeContext2>
     );
   }
 }
