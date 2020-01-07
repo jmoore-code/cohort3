@@ -1,12 +1,23 @@
-import React from "react"
+import React from "react";
+import { MyContext } from "../context/ThemeContext";
 
 function CreateCardLF(props) {
-
-    return (
-        <div className={props.cardType}>{props.content}
-        <img alt="pokemon" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemonId}.png`} />
-        </div>
-    )
+  const myContext = React.useContext(MyContext);
+  return (
+    <div
+      className={props.cardType}
+      style={{
+        ...{ color: myContext.textTheme },
+        ...{ fontStyle: myContext.textItalicsTheme }
+      }}
+    >
+      {props.content}
+      <img
+        alt="pokemon"
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemonId}.png`}
+      />
+    </div>
+  );
 }
 
-export {CreateCardLF}
+export { CreateCardLF };

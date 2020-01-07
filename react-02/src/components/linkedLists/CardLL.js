@@ -1,6 +1,10 @@
 import React from "react";
+import { MyContext } from "../context/ThemeContext";
+
 
 function CreateCardLL(props) {
+  const myContext = React.useContext(MyContext);
+
   return (
     <div
       className={
@@ -8,6 +12,10 @@ function CreateCardLL(props) {
       }
       id={props.position}
       onClick={props.onClick}
+      style={{
+        ...{ color: myContext.textTheme },
+        ...{ fontStyle: myContext.textItalicsTheme }
+      }}
     >
       <div className="payload">
         <img alt="robots" src={`https://robohash.org/${props.name}?set=set2`} />

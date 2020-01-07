@@ -1,4 +1,5 @@
 import React from "react";
+import { MyContext } from "../context/ThemeContext";
 
 class CreateCityCard extends React.Component {
   constructor(props) {
@@ -43,25 +44,42 @@ class CreateCityCard extends React.Component {
 
   render() {
     return (
-      <div className="cityCard" id={this.props.cityObj.key}>
-        <p>{this.props.cityObj.city}</p>
-        <input
-          className="citiesInput"
-          type="number"
-          onChange={this.handleChange}
-          name={this.props.cityObj.name}
-          value={this.state.population}
-        ></input>
-        <br />
-        <button className="citiesButton" onClick={this.handleClickMoveIn}>Move In</button>
-        <button className="citiesButton" onClick={this.handleClickMoveOut}>Move Out</button>
-        <button className="citiesButton" onClick={this.handleClickDelete}>Delete</button>
-        <div>
-          Latitude: {this.props.cityObj.lat}, Longitude:{" "}
-          {this.props.cityObj.long}, Population: {this.props.cityObj.pop}, Size:{" "}
-          {this.props.cityObj.howBig()}
-        </div>
-      </div>
+      <MyContext.Consumer>
+        {myContext => (
+          <div
+            className="cityCard"
+            id={this.props.cityObj.key}
+            style={{
+              ...{ color: myContext.textTheme },
+              ...{ fontStyle: myContext.textItalicsTheme }
+            }}
+          >
+            <p>{this.props.cityObj.city}</p>
+            <input
+              className="citiesInput"
+              type="number"
+              onChange={this.handleChange}
+              name={this.props.cityObj.name}
+              value={this.state.population}
+            ></input>
+            <br />
+            <button className="citiesButton" onClick={this.handleClickMoveIn}>
+              Move In
+            </button>
+            <button className="citiesButton" onClick={this.handleClickMoveOut}>
+              Move Out
+            </button>
+            <button className="citiesButton" onClick={this.handleClickDelete}>
+              Delete
+            </button>
+            <div>
+              Latitude: {this.props.cityObj.lat}, Longitude:{" "}
+              {this.props.cityObj.long}, Population: {this.props.cityObj.pop},
+              Size: {this.props.cityObj.howBig()}
+            </div>
+          </div>
+        )}
+      </MyContext.Consumer>
     );
   }
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import CreateAccountCard from "./AccountCard";
 import { AccountController } from "./AccountController";
-import "./accounts.css"
+import { MyContext } from "../context/ThemeContext";
 
+import "./accounts.css";
 
 class AccountsApp extends React.Component {
   constructor(props) {
@@ -35,12 +36,12 @@ class AccountsApp extends React.Component {
   };
 
   updateMessage = () => {
-    this.setState({message: this.controller.message})
-  }
-  
+    this.setState({ message: this.controller.message });
+  };
+
   forceUpdate = () => {
-    this.setState({state: this.state });
-};
+    this.setState({ state: this.state });
+  };
 
   cardDisplay = () => {
     return this.controller.allAccounts.map(account => {
@@ -56,58 +57,74 @@ class AccountsApp extends React.Component {
     });
   };
 
- 
-
   render() {
     return (
-      <div className="upperAndLower">
-
-        <div className="upperControls">
-        <div className="title">
-          <h2>Your Banking Accounts</h2>
-          {this.state.message}
-        </div>
-        <br></br>
-          <input
-            type="text"
-            placeholder="Account Name"
-            id="idAccountName"
-            name="name"
-            onChange={this.handleChange}
-            value={this.state.name}
-          />
-          <input
-            type="number"
-            placeholder="Initial Deposit"
-            id="idInitialBalance"
-            name="amount"
-            onChange={this.handleChange}
-            value={this.state.amount}
-          />
-          <br />
-          <button id="idCreateAccountButton" onClick={this.handleClick}>
-            Create Account
-          </button>
-          <p></p>
-          <div className="outputField">
-            <div>
-              <p>Account Sum Value: <br />{this.controller.sumAccounts()}</p>
-              <span id="sumOutput"></span>
+      <MyContext.Consumer>
+        {myContext => (
+          <div
+            className="upperAndLower"
+            style={{
+              ...{ color: myContext.textTheme },
+              ...{ fontStyle: myContext.textItalicsTheme }
+            }}
+          >
+            <div className="upperControls">
+              <div className="title">
+                <h2>Your Banking Accounts</h2>
+                {this.state.message}
+              </div>
+              <br></br>
+              <input
+                type="text"
+                placeholder="Account Name"
+                id="idAccountName"
+                name="name"
+                onChange={this.handleChange}
+                value={this.state.name}
+              />
+              <input
+                type="number"
+                placeholder="Initial Deposit"
+                id="idInitialBalance"
+                name="amount"
+                onChange={this.handleChange}
+                value={this.state.amount}
+              />
+              <br />
+              <button id="idCreateAccountButton" onClick={this.handleClick}>
+                Create Account
+              </button>
+              <p></p>
+              <div className="outputField">
+                <div>
+                  <p>
+                    Account Sum Value: <br />
+                    {this.controller.sumAccounts()}
+                  </p>
+                  <span id="sumOutput"></span>
+                </div>
+                <div>
+                  <p>
+                    Highest Value Account: <br />
+                    {this.controller.highAccount()}
+                  </p>
+                  <span id="highestOutput"></span>
+                </div>
+                <div>
+                  <p>
+                    Lowest Value Account: <br />
+                    {this.controller.lowAccount()}
+                  </p>
+                  <span id="lowestOutput"></span>
+                </div>
+              </div>
             </div>
-            <div>
-              <p>Highest Value Account: <br />{this.controller.highAccount()}</p>
-              <span id="highestOutput"></span>
-            </div>
-            <div>
-              <p>Lowest Value Account: <br />{this.controller.lowAccount()}</p>
-              <span id="lowestOutput"></span>
+            <div className="grid-account" id="idGridAccount">
+              <this.cardDisplay />
             </div>
           </div>
-        </div>
-        <div className="grid-account" id="idGridAccount">
-          <this.cardDisplay />
-        </div>
-      </div>
+        )}
+      </MyContext.Consumer>
     );
   }
 }

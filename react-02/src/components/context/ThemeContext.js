@@ -1,9 +1,8 @@
 import React from 'react';
-const TextThemeContext = React.createContext();
-const ItalicsThemeContext = React.createContext();
+
 const MyContext = React.createContext();
 
-class TextThemeContext2 extends React.Component {
+class TextThemeContext extends React.Component {
     state = {
         textTheme: "",
         textItalicsTheme: "",
@@ -58,4 +57,4 @@ class TextThemeContext2 extends React.Component {
 }
 
 
-export {TextThemeContext, ItalicsThemeContext, TextThemeContext2, MyContext};
+export {TextThemeContext, MyContext};

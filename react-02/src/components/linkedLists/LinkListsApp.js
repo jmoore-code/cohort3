@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LinkedList } from "./linkedLists";
 import CreateCardLL from "./CardLL";
-import {TextThemeContext, ItalicsThemeContext} from "../context/ThemeContext"
+import {MyContext} from "../context/ThemeContext"
 
 import "./linkedlists.css";
 
@@ -103,13 +103,15 @@ function LinkedListApp() {
     }
   }
 
-  const textColor = {color: React.useContext(TextThemeContext)};
-  const textItalics = {fontStyle: React.useContext(ItalicsThemeContext)}
+  const myContext = React.useContext(MyContext);
 
 
 
   return (
-    <div className="mainContainerLL" style={{...textColor, ...textItalics }}>
+    <div className="mainContainerLL"  style={{
+      ...{ color: myContext.textTheme },
+      ...{ fontStyle: myContext.textItalicsTheme }
+    }}>
       <div className="controllerContainerLL">
         <div className="title">
           <h2>Linked Lists: Node Bot Generator</h2>
