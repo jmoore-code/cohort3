@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Stack, Queue } from "./lifo_filo";
 import { CreateCardLF } from "./CreateCardLF";
+import TextThemeContext from "../context/ThemeContext"
 import "./lifo_filo.css";
 
 let stackInst = new Stack();
@@ -85,8 +86,10 @@ function LifoFiloApp() {
     });
   }
 
+  const textColor = React.useContext(TextThemeContext)
+
   return (
-    <div className="mainContainerLF">
+    <div className="mainContainerLF" style={{color: textColor}}>
       <div className="controllerLF">
         <div className="titleLF">{toggle}</div>
         <br></br>
