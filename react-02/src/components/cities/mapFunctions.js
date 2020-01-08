@@ -54,7 +54,6 @@ class MapContainer extends React.Component {
     }
     render() {
         return (
-            <div className="componentMapContainer" > 
                 <Map 
                 google={this.props.google}
                 zoom={5.7}
@@ -72,9 +71,6 @@ class MapContainer extends React.Component {
                      </div>
                 </InfoWindow> 
                 </Map>
-            </div>
-            
-            
         )
     }
 }

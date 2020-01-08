@@ -15,12 +15,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selected: "gear",
-      //state objects for context theme
-      textTheme: "",
-      textItalicsTheme: "",
-      textReactBlueToggle: false,
-      textItalToggle: false
+      selected: "home",
     };
     this.selectedElement = this.selectedElement.bind(this);
   }
