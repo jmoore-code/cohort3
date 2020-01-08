@@ -7,7 +7,8 @@ import CitiesApp from "./components/cities/CitiesApp";
 import LinkedListApp from "./components/linkedLists/LinkListsApp";
 import LifoFiloApp from "./components/stackQueue/LifoFiloApp";
 import ContextApp from "./components/context/ContextApp";
-import { TextThemeContext} from "./components/context/ThemeContext";
+import { TextThemeContext } from "./components/context/ThemeContext";
+import { StateContextProvider } from "./components/context/StateContext";
 import "./App.css";
 
 class App extends React.Component {
@@ -62,8 +63,6 @@ class App extends React.Component {
     }
   };
 
-
-
   appDisplay = () => {
     if (this.state.selected === "home") {
       return <Home />;
@@ -84,23 +83,23 @@ class App extends React.Component {
       return <LifoFiloApp />;
     }
     if (this.state.selected === "gear") {
-      return (
-        <ContextApp />
-      );
+      return <ContextApp />;
     }
   };
 
   render() {
     return (
-      <TextThemeContext>
-            <div className="App">
-              <header className="App-header" onClick={this.selectedElement}>
-                <Menu />
-              </header>
+      <StateContextProvider>
+        <TextThemeContext>
+          <div className="App">
+            <header className="App-header" onClick={this.selectedElement}>
+              <Menu />
+            </header>
 
-              <div className="App-Display">{this.appDisplay()}</div>
-            </div>
-      </TextThemeContext>
+            <div className="App-Display">{this.appDisplay()}</div>
+          </div>
+        </TextThemeContext>
+      </StateContextProvider>
     );
   }
 }
