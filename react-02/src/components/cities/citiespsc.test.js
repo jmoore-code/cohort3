@@ -35,7 +35,7 @@ test("test how big method in city class", () => {
     expect(cityInst.howBig()).toBe("Village")
     cityInst.moveOut(900)
     expect(cityInst.howBig()).toBe("Hamlet")
-    cityInst.moveOut(900)
+    cityInst.moveOut(100)
     expect(cityInst.howBig()).toBe("Zombieland")
 })
 
