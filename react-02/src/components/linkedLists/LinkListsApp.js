@@ -13,55 +13,106 @@ function LinkedListApp() {
   );
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-  const [position, setPosition] = useState(instLinkedList.position);
+  const [position, setPosition] = useState();
   const [sum, setSum] = useState(instLinkedList.sumAmount());
   const [size, setSize] = useState(instLinkedList.size);
-
   const [selected, setSelected] = useState(0);
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (position !== size -1) {
+      instLinkedList.insert(name, Number(age));
+      setName("");
+      setAge("");
+      setSize(instLinkedList.size);
+      setSum(instLinkedList.sumAmount());
+      setMessage(instLinkedList.message);
+      setPosition(position + 1)
+      setSelected(selected + 1)
+      return;
+    }
     instLinkedList.insert(name, Number(age));
     setName("");
     setAge("");
+    setPosition(instLinkedList.size -1)
+    setSelected(instLinkedList.size -1);
     setSize(instLinkedList.size);
     setSum(instLinkedList.sumAmount());
     setMessage(instLinkedList.message);
   }
 
+  function positionNext() {
+    if(position === size -1){
+      return Number(position)
+    } else {
+      return Number(position + 1)
+    }
+  }
+
+  function positionPrev() {
+    if(position === 0){
+      return Number(position)
+    } else {
+      return Number(position - 1)
+    }
+  }
+
   function handleClick(event) {
     if (event.target.name === "first") {
       instLinkedList.first();
-      setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position);
+      setPosition(0);
+      setSelected(0);
     }
     if (event.target.name === "last") {
       instLinkedList.last();
-      setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position);
+      setPosition(size -1);
+      setSelected(size -1);
     }
     if (event.target.name === "next") {
       instLinkedList.next();
-      setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position);
+      setPosition(positionNext());
+      setSelected(positionNext());
     }
     if (event.target.name === "previous") {
       instLinkedList.previous();
-      setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position);
+      setPosition(positionPrev());
+      setSelected(positionPrev());
     }
     if (event.target.name === "delete") {
-      instLinkedList.delete();
-      setPosition(instLinkedList.position);
-      setSelected(instLinkedList.position);
-      setSize(instLinkedList.size);
-      setSum(instLinkedList.sumAmount());
-      setMessage(instLinkedList.message);
+      if (size === 1 || position === 0) {
+        instLinkedList.delete();
+        setSize(instLinkedList.size);
+        setSum(instLinkedList.sumAmount());
+        setMessage(instLinkedList.message);
+        return;
+      }
+      if (size > 1 && position !== size -1) {
+        instLinkedList.delete();
+        setPosition(position -1)
+        setSelected(selected -1)
+        setSize(instLinkedList.size);
+        setSum(instLinkedList.sumAmount());
+        setMessage(instLinkedList.message);
+        return;
+      } 
+      if (size > 1) {
+        instLinkedList.delete();
+        setPosition(instLinkedList.size -1);
+        setSelected(instLinkedList.size -1);
+        setSize(instLinkedList.size);
+        setSum(instLinkedList.sumAmount());
+        setMessage(instLinkedList.message);
+      }
+     
+     
     }
     if (event.target.name === "exampleList") {
       instLinkedList.insert("Bob", 30);
       instLinkedList.insert("Joe", 20);
       instLinkedList.insert("Jason", 1000);
+      instLinkedList.insert("Cam", 45)
+      setPosition(instLinkedList.size -1)
+      setSelected(instLinkedList.size -1);
       setSize(instLinkedList.size);
       setSum(instLinkedList.sumAmount());
       setMessage(instLinkedList.message);
@@ -69,14 +120,9 @@ function LinkedListApp() {
       setAge("");
     }
 
-    // console.log(instLinkedList);
   }
 
-  function selectCard(index) {
-    setSelected(index);
-    instLinkedList.selectNode(index);
-    setPosition(index);
-  }
+ 
 
   function cardDisplayLL() {
     if (size > 0) {
@@ -93,9 +139,6 @@ function LinkedListApp() {
             amount={card.amount}
             key={card.subject}
             position={index}
-            onClick={() => {
-              selectCard(index);
-            }}
             selected={selected}
           />
         );

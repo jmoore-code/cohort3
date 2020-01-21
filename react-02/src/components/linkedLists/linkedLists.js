@@ -1,8 +1,9 @@
 class ListNode {
-    constructor(subject, amount, next = null) {
+    constructor(subject, amount) {
       this.amount = amount;
       this.subject = subject;
-      this.next = next;
+      this.next = null;
+      this.prev = null;
     }
   
     show() {
@@ -13,99 +14,116 @@ class ListNode {
 class LinkedList {
     constructor() {
         this.head = null;
-        this.position = 0;
+        this.tail = null;
+        this.current = null;
         this.message = "";
-        this.size = 0
+        this.size = 0;
     }
 
-    insert(subject, amount) {
-        if (this.position === 0) {
-            this.head = new ListNode(subject, amount, this.head)
+    insert(subject, value){
+        let node = new ListNode(subject, value);
+        if (!this.current) {
+            this.head = node;
+            this.tail = node;
+            this.current = node;
             this.size++
-            this.message = `Created node at position ${this.position}`
-            return;
+            return node;
+        } else if ( this.current === this.tail) {
+            this.current.next = node;
+            node.prev = this.current;
+            this.tail = node;
+            this.current = node
+            node.next = null;
+            this.size++
+            return node;
+        } else {
+            node.prev = this.current;
+            node.next = this.current.next;
+            this.current.next = node;
+            node.next.prev = node;
+            this.current = node;
+            this.size++
+            return node;
         }
-
-        const node = new ListNode(subject, amount);
-        let current, previous;
-        // set current to first
-        current = this.head;
-        let count = 0;
-
-        while(count < this.position) {
-            previous = current; //Node before index
-            count++;
-            current = current.next; //Node after index
-        }
-        
-        node.next = current;
-        previous.next = node;
-        this.size++
-        this.message = `Created node at position ${this.position}`
-       
     }
+
+
 
     first() {
-        this.position = 0;
+        if (!this.head) {
+            this.message = "There is no position to go to, please create a node."
+            return;
+        }
+        this.current = this.head;
+        return this.head
     }
 
     last() {
-        if(this.size === 0) {
-            this.position = 0
+        if(!this.tail) {
+            this.message = "There is no position to go to, please create a node."
             return;
         }
-        this.position = this.size -1
+        this.current = this.tail;
+        return;
     }
 
     next() {
-        if(this.size === 0) {
+        if (!this.tail) {
             this.message = "There is no position to go to, please create a node."
             return;
-        }
-        if( this.size > 0 && this.position === (this.size -1)) {
-            this.position = 0
+        } else if (this.current.next === null) {
+            this.message = "You are at the end of the list."
+            return;
+        } else {
+            let nextNode = this.current.next;
+            this.current = nextNode;
             return;
         }
-        this.position++
     }
 
     previous() {
-        if(this.size === 0) {
-            this.message = "There is no position to go to, please create a node."
-            return;
-        }
-        if(this.size > 0 && this.position === 0) {
-            this.position = this.size -1
-            return;
-        }
-        this.position = this.position -1
+       if (!this.head) {
+        this.message = "There is no position to go to, please create a node."
+        return;
+       } else if (this.current.prev === null) {
+        this.message = "You are at the start of the list."
+        return;
+    } else {
+        let prevNode = this.current.prev
+        this.current = prevNode;
+        return;
+    }
     }
 
     delete() {
-        let current = this.head;
-        let count = 0;
-        let previous;
-
-        if(this.size === 0) {
-            this.message = "There are no nodes to delete."
+        if ( this.head === this.tail) {
+            this.head = null;
+            this.tail = null;
+            this.current = null;
+            this.size--
             return;
         }
-        if(this.position === 0) {
-            this.head = current.next;
-            this.message = `Deleted node at position ${this.position}`
-        } else {
-            while(count < this.position) {
-                count++;
-                previous = current;
-                current = current.next
-            }
-            previous.next = current.next
+        if (this.current === this.head) {
+            this.head = this.current.next;
+            this.head.prev = null;
+            this.current = this.head;
+            this.size--
+            return;
         }
-        this.size--
-        this.message = `Deleted node at position ${this.position}`
-        //logic to change position if at the last node
-        if(this.size > 0 && this.position === this.size) {
-            this.position = this.position -1
+        if (this.current === this.tail) {
+            this.tail = this.current.prev;
+            this.tail.next = null;
+            this.current = this.tail;
+            this.size--
+            return;
+        }
+        else {
+            let currentNode = this.current.prev;
+            currentNode.next = this.current.next;
+            this.current.prev = currentNode;
+            this.current = currentNode
+            this.size--
+            return;
         }
     }
     
@@ -120,14 +138,8 @@ class LinkedList {
         return total;
     }
     
-        clearList() {
-            this.head = null;
-            this.size = 0;
-        }
 
-    selectNode(index) {
-        this.position = index
-    }
+ 
 }
 
 

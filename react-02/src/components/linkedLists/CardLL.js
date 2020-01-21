@@ -11,7 +11,6 @@ function CreateCardLL(props) {
         props.selected === props.position ? "selectedCard" : "linkListCard"
       }
       id={props.position}
-      onClick={props.onClick}
       style={{
         ...{ color: myContext.textTheme },
         ...{ fontStyle: myContext.textItalicsTheme }
