@@ -20,7 +20,7 @@ function LinkedListApp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (position !== size -1) {
+    if (size > 0 && position !== size -1) {
       instLinkedList.insert(name, Number(age));
       setName("");
       setAge("");
@@ -58,22 +58,22 @@ function LinkedListApp() {
   }
 
   function handleClick(event) {
-    if (event.target.name === "first") {
+    if (event.target.name === "first" && size > 0 ) {
       instLinkedList.first();
       setPosition(0);
       setSelected(0);
     }
-    if (event.target.name === "last") {
+    if (event.target.name === "last" && size > 0) {
       instLinkedList.last();
       setPosition(size -1);
       setSelected(size -1);
     }
-    if (event.target.name === "next") {
+    if (event.target.name === "next" && size > 0) {
       instLinkedList.next();
       setPosition(positionNext());
       setSelected(positionNext());
     }
-    if (event.target.name === "previous") {
+    if (event.target.name === "previous" && size > 0) {
       instLinkedList.previous();
       setPosition(positionPrev());
       setSelected(positionPrev());
