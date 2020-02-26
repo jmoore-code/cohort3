@@ -1,0 +1,11 @@
+Population by area class: 
+Residential           2 People 
+Park                  4 People 
+Industrial            6 People 
+
+Population by city sector: 
+CENTRE                2 People 
+SOUTHEAST             4 People 
+NORTHWEST             6 People 
+
+Total number of data rows: 6
