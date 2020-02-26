@@ -25,11 +25,11 @@ def census_reader(input):
             rowCount += 1
     print("\n" + "Population by area class:")
     for key, value in data["CLASS"].items():
-        print("{:12} {:10} People".format(key, value))
+        print("{:18} {:10} People".format(key, value))
        
     print("\n" + "Population by city sector:")
     for key, value in data["SECTOR"].items():
-        print("{:12} {:10} People".format(key, value))
+        print("{:18} {:10} People".format(key, value))
         
     print("\n" + f"Total number of data rows: {rowCount}")
     return(data) 
@@ -41,10 +41,10 @@ def census_writer():
     testReturn = {}
     for key, value in data["CLASS"].items():
         testReturn[key] = value
-        areaStr.append("{:12} {:10} People \n".format(key, value))
+        areaStr.append("{:18} {:10} People \n".format(key, value))
     for key, value in data["SECTOR"].items():
         testReturn[key] = value
-        sectorStr.append("{:12} {:10} People \n".format(key, value))
+        sectorStr.append("{:18} {:10} People \n".format(key, value))
     with open("testfile.txt", "w") as file:
         file.write("Population by area class: \n")
         file.writelines(areaStr)
@@ -53,5 +53,5 @@ def census_writer():
         file.write("\n" + f"Total number of data rows: {rowCount}")
     return(testReturn)
 
-# census_reader("test_csv.csv")
+# census_reader("Census_by_Community_2018.csv")
 # census_writer()
