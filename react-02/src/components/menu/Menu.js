@@ -19,9 +19,9 @@ const rotate = keyframes`
 `;
 
 const StyledHomeIcon = styled(HomeIcon)`
-  animation: ${rotate} infinite 20s linear;
-  height: 80px;
-  width: 80px;
+  ${'' /* animation: ${rotate} infinite 20s linear; */}
+  height: 10vh;
+  width: 10vh;
   display: block;
   &:hover {
     fill: #61dafb;
@@ -31,9 +31,9 @@ const StyledHomeIcon = styled(HomeIcon)`
 `;
 
 const StyledTicTacToeIcon = styled(TicTacToeIcon)`
-  animation: ${rotate} infinite 20s linear;
-  height: 80px;
-  width: 80px;
+  ${'' /* animation: ${rotate} infinite 20s linear; */}
+  height: 10vh;
+  width: 10vh;
   display: block;
   &:hover {
     fill: #61dafb;
@@ -43,9 +43,9 @@ const StyledTicTacToeIcon = styled(TicTacToeIcon)`
 `;
 
 const StyledPiggyIcon = styled(PiggyIcon)`
-  animation: ${rotate} infinite 20s linear;
-  height: 80px;
-  width: 80px;
+  ${'' /* animation: ${rotate} infinite 20s linear; */}
+  height: 10vh;
+  width: 10vh;
   display: block;
   &:hover {
     fill: #61dafb;
@@ -55,9 +55,9 @@ const StyledPiggyIcon = styled(PiggyIcon)`
 `;
 
 const StyledCityIcon = styled(CityIcon)`
-  animation: ${rotate} infinite 20s linear;
-  height: 80px;
-  width: 80px;
+  ${'' /* animation: ${rotate} infinite 20s linear; */}
+  height: 10vh;
+  width: 10vh;
   display: block;
   &:hover {
     fill: #61dafb;
@@ -67,9 +67,9 @@ const StyledCityIcon = styled(CityIcon)`
 `;
 
 const StyledLinkIcon = styled(LinkLists)`
-  animation: ${rotate} infinite 20s linear;
-  height: 80px;
-  width: 80px;
+  ${'' /* animation: ${rotate} infinite 20s linear; */}
+  height: 10vh;
+  width: 10vh;
   display: block;
   &:hover {
     fill: #61dafb;
@@ -79,9 +79,9 @@ const StyledLinkIcon = styled(LinkLists)`
 `;
 
 const StyledDataIcon = styled(Database)`
-  animation: ${rotate} infinite 20s linear;
-  height: 80px;
-  width: 80px;
+  ${'' /* animation: ${rotate} infinite 20s linear; */}
+  height: 10vh;
+  width: 10vh;
   display: block;
   &:hover {
     fill: #61dafb;
@@ -91,9 +91,9 @@ const StyledDataIcon = styled(Database)`
 `;
 
 const StyledGearIcon = styled(Gear)`
-  animation: ${rotate} infinite 20s linear;
-  height: 80px;
-  width: 80px;
+  ${'' /* animation: ${rotate} infinite 20s linear; */}
+  height: 10vh;
+  width: 10vh;
   display: block;
   &:hover {
     fill: #61dafb;

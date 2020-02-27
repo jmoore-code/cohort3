@@ -1,5 +1,10 @@
+.App-header{
+
+}
+
 .main-nav{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     justify-content: center;
     width: 100%;
     list-style: none;
