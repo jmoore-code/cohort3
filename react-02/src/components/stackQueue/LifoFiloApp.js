@@ -111,15 +111,13 @@ function LifoFiloApp() {
           <button name="takeOut" onClick={handleClick}>
             Take Out Pokemon
           </button>
-        <div className="appDetails">
+        {/* <div className="appDetails">
             <p>This app highlights the difference between two data type of
             Stack and Queue.</p> 
             <p>The Stack will operate on a last in first out principle.</p>
             <p>The Queue will operate on a fist in last out principle.</p>
             <p>Pay attention to the order that the Pokemon leave and enter each column when you press Put In or Take Out</p>
-
-            
-        </div>
+        </div> */}
         </div>
       </div>
       <div className="cardFieldLF">

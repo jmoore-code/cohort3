@@ -42,3 +42,10 @@
   max-width: 100%;
   max-height: 100%;
 }
+
+@media (max-width: 800px) {
+  .controllerContainerLL,
+  .cardsContainerLL {
+    grid-column: 1 / span 3;
+  }
+}
