@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      selected: "cities",
+      selected: "home",
     };
     this.selectedElement = this.selectedElement.bind(this);
   }
