@@ -16,7 +16,8 @@ class CitiesApp extends Component {
       lng: "",
       population: "",
       citiesArray: [],
-      message: "Please put in a city and valid lat-long coordinates"
+      message: "Please put in a city and valid lat-long coordinates",
+      center: {lat: 51.0447, lng: -114.0719}
     };
     this.controller = new citiesPsc.community();
   }
@@ -32,7 +33,7 @@ class CitiesApp extends Component {
       });
       this.setState({ citiesArray: this.controller.cityList });
     } catch (err) {
-      this.setState({ message: "Failed to connect to server" });
+      this.setState({ message: "Please put in a city and valid lat-long coordinates" }); //Failed to connect to server
     }
   };
 
@@ -44,6 +45,7 @@ class CitiesApp extends Component {
       this.state.population
     );
     this.setState({
+      center: {lat: this.state.lat, lng: this.state.lng},
       cityName: "",
       lat: "",
       lng: "",
@@ -73,6 +75,10 @@ class CitiesApp extends Component {
     this.setState({ citiesArray: this.controller.cityList });
   };
 
+  cardClick = (lat, lng) => {
+      this.setState({center: {lat: lat, lng: lng}})
+  }
+
   cardDisplay = () => {
     return this.state.citiesArray.map(item => {
       return (
@@ -84,11 +90,13 @@ class CitiesApp extends Component {
           fetchUpdate={fetchFunctions.updateData}
           arrayUpdate={this.arrayUpdate}
           messageUpdate={this.updateMessage}
+          cardClick={this.cardClick}
         />
       );
     });
   };
 
+  
   render() {
     return (
       <MyContext.Consumer>
@@ -130,7 +138,7 @@ class CitiesApp extends Component {
                 <br />
                 <br />
                 <p></p>
-                <MapContainer citiesArray={this.state.citiesArray} />
+                <MapContainer center={this.state.center} citiesArray={this.state.citiesArray} />
               </div>
             </div>
           </Fragment>

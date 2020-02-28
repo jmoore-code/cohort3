@@ -12,7 +12,8 @@ class MapContainer extends React.Component {
         this.state = {
             showingInfoWindow: false,
             activeMarker: {},
-            selectedPlace: {}
+            selectedPlace: {},
+            center: {lat: 51.0447, lng: -114.0719}
         }
     }
     onMarkerClick = (props, marker, e) => {
@@ -59,6 +60,7 @@ class MapContainer extends React.Component {
                 zoom={5.7}
                 style={mapStyles}
                 initialCenter={{lat: 51.0447, lng: -114.0719}}
+                center={this.props.center}
                 >
                 {this.displayMakers()}
                 <InfoWindow

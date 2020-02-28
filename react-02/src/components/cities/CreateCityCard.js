@@ -6,7 +6,9 @@ class CreateCityCard extends React.Component {
     super(props);
     this.state = {
       cityObj: this.props.cityObj,
-      population: ""
+      population: "",
+      lat: this.props.cityObj.lat,
+      lng: this.props.cityObj.long
     };
   }
 
@@ -42,6 +44,12 @@ class CreateCityCard extends React.Component {
     this.props.arrayUpdate();
   };
 
+  handleClickGoTo = () => {
+    this.props.cardClick(this.state.lat, this.state.lng)
+  }
+
+
+
   render() {
     return (
       <MyContext.Consumer>
@@ -53,6 +61,8 @@ class CreateCityCard extends React.Component {
               ...{ color: myContext.textTheme },
               ...{ fontStyle: myContext.textItalicsTheme }
             }}
+            lat={this.props.cityObj.lat}
+            lng={this.props.cityObj.long}
           >
             <p>{this.props.cityObj.city}</p>
             <input
@@ -71,6 +81,9 @@ class CreateCityCard extends React.Component {
             </button>
             <button className="citiesButton" onClick={this.handleClickDelete}>
               Delete
+            </button>
+            <button className="citiesButton" onClick={this.handleClickGoTo}>
+              Go To
             </button>
             <div>
               Latitude: {this.props.cityObj.lat}, Longitude:{" "}
