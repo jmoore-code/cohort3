@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cohort3/static/css/main.358f4ebc.chunk.css",
+    "main.css": "/cohort3/static/css/main.22e4b072.chunk.css",
     "main.js": "/cohort3/static/js/main.ff9a648f.chunk.js",
     "main.js.map": "/cohort3/static/js/main.ff9a648f.chunk.js.map",
     "runtime-main.js": "/cohort3/static/js/runtime-main.133e12dd.js",
@@ -8,9 +8,9 @@
     "static/js/2.d0215933.chunk.js": "/cohort3/static/js/2.d0215933.chunk.js",
     "static/js/2.d0215933.chunk.js.map": "/cohort3/static/js/2.d0215933.chunk.js.map",
     "index.html": "/cohort3/index.html",
-    "precache-manifest.c31819485485e0fe4fd04ebf47467c94.js": "/cohort3/precache-manifest.c31819485485e0fe4fd04ebf47467c94.js",
+    "precache-manifest.020613fccb278319567e7d480b7e8077.js": "/cohort3/precache-manifest.020613fccb278319567e7d480b7e8077.js",
     "service-worker.js": "/cohort3/service-worker.js",
-    "static/css/main.358f4ebc.chunk.css.map": "/cohort3/static/css/main.358f4ebc.chunk.css.map",
+    "static/css/main.22e4b072.chunk.css.map": "/cohort3/static/css/main.22e4b072.chunk.css.map",
     "static/js/2.d0215933.chunk.js.LICENSE": "/cohort3/static/js/2.d0215933.chunk.js.LICENSE",
     "static/media/cityscape.bbe80169.svg": "/cohort3/static/media/cityscape.bbe80169.svg",
     "static/media/database.a1cfdc15.svg": "/cohort3/static/media/database.a1cfdc15.svg",
@@ -24,7 +24,7 @@
   "entrypoints": [
     "static/js/runtime-main.133e12dd.js",
     "static/js/2.d0215933.chunk.js",
-    "static/css/main.358f4ebc.chunk.css",
+    "static/css/main.22e4b072.chunk.css",
     "static/js/main.ff9a648f.chunk.js"
   ]
 }
