@@ -58,7 +58,7 @@ function LifoFiloApp() {
       setRemovedSize(removedSize + 1);
       setStack(stackInst.stack);
     }
-    if (event.target.name === "takeOut" && toggle === "Queue Controller" && stack.length > 0) {
+    if (event.target.name === "takeOut" && toggle === "Queue Controller" && queue.length > 0) {
         let removedArray = removed;
         let removedPokemon = queueInst.dequeue();
         removedArray.push(removedPokemon);
