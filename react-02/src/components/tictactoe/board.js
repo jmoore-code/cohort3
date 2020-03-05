@@ -1,6 +1,7 @@
 import React from "react";
 import { MyContext } from "../context/ThemeContext";
 import "./tictactoe.css";
+import Popup from "reactjs-popup";
 
 function Square(props) {
   return (
@@ -42,6 +43,38 @@ class Board extends React.Component {
     );
   }
 }
+
+const InfoPopup = () => (
+  <Popup trigger={<button className="button"> Information </button>} modal>
+    {close => (
+      <div className="modal">
+        <button className="close" onClick={close}>
+          &times;
+        </button>
+        <div className="header"></div>
+        <div className="content">
+          {" "}
+          TicTacToe is a guide that the React website provides to take you
+          through many of the capabilities in React. The two main lessons
+          learned were how to manage state and how to store a history of moves
+          so the user can go back in time which is a very common feature similar
+          to undo in document editing applications.
+        </div>
+        <div className="actions">
+          <button
+            className="button"
+            onClick={() => {
+              console.log("modal closed ");
+              close();
+            }}
+          >
+            close
+          </button>
+        </div>
+      </div>
+    )}
+  </Popup>
+);
 
 class Game extends React.Component {
   constructor(props) {
@@ -115,6 +148,10 @@ class Game extends React.Component {
               ...{ fontStyle: myContext.textItalicsTheme }
             }}
           >
+            <div className="info-modal" style={{ color: "black" }}>
+              <InfoPopup />
+            </div>
+            <br></br>
             <div className="game-board">
               <Board
                 squares={current.squares}

@@ -6,6 +6,45 @@ import fetchFunctions from "./citiesfetch";
 import MapContainer from "./MapFunctions";
 import { MyContext } from "../context/ThemeContext";
 import "./citiesapp.css";
+import Popup from "reactjs-popup";
+
+const InfoPopup = () => (
+  <Popup trigger={<button className="button"> Information </button>} modal>
+    {close => (
+      <div className="modal">
+        <button className="close" onClick={close}>
+          &times;
+        </button>
+        <div className="header"></div>
+        <div className="content">
+          {" "}
+          <p>
+            The "Cities" exercise was very similar to the previous "Bank Accounts" exercise
+            to teach us some of the core ways to use classes in JavaScript and display cards. It also asked us
+            to store the data created in a simulated server database using a pre built Api. 
+            I took the exercise a bit farther and also linked in the Google Maps Api to 
+            dynamically create pins.  
+          </p>
+          <p>
+            Enter a city name and a valid lat-long. The city name and coordinates do not need
+            to match real world cities, make one up if you like.
+          </p>
+        </div>
+        <div className="actions">
+          <button
+            className="button"
+            onClick={() => {
+              console.log("modal closed ");
+              close();
+            }}
+          >
+            close
+          </button>
+        </div>
+      </div>
+    )}
+  </Popup>
+);
 
 class CitiesApp extends Component {
   constructor(props) {
@@ -17,7 +56,7 @@ class CitiesApp extends Component {
       population: "",
       citiesArray: [],
       message: "Please put in a city and valid lat-long coordinates",
-      center: {lat: 51.0447, lng: -114.0719}
+      center: { lat: 51.0447, lng: -114.0719 }
     };
     this.controller = new citiesPsc.community();
   }
@@ -33,7 +72,9 @@ class CitiesApp extends Component {
       });
       this.setState({ citiesArray: this.controller.cityList });
     } catch (err) {
-      this.setState({ message: "Please put in a city and valid lat-long coordinates" }); //Failed to connect to server
+      this.setState({
+        message: "Please put in a city and valid lat-long coordinates"
+      }); //Failed to connect to server
     }
   };
 
@@ -45,7 +86,7 @@ class CitiesApp extends Component {
       this.state.population
     );
     this.setState({
-      center: {lat: this.state.lat, lng: this.state.lng},
+      center: { lat: this.state.lat, lng: this.state.lng },
       cityName: "",
       lat: "",
       lng: "",
@@ -76,8 +117,8 @@ class CitiesApp extends Component {
   };
 
   cardClick = (lat, lng) => {
-      this.setState({center: {lat: lat, lng: lng}})
-  }
+    this.setState({ center: { lat: lat, lng: lng } });
+  };
 
   cardDisplay = () => {
     return this.state.citiesArray.map(item => {
@@ -96,7 +137,6 @@ class CitiesApp extends Component {
     });
   };
 
-  
   render() {
     return (
       <MyContext.Consumer>
@@ -127,6 +167,9 @@ class CitiesApp extends Component {
                 </div>
                 <br />
                 <p className="messageOutput">{this.state.message}</p>
+                <div className="info-modal" style={{ color: "black" }}>
+                  <InfoPopup />
+                </div>
               </div>
 
               <div className="cityCardContainer">
@@ -138,7 +181,10 @@ class CitiesApp extends Component {
                 <br />
                 <br />
                 <p></p>
-                <MapContainer center={this.state.center} citiesArray={this.state.citiesArray} />
+                <MapContainer
+                  center={this.state.center}
+                  citiesArray={this.state.citiesArray}
+                />
               </div>
             </div>
           </Fragment>

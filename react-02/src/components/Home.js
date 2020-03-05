@@ -35,7 +35,7 @@ display:block;
 }
 `;
 
-const PopupExample = () => (
+const InfoPopup = () => (
   <Popup trigger={<button className="button"> Information </button>} modal>
     {close => (
       <div className="modal">
@@ -69,17 +69,9 @@ function homeComponent() {
   return (
     <div className="homeLogoDiv">
       <StyledLogo />
-      {/* <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a> */}
       <h1>Welcome to Jason Moore's React App</h1>
       <div style={{color:"black"}}>
-      <PopupExample />
+      <InfoPopup />
 
       </div>
     

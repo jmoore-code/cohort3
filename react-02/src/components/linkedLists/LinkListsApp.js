@@ -1,9 +1,52 @@
 import React, { useState } from "react";
 import { LinkedList } from "./linkedLists";
 import CreateCardLL from "./CardLL";
-import {MyContext} from "../context/ThemeContext"
+import { MyContext } from "../context/ThemeContext";
 
 import "./linkedlists.css";
+import Popup from "reactjs-popup";
+
+const InfoPopup = () => (
+  <Popup trigger={<button className="button"> Information </button>} modal>
+    {close => (
+      <div className="modal">
+        <button className="close" onClick={close}>
+          &times;
+        </button>
+        <div className="header"></div>
+        <div className="content">
+          {" "}
+          <p>
+            The "Linked List" exercise was designed to teach us the concept of the 
+            doubly linked list data structure and how we could implement it using
+            Javascript. Creating the control buttons got me to think about how to 
+            move through a link list and what happens when nodes are deleted or added
+            at certain points. 
+          </p>
+          <p>
+            The exercise also required the use of React Hooks instead of using classes.
+          </p>
+          <p>
+            I chose to display this as a list of robot "nodes" that each
+            have a name and power level. Enter you name and power level, plus some 
+            of your friends or click the example button to generate a predefined list.
+          </p>
+        </div>
+        <div className="actions">
+          <button
+            className="button"
+            onClick={() => {
+              console.log("modal closed ");
+              close();
+            }}
+          >
+            close
+          </button>
+        </div>
+      </div>
+    )}
+  </Popup>
+);
 
 const instLinkedList = new LinkedList();
 
@@ -20,53 +63,53 @@ function LinkedListApp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (size > 0 && position !== size -1) {
+    if (size > 0 && position !== size - 1) {
       instLinkedList.insert(name, Number(age));
       setName("");
       setAge("");
       setSize(instLinkedList.size);
       setSum(instLinkedList.sumAmount());
       setMessage(instLinkedList.message);
-      setPosition(position + 1)
-      setSelected(selected + 1)
+      setPosition(position + 1);
+      setSelected(selected + 1);
       return;
     }
     instLinkedList.insert(name, Number(age));
     setName("");
     setAge("");
-    setPosition(instLinkedList.size -1)
-    setSelected(instLinkedList.size -1);
+    setPosition(instLinkedList.size - 1);
+    setSelected(instLinkedList.size - 1);
     setSize(instLinkedList.size);
     setSum(instLinkedList.sumAmount());
     setMessage(instLinkedList.message);
   }
 
   function positionNext() {
-    if(position === size -1){
-      return Number(position)
+    if (position === size - 1) {
+      return Number(position);
     } else {
-      return Number(position + 1)
+      return Number(position + 1);
     }
   }
 
   function positionPrev() {
-    if(position === 0){
-      return Number(position)
+    if (position === 0) {
+      return Number(position);
     } else {
-      return Number(position - 1)
+      return Number(position - 1);
     }
   }
 
   function handleClick(event) {
-    if (event.target.name === "first" && size > 0 ) {
+    if (event.target.name === "first" && size > 0) {
       instLinkedList.first();
       setPosition(0);
       setSelected(0);
     }
     if (event.target.name === "last" && size > 0) {
       instLinkedList.last();
-      setPosition(size -1);
-      setSelected(size -1);
+      setPosition(size - 1);
+      setSelected(size - 1);
     }
     if (event.target.name === "next" && size > 0) {
       instLinkedList.next();
@@ -86,43 +129,38 @@ function LinkedListApp() {
         setMessage(instLinkedList.message);
         return;
       }
-      if (size > 1 && position !== size -1) {
+      if (size > 1 && position !== size - 1) {
         instLinkedList.delete();
-        setPosition(position -1)
-        setSelected(selected -1)
+        setPosition(position - 1);
+        setSelected(selected - 1);
         setSize(instLinkedList.size);
         setSum(instLinkedList.sumAmount());
         setMessage(instLinkedList.message);
         return;
-      } 
+      }
       if (size > 1) {
         instLinkedList.delete();
-        setPosition(instLinkedList.size -1);
-        setSelected(instLinkedList.size -1);
+        setPosition(instLinkedList.size - 1);
+        setSelected(instLinkedList.size - 1);
         setSize(instLinkedList.size);
         setSum(instLinkedList.sumAmount());
         setMessage(instLinkedList.message);
       }
-     
-     
     }
     if (event.target.name === "exampleList") {
       instLinkedList.insert("Bob", 30);
       instLinkedList.insert("Joe", 20);
       instLinkedList.insert("Jason", 1000);
-      instLinkedList.insert("Cam", 45)
-      setPosition(instLinkedList.size -1)
-      setSelected(instLinkedList.size -1);
+      instLinkedList.insert("Cam", 45);
+      setPosition(instLinkedList.size - 1);
+      setSelected(instLinkedList.size - 1);
       setSize(instLinkedList.size);
       setSum(instLinkedList.sumAmount());
       setMessage(instLinkedList.message);
       setName("");
       setAge("");
     }
-
   }
-
- 
 
   function cardDisplayLL() {
     if (size > 0) {
@@ -148,13 +186,14 @@ function LinkedListApp() {
 
   const myContext = React.useContext(MyContext);
 
-
-
   return (
-    <div className="mainContainerLL"  style={{
-      ...{ color: myContext.textTheme },
-      ...{ fontStyle: myContext.textItalicsTheme }
-    }}>
+    <div
+      className="mainContainerLL"
+      style={{
+        ...{ color: myContext.textTheme },
+        ...{ fontStyle: myContext.textItalicsTheme }
+      }}
+    >
       <div className="controllerContainerLL">
         <div className="title">
           <h2>Linked Lists: Node Bot Generator</h2>
@@ -205,6 +244,9 @@ function LinkedListApp() {
             Power Level Sum: <br />
             {sum}
           </p>
+          <div className="info-modal" style={{ color: "black" }}>
+            <InfoPopup />
+          </div>
         </div>
       </div>
       <div className="cardsContainerLL">{cardDisplayLL()}</div>
